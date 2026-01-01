@@ -6,22 +6,107 @@
 \chapter[PENDAHULUAN]{\\ PENDAHULUAN}
 
 \section{Latar Belakang}
-Bagian ini menjelaskan alasan dan motivasi di balik pengembangan proyek ini. Proyek ini diinisiasi untuk mengatasi kebutuhan atau permasalahan tertentu yang timbul dalam bidang teknologi, industri, atau aplikasi sehari-hari. Melalui identifikasi kebutuhan ini, diperoleh wawasan tentang bagaimana proyek dapat memberikan solusi yang efektif dan efisien. Latar belakang ini juga menguraikan pentingnya topik proyek dalam perkembangan teknologi terkini, serta bagaimana penerapan teknologi atau metode yang diusulkan dapat membawa nilai tambah. Selain itu, bagian ini memberikan gambaran singkat mengenai situasi atau tren teknologi saat ini yang mempengaruhi pengembangan proyek.
+Analisis sentimen terhadap komentar, ulasan, atau unggahan di media sosial dapat memberikan wawasan berharga mengenai persepsi publik terhadap suatu usaha mikro, kecil, dan menengah (UMKM). Misalnya, \cite{permana_sentimen_2023} melakukan analisis sentimen terhadap opini masyarakat mengenai UMKM di Twitter dan menemukan bahwa sebagian besar sentimen bersifat positif (58\%), diikuti netral (37\%) dan negatif (4\%). Temuan seperti ini dapat menjadi dasar pengambilan keputusan strategis dalam pemasaran digital dan pengembangan produk.
+
+Namun, hasil analisis semacam ini umumnya disajikan dalam bentuk visualisasi data seperti grafik batang, diagram lingkaran, atau grafik garis. Sayangnya, tidak semua pengguna mampu memahami makna dari grafik tersebut. Penelitian oleh \cite{quadri_you_2024} mengungkap bahwa tingkat pemahaman audiens terhadap grafik sangat bervariasi dan sering kali tidak sejalan dengan tujuan pembuat visualisasi. Hal serupa disampaikan oleh \cite{knoll_gulf_2025}, yang menunjukkan adanya \textit{gulf of interpretation} antara penyaji data dan pembaca, terutama ketika grafik memiliki kompleksitas tinggi. Akibatnya, sebagian pengguna kesulitan menafsirkan insight yang sebenarnya ingin disampaikan melalui visualisasi data.
+
+Sementara itu, pelaku UMKM di Indonesia semakin aktif memanfaatkan media sosial seperti Instagram untuk promosi dan interaksi dengan pelanggan. Laporan \cite{datareportal_digital_2025} mencatat bahwa lebih dari 80\% pengguna internet di Indonesia aktif menggunakan Instagram, menjadikannya sumber data potensial dalam memahami sentimen publik. Namun, pelaku UMKM yang tidak familiar dengan statistik dan visualisasi data sering kali kesulitan menafsirkan hasil analisis tersebut secara mandiri.
+
+Untuk mengatasi permasalahan ini, diperlukan sistem yang mampu menerjemahkan hasil analisis data menjadi informasi yang mudah dipahami melalui interaksi berbasis bahasa alami. Salah satu pendekatan modern yang relevan adalah Retrieval-Augmented Generation (RAG), yaitu metode yang menggabungkan proses retrieval (pengambilan informasi dari knowledge base) dengan generation (pembuatan jawaban menggunakan model bahasa). Pendekatan ini dikenal sebagai jembatan yang efektif antara data mentah dan pemahaman pengguna \cite{lewis_retrieval-augmented_2021, murtiyoso_systematic_2025, pokhrel_practical_2025}. RAG memungkinkan chatbot memberikan jawaban yang lebih akurat, kontekstual, dan sesuai dengan data sebenarnya dibandingkan model generatif biasa.
+
+Dari sisi implementasi teknologi, penggunaan NestJS dipilih karena memiliki arsitektur modular, dukungan TypeScript penuh, serta kemampuan untuk membangun backend yang terstruktur, terukur, dan mudah dimaintain \cite{muhammad_development_2024}. NestJS juga memungkinkan pengembangan API Gateway yang fleksibel untuk mengintegrasikan berbagai layanan seperti autentikasi JWT, manajemen data scraping, dan layanan analisis sentimen sehingga cocok digunakan dalam sistem berskala menengah hingga besar. Untuk integrasi RAG, digunakan LangChain.js, sebuah framework modern yang mempermudah pengelolaan pipeline retrieval, integrasi embedding, serta pembuatan rantai proses (chains) untuk AI generatif \cite{vidivelli_efficiency-driven_2024}.
+
+Berdasarkan kebutuhan tersebut, penelitian ini berfokus pada pengembangan chatbot analisis sentimen UMKM berbasis web dengan integrasi RAG menggunakan LangChain.js. Sistem ini memanfaatkan data hasil scraping Instagram yang diolah menjadi kategori sentimen (positif, netral, negatif) dan disimpan sebagai file JSON. File ini berfungsi ganda: sebagai sumber visualisasi di frontend dan sebagai knowledge base untuk chatbot berbasis RAG.
+
+Dengan demikian, penelitian ini tidak hanya membangun sistem analisis, tetapi juga berupaya menjembatani kesenjangan antara data kuantitatif dan pemahaman pengguna melalui interaksi berbasis bahasa alami, sehingga dapat membantu pelaku UMKM memperoleh insight tanpa harus membaca grafik atau laporan statistik yang kompleks
 
 \section{Rumusan Masalah}
-Rumusan masalah adalah langkah penting yang merangkum permasalahan spesifik atau kebutuhan yang menjadi dasar pengembangan proyek. Pada bagian ini, dijelaskan permasalahan utama yang dihadapi, seperti keterbatasan pada sistem atau perangkat yang sudah ada, atau kebutuhan baru yang belum terpenuhi oleh teknologi saat ini. Identifikasi masalah juga mencakup tantangan teknis, fungsional, atau ekonomi yang menjadi penghambat dan bagaimana proyek ini diharapkan dapat menjawab permasalahan tersebut. Fokusnya adalah memberikan pemahaman yang jelas mengenai alasan pentingnya mengembangkan proyek ini sebagai solusi yang dibutuhkan.
+Berdasarkan uraian latar belakang di atas, maka perumusan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+  \item Bagaimana merancang dan mengimplementasikan API backend berbasis NestJS yang menyediakan layanan autentikasi serta endpoint chatbot analisis sentimen UMKM?
+  \item Bagaimana mengintegrasikan LangChain.js untuk metode RAG dengan knowledge base berbentuk file JSON hasil analisis sentimen media sosial UMKM, agar chatbot dapat menghasilkan jawaban yang relevan dan kontekstual terhadap pertanyaan pengguna?
+  \item Bagaimana merancang skema penyimpanan, pengindeksan, dan mekanisme retrieval data JSON agar sistem chatbot dapat memberikan respons sesuai konteks pertanyaan pengguna?
+\end{enumerate}
 
 \section{Tujuan Proyek}
-Tujuan proyek menyatakan secara spesifik hasil atau capaian yang diinginkan dari pengembangan proyek ini. Bagian ini dirancang untuk memastikan bahwa proyek memiliki sasaran yang jelas dan terukur. Tujuan tersebut dirumuskan berdasarkan masalah yang telah diidentifikasi dan mencakup pencapaian tertentu, seperti peningkatan kinerja sistem, efisiensi, atau kemudahan penggunaan yang diharapkan. Selain itu, tujuan proyek dapat berupa pengembangan prototipe, penerapan teknologi tertentu, atau pencapaian fungsionalitas baru yang belum ada. Penjabaran tujuan yang jelas membantu menjaga fokus proyek dan memberikan arah yang tepat dalam setiap tahapan pengembangan.
+Tujuan dari penelitian ini adalah:
+\begin{enumerate}
+  \item Mengembangkan API backend berbasis NestJS yang mencakup modul autentikasi JWT dan layanan chatbot analisis sentimen UMKM.
+  \item Mengimplementasikan metode RAG menggunakan LangChain.js dengan knowledge base berbentuk file JSON hasil analisis sentimen.
+  \item Merancang skema penyimpanan, pengindeksan, dan retrieval data agar sistem dapat memberikan jawaban relevan dan berbasis konteks.
+\end{enumerate}
 
 \section{Manfaat Proyek}
-Manfaat proyek menguraikan dampak positif yang diharapkan dari hasil proyek ini bagi pengguna, industri, atau masyarakat secara umum. Manfaat ini mencakup berbagai aspek, seperti kontribusi terhadap peningkatan produktivitas, pengurangan biaya, peningkatan kualitas, atau kemudahan dalam penggunaan teknologi. Selain manfaat langsung, proyek ini juga diharapkan memiliki dampak jangka panjang yang bermanfaat, seperti mendorong inovasi di bidang terkait atau membuka peluang baru untuk pengembangan lebih lanjut. Dengan menjelaskan manfaat proyek, pembaca dapat memahami nilai tambah yang dihadirkan oleh proyek ini.
+Penelitian ini diharapkan memberikan manfaat sebagai berikut:
+
+\subsection{Manfaat Teoritis}
+\begin{enumerate}
+  \item Memberikan kontribusi pada literatur mengenai penerapan metode Retrieval-Augmented Generation (RAG) dalam chatbot berbasis web berbahasa Indonesia.
+  \item Menjadi referensi bagi penelitian selanjutnya di bidang integrasi natural language generation dengan analisis data visual UMKM.
+\end{enumerate}
+
+\subsection{Manfaat Praktis}
+\begin{enumerate}
+  \item Bagi Pelaku UMKM: Memberikan alat bantu interaktif untuk memahami hasil analisis sentimen publik terhadap produk/layanan mereka.
+  \item Bagi Pengembang Sistem: Memberikan blueprint teknis (NestJS + LangChain.js + JSON knowledge base) yang dapat diterapkan pada proyek serupa.
+  \item Bagi Lembaga atau Pemerintah: Menjadi dasar pengembangan sistem chatbot berbasis AI untuk meningkatkan literasi data dan strategi pemasaran digital UMKM.
+\end{enumerate}
 
 \section{Batasan Proyek}
-Batasan proyek mengidentifikasi cakupan dan batasan ruang lingkup pengembangan sistem atau perangkat yang dirancang. Bagian ini mencakup aspek-aspek yang akan menjadi fokus utama dalam pengembangan serta aspek yang akan dikecualikan dari lingkup proyek. Penjelasan batasan ini penting agar proyek tetap terarah dan tidak meluas ke aspek-aspek yang berada di luar tujuan awal. Batasan proyek juga mencakup keterbatasan teknis, waktu, atau sumber daya yang mempengaruhi desain dan implementasi sistem. Dengan menetapkan batasan, proyek ini dapat lebih terfokus dan efisien dalam pencapaiannya.
+
+\begin{enumerate}
+  \item Data yang digunakan berasal dari hasil scraping akun Instagram UMKM yang sudah sukses (misalnya Mie Gacoan dan Sambal Bakar) di wilayah Jawa Timur.
+  \item Data hasil scraping diolah menjadi tiga kategori sentimen (positif, netral, negatif) dan disimpan dalam format JSON.
+  \item Fokus utama penelitian adalah pada pengembangan sistem backend dan integrasi metode RAG; analisis sentimen dan evaluasi model tidak dibahas secara mendalam.
+  \item Evaluasi penelitian berfokus pada fungsi dan kegunaan sistem melalui uji coba pengguna, bukan pada ukuran performansi model (misalnya accuracy atau F1-score).
+\end{enumerate}
 
 \section{Keaslian Gagasan}
-Keaslian gagasan bertujuan untuk menekankan inovasi atau kontribusi unik yang ditawarkan oleh proyek ini. Bagian ini menjelaskan bagaimana proyek ini menawarkan pendekatan yang berbeda atau peningkatan dibandingkan dengan metode atau perangkat yang sudah ada. Keaslian gagasan dapat diperlihatkan melalui perbandingan dengan proyek atau produk serupa, menunjukkan perbedaan signifikan atau keunggulan yang dihadirkan oleh solusi yang diusulkan. Misalnya, peningkatan kinerja, efisiensi, atau kemudahan penggunaan yang dihasilkan dari metode atau pendekatan baru. Selain itu, bagian ini juga bisa mencakup penggunaan teknologi atau desain yang belum banyak diterapkan dalam konteks yang sama. Penekanan pada keaslian gagasan membantu menunjukkan bahwa proyek ini tidak hanya mengikuti pola yang sudah ada, tetapi juga menghadirkan sesuatu yang baru dan relevan.
+Penelitian ini menawarkan pendekatan inovatif dalam membantu pelaku UMKM memahami hasil analisis sentimen melalui integrasi teknologi Retrieval-Augmented Generation (RAG) pada chatbot berbasis web. Keaslian gagasan dalam penelitian ini terletak pada beberapa aspek berikut:
+
+\begin{enumerate}
+  \item Integrasi Analisis Sentimen dengan Chatbot Interaktif Berbasis RAG
+        \begin{itemize}
+          \item Berbeda dengan penelitian terdahulu seperti \cite{permana_sentimen_2023} dan \cite{zaenab_kurnia_analisis_2024} yang hanya menyajikan hasil analisis sentimen dalam bentuk klasifikasi dan visualisasi grafik
+          \item Penelitian ini mengintegrasikan hasil analisis sentimen dengan sistem chatbot interaktif yang mampu memberikan interpretasi kontekstual
+          \item Menyediakan mekanisme tanya-jawab berbasis bahasa alami untuk pengguna yang kurang familiar dengan statistik
+        \end{itemize}
+
+  \item Kombinasi Teknologi Modern: NestJS dan LangChain.js
+        \begin{itemize}
+          \item Menggunakan kombinasi NestJS sebagai backend framework dan LangChain.js untuk orkestrasi RAG pipeline
+          \item \cite{muhammad_development_2024} menunjukkan keunggulan NestJS dalam pembangunan REST API terstruktur, namun belum mengintegrasikannya dengan teknologi AI generatif
+          \item Penelitian ini mengisi celah tersebut dengan memberikan blueprint implementasi teknis yang dapat direplikasi untuk proyek serupa
+        \end{itemize}
+
+  \item Solusi untuk Kesenjangan Pemahaman Visualisasi Data (Gulf of Interpretation)
+        \begin{itemize}
+          \item Menjawab masalah yang diidentifikasi oleh \cite{knoll_gulf_2025} dan \cite{quadri_you_2024} tentang kesenjangan pemahaman antara penyaji data dan pembaca
+          \item Menyediakan antarmuka berbahasa alami untuk menjembatani data kuantitatif dan pemahaman pengguna non-teknis
+          \item Berbeda dengan chatbot konvensional yang memberikan respons statis, sistem ini menghasilkan jawaban kontekstual berdasarkan data sentimen aktual
+        \end{itemize}
+
+\end{enumerate}
 
 \section{Sistematika Penulisan}
-Sistematika penulisan memberikan panduan mengenai struktur dari keseluruhan laporan proyek ini, sehingga memudahkan pembaca dalam memahami alur isi laporan dari setiap bab. Bagian ini menjelaskan isi dari setiap bab secara singkat, mulai dari latar belakang hingga kesimpulan dan rekomendasi. Misalnya, BAB I membahas pendahuluan dan dasar pengembangan proyek, BAB II menguraikan tinjauan pustaka dan landasan teori, dan seterusnya. Dengan memberikan sistematika penulisan, pembaca dapat memahami bagaimana laporan ini disusun secara keseluruhan dan bagaimana setiap bab saling berkaitan dalam mencapai tujuan akhir proyek.
+Laporan tugas akhir ini disusun secara sistematis dalam beberapa bab untuk memudahkan pembaca dalam memahami alur penelitian dari awal hingga akhir. Sistematika penulisan laporan ini adalah sebagai berikut:
+
+\textbf{BAB 1: PENDAHULUAN}
+
+Bab ini membahas latar belakang masalah yang melatarbelakangi penelitian, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang disajikan dalam bentuk visualisasi data. Bab ini juga mencakup perumusan masalah, tujuan penelitian, manfaat penelitian baik secara teoritis maupun praktis, batasan masalah penelitian, keaslian gagasan yang menunjukkan keunikan dan kontribusi penelitian, serta sistematika penulisan laporan.
+
+\textbf{BAB 2: TINJAUAN PUSTAKA}
+
+Bab ini menguraikan landasan teori dan konsep-konsep yang relevan dengan penelitian, meliputi: konsep Usaha Mikro, Kecil, dan Menengah (UMKM), peran media sosial sebagai platform pemasaran, Natural Language Processing (NLP), analisis sentimen, sistem rekomendasi, serta kajian penelitian terkait dari tahun 2021-2025 yang membahas topik serupa. Tinjauan pustaka ini menjadi fondasi teoritis dalam pengembangan sistem.
+
+\textbf{BAB 3: METODOLOGI PENELITIAN}
+
+Bab ini menjelaskan metode penelitian yang digunakan, desain sistem yang akan dikembangkan, karakteristik dataset yang digunakan (hasil scraping Instagram UMKM), metode analisis sentimen yang diterapkan, metode sistem rekomendasi (jika ada), evaluasi sistem yang akan dilakukan, serta jadwal penelitian. Bab ini memberikan gambaran komprehensif mengenai tahapan dan proses pengembangan sistem chatbot berbasis RAG.
+
+\textbf{BAB 4: HASIL DAN PEMBAHASAN (akan dikembangkan)}
+
+Bab ini akan menyajikan hasil implementasi sistem, meliputi: implementasi API backend menggunakan NestJS, integrasi LangChain.js untuk RAG pipeline, mekanisme retrieval dan generation, serta hasil uji coba sistem. Pembahasan akan mencakup analisis terhadap kinerja sistem, kemampuan chatbot dalam menjawab pertanyaan pengguna, dan evaluasi berdasarkan uji coba pengguna.
+
+\textbf{BAB 5: PENUTUP (akan dikembangkan)}
+
+Bab ini berisi kesimpulan dari keseluruhan penelitian yang menjawab rumusan masalah dan tujuan penelitian, serta saran untuk pengembangan lebih lanjut, baik dari sisi teknis maupun fungsional sistem.
