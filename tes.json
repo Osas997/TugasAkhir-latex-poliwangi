@@ -1,0 +1,48 @@
+{
+  "ringkasan_keseluruhan": {
+    "netral": { "jumlah": 0, "persentase": 0.0 },
+    "positif": { "jumlah": 0, "persentase": 0.0 },
+    "negatif": { "jumlah": 0, "persentase": 0.0 }
+  },
+
+  "sentimen_per_kategori": {
+    "Kuliner - Makanan Bakar": {
+      "positif": 168,
+      "negatif": 9,
+      "netral": 2363,
+      "total": 2540,
+      "rasio_positif": 6.6
+    }
+  },
+  "sentimen_per_brand": {
+    "gacoan": {
+      "positif": 143,
+      "negatif": 3,
+      "netral": 771,
+      "total": 917,
+      "rasio_positif": 15.6,
+      "rasio_negatif": 0.3,
+      "rasio_netral": 84.1
+    }
+  },
+  "engagement_per_sentimen": {
+    "netral": {
+      "avg_engagement": 0.0,
+      "avg_likes": 0.0,
+      "avg_shares": 0.0
+    },
+    "positif": {
+      "avg_engagement": 495.8,
+      "avg_likes": 251.2,
+      "avg_shares": 49.0
+    }
+  },
+  "faktor_positif_top10": [
+    { "kata": "contoh_kata_positif", "jumlah": 0 },
+    { "kata": "enak", "jumlah": 277 }
+  ],
+  "faktor_negatif_top10": [
+    { "kata": "contoh_kata_negatif", "jumlah": 0 },
+    { "kata": "lama", "jumlah": 54 }
+  ]
+}

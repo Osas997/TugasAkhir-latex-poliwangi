@@ -6,37 +6,32 @@
 \chapter[KESIMPULAN DAN SARAN]{\\ KESIMPULAN DAN SARAN}
 
 \section{Kesimpulan}
-Bagian kesimpulan menyajikan ringkasan dari temuan dan hasil yang diperoleh selama pelaksanaan proyek. Kesimpulan ini menjawab tujuan proyek dan masalah yang telah diidentifikasi di awal laporan, serta mengonfirmasi pencapaian yang telah diraih berdasarkan hasil implementasi dan pengujian. Kesimpulan harus ditarik secara objektif, didasarkan pada data dan hasil yang telah diperoleh, serta tidak memasukkan opini atau asumsi yang tidak didukung oleh hasil pengujian.
 
-Kesimpulan harus dibuat dengan singkat dan jelas, mencakup poin-poin utama yang berhasil dicapai dalam proyek, seperti:
-\begin{packed_item}
-    \item Capaian utama yang menunjukkan bahwa proyek berhasil memenuhi spesifikasi yang ditetapkan
-    \item Efektivitas sistem dalam menjalankan fungsinya berdasarkan hasil pengujian
-    \item Kesesuaian hasil proyek dengan teori dan standar yang telah diuraikan sebelumnya
-\end{packed_item}
+Berdasarkan keseluruhan tahapan perancangan, implementasi, pengujian, dan pembahasan yang telah dilakukan dalam penelitian ini, dapat disimpulkan bahwa pengembangan chatbot analisis sentimen UMKM berbasis web dengan integrasi Retrieval-Augmented Generation (RAG) telah berhasil direalisasikan sesuai dengan tujuan yang telah ditetapkan. Sistem yang dikembangkan mampu berfungsi sebagai jembatan antara hasil analisis sentimen berbasis data kuantitatif dengan pemahaman pengguna melalui interaksi berbasis bahasa alami. Implementasi backend menggunakan NestJS terbukti memberikan struktur sistem yang modular, terorganisasi, dan mudah dipelihara, sementara integrasi LangChain.js memungkinkan mekanisme RAG berjalan secara efektif dengan memanfaatkan knowledge base berupa file JSON hasil analisis sentimen. Secara umum, penelitian ini menunjukkan bahwa pendekatan RAG dapat meningkatkan relevansi dan kontekstualitas jawaban chatbot dalam membantu pelaku UMKM memahami insight dari data sentimen media sosial.
 
-Selain itu, kesimpulan juga membahas keterkaitan dengan hasil-hasil penelitian atau proyek serupa yang telah dilakukan sebelumnya, untuk menunjukkan kontribusi dan relevansi dari proyek ini dalam konteks yang lebih luas. Bagian ini juga bisa mencakup hal-hal baru yang ditemukan selama proyek yang dapat memberikan kontribusi positif dalam pengembangan teknologi atau aplikasi di masa mendatang.
+Berdasarkan rumusan masalah yang telah ditetapkan pada Bab 1, maka kesimpulan spesifik dari penelitian ini adalah sebagai berikut:
 
-Secara keseluruhan, kesimpulan harus memberikan gambaran yang menyeluruh mengenai efektivitas, pencapaian, dan kontribusi proyek terhadap bidang yang diteliti, sekaligus merangkum seluruh hasil dengan ringkas namun komprehensif.
+\begin{itemize}
+    \item Sistem API backend berbasis NestJS berhasil dirancang dan diimplementasikan dengan menyediakan layanan autentikasi berbasis JSON Web Token (JWT) serta endpoint khusus untuk chatbot analisis sentimen UMKM. Arsitektur modular NestJS memungkinkan pemisahan tanggung jawab antar komponen sistem, sehingga meningkatkan keterbacaan, skalabilitas, dan kemudahan pemeliharaan kode.
+
+    \item Metode Retrieval-Augmented Generation (RAG) berhasil diintegrasikan menggunakan LangChain.js dengan memanfaatkan knowledge base berupa file JSON hasil analisis sentimen media sosial UMKM. Mekanisme ingestion, embedding, penyimpanan vektor, dan retrieval berjalan dengan baik sehingga chatbot mampu menghasilkan jawaban yang relevan, kontekstual, dan berbasis data terhadap pertanyaan pengguna.
+\end{itemize}
 
 \section{Saran}
-Bagian saran menyajikan rekomendasi untuk pengembangan lebih lanjut yang dapat dilakukan berdasarkan temuan dan hasil yang diperoleh dalam proyek ini. Saran diberikan untuk membantu pembaca memahami langkah-langkah tambahan atau perbaikan yang dapat dilakukan untuk menyempurnakan proyek ini atau untuk membuka peluang penelitian atau pengembangan lebih lanjut.
 
-Saran yang diberikan sebaiknya mencakup hal-hal berikut:
-\begin{packed_item}
-    \item Pengembangan lanjutan pada sistem atau perangkat, seperti peningkatan teknologi atau penambahan fitur yang belum sempat diimplementasikan dalam proyek ini.
-    \item Pengujian lebih lanjut di berbagai kondisi atau lingkungan yang berbeda, untuk memastikan sistem mampu beradaptasi dalam berbagai situasi dan meningkatkan keandalannya.
-    \item Penelitian tambahan untuk menggali aspek-aspek yang belum sepenuhnya terjawab dalam proyek ini atau untuk memvalidasi hasil yang telah diperoleh.
-    \item Pengembangan aplikasi sistem yang lebih luas di bidang lain yang relevan, agar hasil proyek ini dapat memberikan manfaat yang lebih besar di luar bidang awal yang menjadi fokus.
-\end{packed_item}
+Berdasarkan hasil penelitian yang telah dilakukan, terdapat beberapa saran yang dapat menjadi pertimbangan untuk pengembangan sistem lebih lanjut maupun penelitian lanjutan di masa mendatang. Saran-saran ini disusun berdasarkan keterbatasan penelitian yang telah diidentifikasi serta potensi pengembangan yang dapat meningkatkan kualitas dan cakupan sistem.
 
-Selain itu, saran juga dapat mencakup rekomendasi untuk mengatasi keterbatasan yang ditemui selama proyek, seperti:
-\begin{packed_item}
-    \item Penyempurnaan metode atau pendekatan yang digunakan, jika ditemukan kelemahan dalam tahap implementasi atau pengujian
-    \item Peningkatan perangkat keras atau perangkat lunak untuk meningkatkan performa sistem secara keseluruhan
-    \item Pemanfaatan teknologi atau metode baru yang relevan untuk memperbaiki atau menambah kapabilitas sistem
-\end{packed_item}
 
-Saran harus dibahas dalam konteks tujuan proyek dan masalah yang diidentifikasi, serta didasarkan pada hasil yang diperoleh. Rekomendasi juga perlu realistis dan dapat diimplementasikan dalam kondisi praktis, agar memberikan panduan yang bermanfaat bagi pengembangan lebih lanjut atau implementasi yang lebih luas.
+\begin{itemize}
+    \item \textbf{Optimasi Parameter RAG Pipeline}
 
-Secara keseluruhan, saran ini bertujuan untuk memberikan arah bagi pengembangan proyek atau penelitian selanjutnya, sekaligus menunjukkan bagaimana hasil dari proyek ini dapat dioptimalkan dan memberikan kontribusi yang lebih besar dalam bidang yang terkait.
+    Pengembangan lebih lanjut dapat dilakukan dengan mengimplementasikan \textit{dynamic k selection} pada proses \textit{similarity search}, sehingga jumlah dokumen yang diambil dapat menyesuaikan kompleksitas pertanyaan pengguna atau tingkat keyakinan (\textit{confidence}) hasil pencarian. Selain itu, parameter \textit{temperature} pada model LLM yang saat ini bernilai statis 0.7 dapat dibuat menjadi lebih fleksibel (\textit{configurable}) atau adaptif, di mana pertanyaan bersifat faktual menggunakan nilai temperature yang lebih rendah untuk menjaga konsistensi jawaban, sedangkan pertanyaan yang membutuhkan analisis atau insight kreatif dapat menggunakan temperature yang lebih tinggi. Dari sisi pemrosesan dokumen, strategi \textit{semantic chunking} dapat ditingkatkan dengan menerapkan teknik \textit{overlapping chunks} atau \textit{hierarchical chunking} guna meminimalkan risiko hilangnya informasi penting di batas antar potongan dokumen.
+
+    \item \textbf{Evaluasi dan Validasi Lebih Lanjut}
+
+    Pengujian sistem dapat diperluas melalui pelaksanaan \textit{User Acceptance Testing} (UAT) dengan melibatkan pelaku UMKM sebagai pengguna akhir, sehingga diperoleh umpan balik yang lebih representatif terkait aspek kegunaan (\textit{usability}) dan manfaat sistem dalam konteks nyata. Selain itu, kualitas jawaban chatbot dapat dievaluasi secara lebih objektif menggunakan metrik kuantitatif seperti BLEU, ROUGE, atau BERTScore untuk mengukur kesesuaian dan relevansi respons terhadap pertanyaan pengguna. Studi komparatif dengan pendekatan lain, seperti fine-tuning model atau penggunaan model LLM yang berbeda, juga dapat dilakukan untuk menganalisis trade-off antara kompleksitas implementasi, biaya komputasi, dan kualitas hasil yang diperoleh.
+
+    \item \textbf{Pengembangan Conversational Memory dan Multi-Turn Interaction}
+
+    Sistem saat ini masih memberikan jawaban dalam format teks yang bersifat satu arah tanpa kemampuan untuk mempertahankan konteks percakapan secara berkelanjutan. Oleh karena itu, pengembangan \textit{conversational memory} diperlukan agar chatbot mampu mengingat konteks interaksi sebelumnya dan memberikan respons yang lebih koheren terhadap pertanyaan lanjutan. Sebagai contoh, ketika pengguna menanyakan sentimen terhadap suatu brand tertentu dan kemudian bertanya ``Bagaimana dengan kompetitornya?'', chatbot diharapkan dapat memahami bahwa pertanyaan tersebut merujuk pada brand yang telah dibahas sebelumnya. Implementasi mekanisme percakapan multi-turn ini akan meningkatkan keluwesan interaksi, membuat alur dialog lebih natural, serta menjadikan chatbot lebih menyerupai asisten virtual yang cerdas dan kontekstual.
+\end{itemize}

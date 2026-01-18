@@ -32,7 +32,7 @@ Mengacu pada praktik terbaik dokumentasi pengembangan perangkat lunak dan format
 - Perbaikan format penulisan judul BAB.
 
 ### 🗓️ 27 Juli 2024
-- Perubahan gaya sitasi dari **narrative citation** (`\cite{}`) ke **parenthetical citation** (`\citep{}`).
+- Perubahan gaya sitasi dari **narrative citation** (`\citep{}`) ke **parenthetical citation** (`\citepp{}`).
   - 📖 Referensi: [Harvard Notes](https://gking.harvard.edu/files/natnotes2.pdf)
 
 ### 🗓️ 7 Juni 2024

@@ -32,10 +32,11 @@
 \usepackage{tocloft}
 \cftsetpnumwidth{1.5em}
 \cftsetrmarg{2em}
-\setlength{\cftsecnumwidth}{1.5em}
-\setlength{\cftsubsecnumwidth}{1.5em}
+\setlength{\cftsecnumwidth}{2.3em} %awal 1.5em
+\setlength{\cftsubsecnumwidth}{3.2em} %awal 1.5em
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 \setlength{\cftbeforechapskip}{3pt}
+
 
 % Penyesuaian judul bab dalam daftar isi agar ditampilkan sebagai "BAB"
 \renewcommand\cftchappresnum{BAB }
@@ -61,7 +62,7 @@
 
 % Menghapus tanda titik dua pada caption
 \captionsetup[figure]{labelsep=space}
-\captionsetup[table]{labelsep=space}
+\captionsetup[table]{labelsep=space,justification=raggedright,singlelinecheck=false}
 
 % Mengatur nomor caption gambar dan tabel sesuai bab
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
@@ -76,14 +77,15 @@
 % Pengaturan tabel, multirow, dan ukuran kolom otomatis
 \usepackage{tabularx}
 \usepackage{multirow}
+\usepackage{colortbl} % Untuk mewarnai sel tabel
 
 % Pengaturan margin halaman
 \usepackage{geometry}
 \geometry{
-    left=3cm,          % Margin kiri
-    top=2cm,           % Margin atas
-    right=2cm,         % Margin kanan
-    bottom=2cm,        % Margin bawah
+      left=3cm,          % Margin kiri
+      top=2cm,           % Margin atas
+      right=2cm,         % Margin kanan
+      bottom=2cm,        % Margin bawah
 }
 
 % Paket untuk notasi matematika
@@ -104,18 +106,18 @@
 \usepackage{enumitem}
 \setlist{nosep} % Menghilangkan jarak antar item dalam list
 \newenvironment{packed_enum}{ % Membuat lingkungan untuk daftar bernomor
-    \begin{enumerate}[leftmargin=1.5\parindent]
-        \setlength{\itemsep}{0pt}
-        \setlength{\parskip}{0pt}
-        \setlength{\parsep}{0pt}
-        }{\end{enumerate}}
+      \begin{enumerate}[leftmargin=1.5\parindent]
+            \setlength{\itemsep}{0pt}
+            \setlength{\parskip}{0pt}
+            \setlength{\parsep}{0pt}
+            }{\end{enumerate}}
 
 \newenvironment{packed_item}{ % Membuat lingkungan untuk daftar berpoin
-    \begin{itemize}[leftmargin=1.375\parindent]
-        \setlength{\itemsep}{0pt}
-        \setlength{\parskip}{0pt}
-        \setlength{\parsep}{0pt}
-        }{\end{itemize}}
+      \begin{itemize}[leftmargin=1.375\parindent]
+            \setlength{\itemsep}{0pt}
+            \setlength{\parskip}{0pt}
+            \setlength{\parsep}{0pt}
+            }{\end{itemize}}
 
 % Paket untuk bibliografi menggunakan BibTeX
 \usepackage[sort]{natbib}
@@ -146,11 +148,11 @@
 \AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{chapter}.\arabic{lstlisting}}}
 
 \captionsetup[lstlisting]{
-  format=plain,
-  labelfont=bf,
-  justification=centering,
-  singlelinecheck=false,
-  labelsep=space
+      format=plain,
+      labelfont=bf,
+      justification=centering,
+      singlelinecheck=false,
+      labelsep=space
 }
 
 % Paket untuk menampilkan kode program
@@ -161,24 +163,24 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    columns=fullflexible,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
-    lineskip=-1pt
+      backgroundcolor=\color{backcolour},
+      commentstyle=\color{codegreen},
+      keywordstyle=\color{magenta},
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\ttfamily\footnotesize,
+      columns=fullflexible,
+      breakatwhitespace=false,
+      breaklines=true,
+      captionpos=b,
+      keepspaces=true,
+      numbers=left,
+      numbersep=5pt,
+      showspaces=false,
+      showstringspaces=false,
+      showtabs=false,
+      tabsize=2,
+      lineskip=-1pt
 }
 \lstset{style=mystyle}
 
