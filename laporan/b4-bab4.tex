@@ -9,58 +9,54 @@
 Bagian ini memaparkan hasil penelitian yang disusun secara sistematis berdasarkan lima tahapan dalam Fountain Model sebagaimana telah diuraikan pada Bab 3. Setiap subseksi menjelaskan Hasil Analisis Kebutuhan dan temuan pada masing-masing tahap pengembangan sistem, Hasil Spesifikasi Sistem, Hasil Desain Sistem, Hasil Implementasi Sistem, Hasil Pengujian dan Integrasi
 
 \subsection{Hasil Analisis Kebutuhan Sistem (Analysis)}
-Tahap analisis kebutuhan sistem telah berhasil mengidentifikasi permasalahan utama yang menjadi latar belakang penelitian ini, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang umumnya disajikan dalam bentuk visualisasi data seperti grafik dan tabel. Hasil identifikasi menunjukkan bahwa pelaku UMKM membutuhkan sistem yang mampu menerjemahkan data analitik menjadi informasi yang dapat dipahami melalui interaksi berbasis bahasa natural.
+Tahap analisis kebutuhan sistem berhasil mengidentifikasi permasalahan utama yang melatarbelakangi penelitian ini, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang umumnya disajikan dalam bentuk visualisasi data seperti grafik dan tabel. Hasil menunjukkan bahwa penyajian data secara visual saja belum cukup membantu, karena pengguna membutuhkan penjelasan yang lebih naratif dan mudah dipahami melalui interaksi berbasis bahasa natural.
 
-Analisis mendalam terhadap karakteristik pengguna menunjukkan bahwa mayoritas pelaku UMKM tidak memiliki latar belakang teknis dalam bidang statistik atau data science, sehingga mereka mengalami kesulitan dalam mengartikan visualisasi data yang kompleks. Kondisi ini memperkuat kebutuhan akan sistem chatbot yang dapat menjembatani kesenjangan pemahaman antara data analitik dan interpretasi praktis yang relevan dengan strategi bisnis.
+Analisis lebih lanjut terhadap karakteristik pengguna mengungkapkan bahwa sebagian besar pelaku UMKM tidak memiliki latar belakang teknis di bidang statistik maupun \textit{data science}. Kondisi ini menyebabkan interpretasi terhadap visualisasi data yang kompleks menjadi tidak optimal. Temuan tersebut memperkuat kebutuhan akan sebuah sistem chatbot yang mampu menjembatani kesenjangan antara data analitik yang bersifat teknis dengan interpretasi praktis yang relevan untuk pengambilan keputusan bisnis.
 
-Proses analisis juga berhasil mengidentifikasi batasan ruang lingkup penelitian secara jelas. Penelitian ini tidak mencakup proses scraping data Instagram maupun pengembangan model analisis sentimen, karena kedua komponen tersebut dikembangkan oleh tim kolaborasi terpisah. Fokus penelitian diarahkan pada pengembangan sistem backend berbasis NestJS dan implementasi chatbot berbasis Retrieval-Augmented Generation (RAG) yang memanfaatkan hasil analisis sentimen sebagai knowledge base.
+Pada tahap ini juga berhasil ditetapkan batasan ruang lingkup penelitian secara jelas. Penelitian tidak mencakup proses \textit{scraping} data Instagram maupun pengembangan model analisis sentimen, karena kedua komponen tersebut dikembangkan oleh tim kolaborasi yang berbeda. Fokus penelitian diarahkan pada pengembangan sistem backend berbasis NestJS serta implementasi chatbot berbasis \textit{Retrieval-Augmented Generation (RAG)} yang memanfaatkan hasil analisis sentimen sebagai \textit{knowledge base}.
 
-Hasil analisis kebutuhan pengguna menunjukkan bahwa sistem harus mampu menyediakan antarmuka yang intuitif untuk mengakses informasi sentimen, memberikan interpretasi kontekstual terhadap data numerik, serta menyajikan rekomendasi strategis yang dapat langsung diterapkan oleh pelaku UMKM. Kebutuhan ini menjadi dasar dalam perumusan spesifikasi sistem pada tahap berikutnya.
-
+Hasil analisis kebutuhan pengguna menunjukkan bahwa sistem yang dikembangkan harus mampu menyediakan antarmuka untuk mengakses informasi sentimen, memberikan interpretasi kontekstual terhadap data numerik, serta menyajikan rekomendasi strategis yang dapat langsung diterapkan oleh pelaku UMKM. Kebutuhan-kebutuhan inilah yang kemudian menjadi landasan utama dalam perumusan spesifikasi sistem pada tahap selanjutnya.
 
 \subsection{Hasil Spesifikasi Sistem (Requirements Specifications)}
-Berdasarkan hasil analisis kebutuhan, tahap spesifikasi sistem telah menghasilkan dokumentasi kebutuhan fungsional dan non-fungsional yang terstruktur. Kebutuhan fungsional sistem mencakup empat komponen utama yang menjadi tulang punggung aplikasi. Komponen pertama adalah sistem autentikasi dan autorisasi berbasis JSON Web Token (JWT) yang memastikan keamanan akses pengguna. Implementasi JWT dipilih karena sifatnya yang stateless dan efisien, memungkinkan sistem untuk melakukan verifikasi identitas pengguna tanpa harus menyimpan session di sisi server.
+Berdasarkan hasil analisis kebutuhan, tahap spesifikasi sistem menghasilkan dokumentasi kebutuhan fungsional dan non-fungsional yang disusun secara terstruktur. Kebutuhan fungsional sistem dirumuskan ke dalam empat komponen utama yang menjadi tulang punggung aplikasi. Komponen pertama adalah sistem autentikasi dan autorisasi berbasis \textit{JSON Web Token (JWT)} yang berperan memastikan keamanan akses pengguna. Mekanisme JWT dipilih karena bersifat \textit{stateless} dan efisien, sehingga proses verifikasi identitas dapat dilakukan tanpa menyimpan \textit{session} di sisi server.
 
-Komponen kedua adalah modul manajemen data hasil scraping Instagram UMKM yang menyediakan fungsionalitas create dan delete. Modul ini dirancang untuk memfasilitasi pengelolaan data mentah yang menjadi input bagi proses analisis sentimen. Komponen ketiga berupa API Gateway yang berfungsi sebagai lapisan orkestrasi antara frontend dan microservices eksternal, khususnya layanan Aspect-Based Sentiment Analysis (ABSA) dan sistem rekomendasi konten. Pemisahan layanan melalui API Gateway memberikan fleksibilitas dalam pengembangan dan pemeliharaan setiap komponen secara independen.
+Komponen kedua adalah modul manajemen data hasil \textit{scraping} Instagram UMKM yang menyediakan fungsionalitas \textit{create} dan \textit{delete}. Modul ini dirancang untuk memudahkan pengelolaan data mentah yang digunakan sebagai input utama dalam proses analisis sentimen. Komponen ketiga berupa \textit{API Gateway} yang berfungsi sebagai lapisan orkestrasi antara frontend dan \textit{microservices} eksternal, khususnya layanan \textit{Aspect-Based Sentiment Analysis (ABSA)} dan sistem rekomendasi konten. Penerapan API Gateway memberikan fleksibilitas dalam pengembangan serta pemeliharaan masing-masing layanan secara independen.
 
-Komponen keempat dan yang menjadi inti dari penelitian ini adalah chatbot berbasis Retrieval-Augmented Generation (RAG). Chatbot ini dirancang untuk memungkinkan pengguna melakukan interaksi menggunakan bahasa natural guna memperoleh interpretasi kontekstual terhadap hasil analisis sentimen. Pendekatan RAG dipilih karena kemampuannya dalam menggabungkan proses retrieval dokumen relevan dengan generation jawaban menggunakan Large Language Model, sehingga menghasilkan respons yang akurat dan berbasis fakta.
+Komponen keempat sekaligus menjadi fokus utama penelitian ini adalah chatbot berbasis \textit{Retrieval-Augmented Generation (RAG)}. Chatbot dirancang untuk memungkinkan pengguna berinteraksi menggunakan bahasa natural guna memperoleh interpretasi yang kontekstual terhadap hasil analisis sentimen. Pendekatan RAG dipilih karena kemampuannya mengombinasikan proses \textit{retrieval} dokumen relevan dengan proses \textit{generation} jawaban menggunakan \textit{Large Language Model}, sehingga respons yang dihasilkan lebih akurat dan berbasis data faktual.
 
-Spesifikasi kebutuhan non-fungsional telah ditetapkan dengan mempertimbangkan aspek performa, keamanan, dan maintainability sistem. Dari sisi performa, sistem dirancang untuk mampu memberikan respons chatbot dalam waktu kurang dari lima detik untuk query standar. Target waktu ini mencakup seluruh proses mulai dari embedding query, pencarian similarity di vector database, hingga generasi jawaban oleh model bahasa. Penetapan batasan waktu ini didasarkan pada standar user experience untuk aplikasi chatbot interaktif, di mana respons yang terlalu lambat dapat menurunkan kepuasan pengguna.
+Selain kebutuhan fungsional, spesifikasi kebutuhan non-fungsional juga ditetapkan dengan mempertimbangkan aspek performa, keamanan, dan \textit{maintainability} sistem. Aspek keamanan menjadi prioritas utama dalam spesifikasi non-fungsional. Mekanisme keamanan yang diterapkan meliputi penggunaan algoritma \textit{bcrypt} untuk proses hashing password dengan \textit{salt rounds} yang memadai, validasi JWT pada setiap endpoint yang memerlukan autentikasi, sanitasi input untuk mencegah berbagai bentuk serangan injeksi, serta penggunaan protokol HTTPS untuk mengenkripsi komunikasi antara client dan server. Kombinasi mekanisme tersebut dirancang untuk melindungi data pengguna sekaligus menjaga integritas sistem secara keseluruhan.
 
-Aspek keamanan sistem menjadi prioritas utama dalam spesifikasi non-fungsional. Implementasi keamanan mencakup penggunaan algoritma bcrypt untuk hashing password dengan salt rounds yang memadai, validasi JWT pada setiap endpoint yang memerlukan autentikasi, sanitasi input untuk mencegah berbagai jenis serangan injeksi, serta penggunaan protokol HTTPS untuk enkripsi komunikasi antara client dan server. Kombinasi mekanisme keamanan ini dirancang untuk melindungi data pengguna dan menjaga integritas sistem secara keseluruhan.
-
-Maintainability sistem dijamin melalui penerapan arsitektur modular yang mengikuti prinsip SOLID, penggunaan naming convention yang konsisten, serta dokumentasi kode yang memadai. Pendekatan ini memastikan bahwa sistem dapat dengan mudah dipelihara dan dikembangkan lebih lanjut oleh developer lain tanpa memerlukan waktu yang berlebihan untuk memahami struktur kode yang ada.
-
+Dari sisi \textit{maintainability}, sistem dirancang dengan menerapkan arsitektur modular yang mengikuti prinsip \textit{SOLID}, serta dokumentasi kode yang memadai. Pendekatan ini memastikan bahwa sistem dapat dipelihara dan dikembangkan lebih lanjut dengan lebih mudah oleh pengembang lain, tanpa memerlukan waktu yang lama untuk memahami struktur dan alur kode yang telah ada.
 
 \subsection{Hasil Desain Sistem (Design)}
-Tahap desain sistem menghasilkan sebuah blueprint arsitektur yang detail, terstruktur, dan selaras dengan kebutuhan yang telah diidentifikasi pada tahap sebelumnya. Desain arsitektur mengadopsi pola API Gateway dengan menempatkan backend NestJS sebagai pusat koordinasi yang menghubungkan berbagai komponen sistem. Secara konseptual, arsitektur ini dibagi menjadi tiga lapisan utama yang masing-masing memiliki tanggung jawab yang jelas dan terpisah, sehingga mendukung prinsip separation of concerns, maintainability, dan scalability.
+Tahap desain sistem menghasilkan sebuah \textit{blueprint} arsitektur yang detail, terstruktur, dan selaras dengan kebutuhan yang telah diidentifikasi pada tahap sebelumnya. Secara konseptual, arsitektur dibagi ke dalam tiga lapisan utama dengan tanggung jawab yang jelas dan terpisah, sehingga mendukung prinsip \textit{separation of concerns}, meningkatkan \textit{maintainability}, serta memudahkan \textit{scalability} sistem.
 
-Lapisan presentasi diimplementasikan menggunakan React.js sebagai frontend framework yang bertanggung jawab atas interaksi dan pengalaman pengguna. Frontend dirancang untuk menampilkan visualisasi data sentimen dalam bentuk grafik dan dashboard interaktif, serta menyediakan antarmuka chatbot untuk komunikasi berbasis bahasa natural. Seluruh pemrosesan data, logika bisnis, dan pengambilan keputusan dilakukan oleh backend, sementara frontend berperan murni sebagai presentation layer yang menyajikan informasi secara intuitif dan mudah dipahami oleh pengguna.
+Lapisan presentasi diimplementasikan menggunakan React.js sebagai \textit{frontend framework} yang bertanggung jawab terhadap interaksi dan pengalaman pengguna. Frontend dirancang untuk menyajikan visualisasi data sentimen dalam bentuk grafik dan dashboard interaktif, sekaligus menyediakan antarmuka chatbot untuk komunikasi berbasis bahasa natural. Seluruh pemrosesan data, logika bisnis, dan pengambilan keputusan dilakukan pada sisi backend, sedangkan frontend berperan sebagai \textit{presentation layer} yang menyajikan informasi secara intuitif dan mudah dipahami oleh pengguna.
 
-Lapisan aplikasi yang dibangun menggunakan NestJS berfungsi sebagai inti operasional sistem. Backend NestJS mengelola sejumlah modul fungsional yang saling terintegrasi, meliputi modul autentikasi yang menangani proses login, registrasi, dan validasi token; modul manajemen data scraping yang menyediakan endpoint create dan delete untuk mengelola data hasil scraping Instagram; modul API Gateway yang bertindak sebagai proxy dalam meneruskan request ke microservices eksternal seperti layanan ABSA dan sistem rekomendasi; serta modul RAG sebagai komponen inti yang mengimplementasikan pipeline Retrieval-Augmented Generation untuk mendukung fungsionalitas chatbot.
+Lapisan aplikasi dibangun menggunakan NestJS dan berfungsi sebagai inti operasional sistem. Backend NestJS mengelola sejumlah modul fungsional yang saling terintegrasi, antara lain modul autentikasi yang menangani proses registrasi, login, dan validasi token autentikasi, modul manajemen data scraping yang menyediakan endpoint \textit{create} dan \textit{delete} untuk mengelola data hasil scraping Instagram, modul \textit{API Gateway} yang bertindak sebagai \textit{proxy} dalam meneruskan permintaan ke layanan external seperto \textit{Aspect-Based Sentiment Analysis (ABSA)} dan sistem rekomendasi, serta modul RAG sebagai komponen inti yang mengimplementasikan pipeline \textit{Retrieval-Augmented Generation} untuk mendukung fungsionalitas chatbot.
 
-Lapisan data menggunakan PostgreSQL dengan ekstensi pgvector sebagai backbone penyimpanan. Desain database menerapkan pendekatan hybrid yang mengombinasikan model relasional ter-normalisasi untuk data struktural dengan penyimpanan berbasis vektor untuk kebutuhan RAG. Skema database divisualisasikan melalui Entity Relationship Diagram (ERD) yang menggambarkan relasi antar tabel secara detail, mencakup tabel users, scrape results, sentiment result, sentiment comments, recommendation result, serta tabel khusus langchain documents untuk penyimpanan embedding vektor.
+Lapisan data menggunakan PostgreSQL dengan ekstensi \textit{pgvector} sebagai tempat penyimpanan. Desain basis data menerapkan pendekatan hibrida yang mengombinasikan model relasional ter-normalisasi untuk data struktural dengan penyimpanan berbasis vektor untuk mendukung kebutuhan RAG. Skema database divisualisasikan melalui \textit{Entity Relationship Diagram (ERD)} yang menggambarkan relasi antar tabel secara rinci, mencakup tabel \texttt{users}, \texttt{scrape\_results}, \texttt{sentiment\_result}, \texttt{sentiment\_comments}, \texttt{recommendation\_result}, serta tabel khusus \texttt{langchain\_documents} untuk penyimpanan embedding vektor.
 
-Salah satu hasil utama dari tahap desain adalah perancangan pipeline RAG yang terdiri dari dua fase utama yang saling terkait namun dapat berjalan secara independen. RAG Ingestion Pipeline dirancang untuk memproses file JSON hasil analisis sentimen menjadi dokumen-dokumen terstruktur, mengonversinya menjadi embedding, dan menyimpannya ke dalam vector database. Pipeline ini menerapkan prinsip idempotent sehingga proses ingestion dapat dijalankan berulang kali tanpa menyebabkan duplikasi data.
+Salah satu keluaran utama dari tahap desain adalah perancangan pipeline RAG yang terdiri dari dua fase utama yang saling terkait namun dapat berjalan secara independen. \textit{RAG Ingestion Pipeline} dirancang untuk memproses file JSON hasil analisis sentimen menjadi dokumen-dokumen terstruktur, mengonversinya ke dalam bentuk embedding, dan menyimpannya ke dalam \textit{vector database}. Pipeline ini menerapkan prinsip \textit{idempotent}, sehingga proses ingestion dapat dijalankan berulang kali tanpa menimbulkan duplikasi data.
 
-Sementara itu, RAG Query Pipeline dirancang untuk menangani proses end-to-end mulai dari menerima pertanyaan pengguna hingga menghasilkan jawaban yang relevan. Pipeline ini mencakup tahapan preprocessing pertanyaan, konversi pertanyaan menjadi embedding, pencarian dokumen relevan menggunakan similarity search dengan metrik cosine similarity, konstruksi prompt yang menggabungkan konteks hasil retrieval dengan pertanyaan pengguna, serta generasi jawaban menggunakan Large Language Model. Setiap tahapan dirancang secara modular untuk memudahkan pengujian, pemeliharaan, dan pengembangan lebih lanjut.
+Di sisi lain, \textit{RAG Query Pipeline} dirancang untuk menangani proses pertanyaan pengguna hingga menghasilkan jawaban yang relevan. Pipeline ini mencakup tahap \textit{query preprocessing}, konversi pertanyaan menjadi embedding, pencarian dokumen relevan menggunakan \textit{similarity search} dengan metrik \textit{cosine similarity}, konstruksi prompt yang menggabungkan konteks hasil retrieval dengan pertanyaan pengguna, serta generasi jawaban menggunakan \textit{Large Language Model}. Seluruh tahapan dirancang secara modular untuk memudahkan pengujian, pemeliharaan, dan pengembangan lanjutan.
 
-Selain itu, Use Case Diagram yang dihasilkan pada tahap desain menggambarkan secara lengkap interaksi antara pengguna dengan sistem. Diagram ini mencakup use case utama seperti Register, Login, Landing Page, Melihat Overall Sentiment, Chatbot Sentimen, Data Scrapper, serta Melihat Rekomendasi Konten. Relasi antar use case telah didefinisikan dengan jelas menggunakan relasi include dan extend, yang menunjukkan ketergantungan serta alur interaksi yang logis dan terstruktur dalam sistem.
+Selain itu, Use Case Diagram yang dihasilkan pada tahap desain memberikan gambaran menyeluruh mengenai interaksi antara pengguna dan sistem. Diagram ini mencakup use case utama seperti \textit{Register}, \textit{Login}, \textit{Landing Page}, \textit{Melihat Overall Sentiment}, \textit{Chatbot Sentimen}, \textit{Data Scraper}, serta \textit{Melihat Rekomendasi Konten}. Relasi antar use case didefinisikan menggunakan relasi \textit{include} dan \textit{extend}, yang menunjukkan ketergantungan serta alur interaksi sistem secara logis dan terstruktur.
 
 \subsection{Hasil Implementasi Sistem (Coding)}
 
-Tahap implementasi sistem merupakan fase penerjemahan rancangan yang telah dibuat pada tahap desain menjadi sistem yang dapat dijalankan secara nyata. Penelitian ini telah berhasil mengimplementasikan sistem backend untuk chatbot analisis sentimen UMKM berbasis web dengan integrasi model Retrieval-Augmented Generation (RAG) yang dikendalikan sepenuhnya melalui API backend menggunakan NestJS dan LangChain.js. Implementasi dilakukan dengan mengacu pada Model Fountain yang memungkinkan pengembangan dilakukan secara paralel dan iteratif, sehingga setiap komponen sistem dapat dikembangkan dan diperbaiki secara bertahap tanpa harus menunggu komponen lain selesai sepenuhnya.
+Tahap implementasi sistem merupakan fase penerjemahan rancangan yang telah disusun pada tahap desain ke dalam bentuk sistem yang dapat dijalankan secara nyata. Pada penelitian ini, implementasi difokuskan pada pembangunan sistem backend untuk chatbot analisis sentimen UMKM berbasis web dengan integrasi model \textit{Retrieval-Augmented Generation (RAG)}. Seluruh alur kendali sistem dijalankan melalui API backend yang dikembangkan menggunakan NestJS dan LangChain.js sebagai orkestrator pipeline RAG. Proses implementasi mengacu pada \textit{Model Fountain}, yang memungkinkan pengembangan dilakukan secara paralel dan iteratif, sehingga setiap komponen sistem dapat dibangun, diuji, dan disempurnakan secara bertahap tanpa harus menunggu penyelesaian komponen lainnya.
 
-Implementasi sistem mencakup beberapa aspek utama yang telah dirancang pada tahap desain, yaitu penyiapan lingkungan pengembangan, pembangunan basis data, pengembangan arsitektur backend, serta integrasi pipeline Retrieval-Augmented Generation (RAG). Seluruh komponen tersebut dirancang agar dapat saling terhubung dan membentuk sistem chatbot analisis sentimen UMKM yang utuh. Mengingat penelitian ini berfokus pada pengembangan backend API, bagian frontend yang dikembangkan oleh rekan kolaborasi tidak dibahas secara rinci dalam laporan ini. Pendekatan modular yang diterapkan memungkinkan sistem untuk dikembangkan secara fleksibel serta mudah disesuaikan jika terjadi perubahan kebutuhan selama proses pengembangan, sehingga selaras dengan karakteristik Model Fountain yang adaptif terhadap perubahan.
+Ruang lingkup implementasi mencakup beberapa aspek utama yang telah dirancang pada tahap desain, meliputi penyiapan lingkungan pengembangan, pembangunan basis data, pengembangan arsitektur backend, serta integrasi pipeline \textit{Retrieval-Augmented Generation (RAG)}. Seluruh aspek tersebut dirancang agar saling terhubung dan membentuk sebuah sistem chatbot analisis sentimen UMKM yang utuh dan terintegrasi. Mengingat fokus penelitian ini berada pada pengembangan backend API, pembahasan mengenai sisi frontend yang dikembangkan oleh rekan kolaborasi tidak dijelaskan secara rinci dalam laporan ini.
 
 \begin{enumerate}
   \item \textbf{Hasil Implementasi Lingkungan Pengembangan dan Konfigurasi}
 
-        Lingkungan pengembangan sistem backend berhasil disiapkan menggunakan Node.js LTS sebagai runtime environment untuk memastikan stabilitas dan dukungan jangka panjang. Framework NestJS digunakan untuk membangun aplikasi backend karena menyediakan struktur modular yang rapi dan mendukung pengembangan aplikasi berskala menengah hingga besar. Pengembangan aplikasi backend dilakukan dengan memanfaatkan NestJS CLI yang mempermudah pembuatan struktur proyek yang modular dan terorganisir. Visual Studio Code dipilih sebagai IDE utama dengan berbagai ekstensi pendukung seperti ESLint untuk menjaga kualitas kode, Prettier untuk formatting otomatis, dan Thunder Client untuk pengujian endpoint API secara lokal.
+        \hspace*{1.25cm}Lingkungan pengembangan sistem backend berhasil disiapkan dengan menggunakan Node.js versi LTS sebagai \textit{runtime environment} guna menjamin stabilitas serta dukungan jangka panjang. Framework NestJS dipilih untuk membangun aplikasi backend karena menyediakan struktur modular yang rapi dan terstandarisasi, sehingga sesuai untuk pengembangan aplikasi berskala menengah hingga besar. Proses pengembangan dilakukan dengan memanfaatkan NestJS CLI yang membantu pembuatan struktur proyek secara cepat, konsisten, dan terorganisir sejak tahap awal.
 
-        Konfigurasi sistem dirancang dengan memisahkan kode aplikasi dan parameter lingkungan. Informasi sensitif seperti kredensial database, API key layanan AI untuk Groq dan Google Generative AI, serta secret token untuk autentikasi JWT disimpan dalam file environment \texttt{.env} yang tidak termasuk dalam version control system. Pendekatan ini meningkatkan keamanan sistem sekaligus memudahkan pengelolaan konfigurasi di berbagai lingkungan seperti development, staging, dan production tanpa perlu mengubah kode sumber aplikasi.
+        \hspace*{1.25cm}Visual Studio Code digunakan sebagai \textit{Integrated Development Environment (IDE)} utama. Pemilihan IDE ini didukung oleh ketersediaan berbagai ekstensi pendukung, seperti ESLint untuk menjaga kualitas dan konsistensi kode, Prettier untuk melakukan \textit{formatting} otomatis, serta Thunder Client yang dimanfaatkan untuk pengujian endpoint API secara lokal tanpa memerlukan aplikasi tambahan.
 
-        Seluruh konfigurasi dimuat ke dalam aplikasi NestJS menggunakan package \texttt{@nestjs/config} yang memungkinkan akses terstruktur ke variabel lingkungan melalui mekanisme dependency injection. Implementasi konfigurasi dilakukan dengan mendefinisikan \texttt{ConfigModule} sebagai global module sehingga setiap modul dapat mengakses parameter yang dibutuhkan secara terstruktur dan aman, seperti yang ditunjukkan pada implementasi berikut:
+        \hspace*{1.25cm}Konfigurasi sistem dirancang dengan agar terpisah kode program. Informasi sensitif, seperti kredensial database, \textit{API key} layanan AI untuk Groq dan Google Generative AI, serta \textit{secret token} yang digunakan pada autentikasi JWT, disimpan dalam file environment \texttt{.env} yang tidak disertakan ke dalam \textit{version control system}. Pendekatan ini meningkatkan aspek keamanan sekaligus mempermudah pengelolaan konfigurasi pada berbagai lingkungan, seperti \textit{development}, \textit{staging}, dan \textit{production}, tanpa perlu melakukan perubahan pada kode sumber aplikasi. Seluruh konfigurasi tersebut kemudian dimuat ke dalam aplikasi NestJS menggunakan package \texttt{@nestjs/config}. Package ini memungkinkan akses variabel lingkungan secara terstruktur melalui mekanisme \textit{dependency injection}. Implementasi konfigurasi dilakukan dengan mendefinisikan \texttt{ConfigModule} sebagai \textit{global module}, sehingga setiap modul dalam aplikasi dapat mengakses parameter konfigurasi yang dibutuhkan secara aman dan konsisten, seperti yang ditunjukkan pada implementasi berikut:
 
         \begin{lstlisting}[language=Java, caption=Implementasi ConfigModule sebagai global configuration, label=lst:config-module]
 import { Module } from '@nestjs/common';
@@ -80,25 +76,25 @@ import { ConfigModule } from '@nestjs/config';
 export class AppModule {}
 \end{lstlisting}
 
-        Dengan konfigurasi ini, perubahan parameter dapat dilakukan tanpa harus memodifikasi kode sumber aplikasi, cukup dengan mengubah nilai pada file environment sesuai dengan kebutuhan deployment. Pendekatan ini juga memudahkan proses continuous integration dan continuous deployment dimana setiap environment dapat memiliki konfigurasi yang berbeda namun menggunakan codebase yang sama.
+        \hspace*{1.25cm}Dengan konfigurasi tersebut, perubahan parameter sistem dapat dilakukan tanpa perlu memodifikasi kode sumber aplikasi. Penyesuaian cukup dilakukan dengan mengubah nilai pada file \textit{environment} sesuai dengan kebutuhan masing-masing lingkungan \textit{deployment}. Pendekatan ini tidak hanya menjaga kebersihan dan konsistensi kode, tetapi juga meminimalkan risiko kesalahan akibat perubahan langsung pada kode aplikasi.
 
   \item \textbf{Hasil Implementasi Basis Data}
 
-        Basis data sistem berhasil diimplementasikan menggunakan PostgreSQL yang berfungsi sebagai penyimpan utama data aplikasi. PostgreSQL dipilih karena mendukung relasi data yang kompleks serta menyediakan tipe data JSONB yang sesuai untuk menyimpan hasil analisis sentimen dalam format semi-terstruktur. Selain itu, PostgreSQL memiliki performa dan stabilitas yang baik untuk sistem backend serta dukungan komunitas yang luas.
+        \hspace*{1.25cm}Basis data sistem berhasil diimplementasikan menggunakan PostgreSQL yang berperan sebagai penyimpan utama seluruh data aplikasi. PostgreSQL dipilih karena kemampuannya dalam menangani relasi data yang kompleks, serta dukungannya terhadap tipe data \textit{JSONB} yang sesuai untuk menyimpan hasil analisis sentimen dalam format semi-terstruktur. Di samping itu, PostgreSQL dikenal memiliki performa yang stabil, serta dukungan komunitas yang luas, sehingga memudahkan proses pengembangan dan pemeliharaan sistem dalam jangka panjang.
 
-        Untuk mendukung kebutuhan Retrieval-Augmented Generation, ekstensi \texttt{pgvector} berhasil diaktifkan agar database dapat menyimpan embedding teks dalam bentuk vektor numerik dan melakukan operasi similarity search secara efisien. Aktivasi ekstensi dilakukan dengan menjalankan perintah SQL yang sederhana namun fundamental untuk keseluruhan sistem RAG:
+        \hspace*{1.25cm}Untuk mendukung kebutuhan \textit{Retrieval-Augmented Generation}, ekstensi \texttt{pgvector} berhasil diaktifkan agar database dapat menyimpan embedding teks dalam bentuk vektor numerik dan melakukan operasi \textit{similarity search} secara efisien. Aktivasi ekstensi ini merupakan langkah yang sederhana namun bersifat fundamental bagi keseluruhan sistem RAG, karena memungkinkan PostgreSQL tidak hanya berfungsi sebagai penyimpanan data relasional, tetapi juga sebagai \textit{vector store} yang mendukung pencarian berbasis kemiripan makna. Proses aktivasi dilakukan melalui perintah SQL khusus yang dijalankan pada database.
 
         \begin{lstlisting}[language=SQL, caption=Aktivasi ekstensi pgvector pada PostgreSQL, label=lst:pgvector-enable]
 CREATE EXTENSION IF NOT EXISTS vector;
 \end{lstlisting}
 
-        Perintah ini berhasil menambahkan tipe data \texttt{vector(n)} dimana n adalah dimensi vector, beserta operator dan fungsi untuk similarity search seperti cosine distance (\texttt{<=>}), L2 distance (\texttt{<->}), dan inner product (\texttt{<\#>}). Ekstensi ini memungkinkan sistem melakukan pencarian berbasis kemiripan makna menggunakan metrik cosine similarity yang menjadi dasar proses retrieval dalam RAG, memungkinkan pencarian dokumen berdasarkan kesamaan semantik bukan hanya kecocokan kata kunci.
+        \hspace*{1.25cm}Perintah aktivasi ekstensi tersebut berhasil menambahkan tipe data \texttt{vector(n)}, di mana $n$ merepresentasikan dimensi vektor, beserta berbagai operator dan fungsi yang mendukung proses \textit{similarity search}. Operator yang tersedia mencakup \textit{cosine distance} (\texttt{<=>}), \textit{L2 distance} (\texttt{<->}), dan \textit{inner product} (\texttt{<\#>}). Adanya ekstensi ini memungkinkan sistem melakukan pencarian berbasis kemiripan makna menggunakan metrik \textit{cosine similarity}, yang menjadi fondasi utama proses \textit{retrieval} dalam RAG. Dengan demikian, pencarian dokumen tidak lagi bergantung pada kecocokan kata kunci semata, melainkan pada kesamaan semantik antar teks.
 
-        Pengelolaan skema database dilakukan menggunakan TypeORM sebagai Object-Relational Mapping tool yang menyediakan abstraksi tingkat tinggi untuk operasi database. Pemilihan TypeORM didasarkan pada kemampuannya menyederhanakan interaksi dengan database tanpa menulis query SQL secara manual, kemudahan dalam proses migrasi schema melalui sistem migration, serta integrasi yang seamless dengan ekosistem NestJS. TypeORM juga mendukung repository pattern yang memisahkan logika akses data dari business logic, sehingga kode menjadi lebih terorganisir, mudah untuk diuji, dan memudahkan pengembangan serta pemeliharaan sistem di masa mendatang. Struktur tabel, relasi antar entitas, dan constraints berhasil didefinisikan secara konsisten sesuai dengan skema database yang telah dirancang pada tahap desain, mencakup tabel untuk users, scrape results, sentiment analysis results, recommendations, dan langchain documents untuk vector storage.
+        \hspace*{1.25cm}Pengelolaan skema database kemudian diimplementasikan menggunakan TypeORM sebagai \textit{Object-Relational Mapping (ORM)} sebagai tool untuk operasi database. Pemilihan TypeORM didasarkan pada kemampuannya menyederhanakan interaksi dengan database tanpa harus menulis query SQL secara manual, kemudahan dalam melakukan migrasi skema melalui mekanisme \textit{migration}, serta integrasinya yang berjalan secara mulus dengan ekosistem NestJS. Selain itu, TypeORM mendukung penerapan \textit{repository pattern} yang memisahkan logika akses data dari \textit{business logic}. Pendekatan ini membuat kode menjadi lebih terstruktur, mudah diuji, serta mempermudah proses pengembangan dan pemeliharaan sistem ke depannya. Struktur tabel, relasi antar entitas, serta \textit{constraints} berhasil didefinisikan secara konsisten sesuai dengan skema database yang telah dirancang pada tahap desain, mencakup tabel \texttt{users}, \texttt{scrape\_results}, \texttt{sentiment\_result}, \texttt{recommendation\_result}, serta \texttt{langchain\_documents} sebagai penyimpanan vektor.
 
   \item \textbf{Hasil Implementasi Arsitektur Backend}
 
-        Arsitektur backend diimplementasikan mengikuti prinsip modular architecture yang menjadi karakteristik utama NestJS framework. Pendekatan modular ini memisahkan aplikasi menjadi beberapa modul independen, dimana setiap modul bertanggung jawab atas satu domain fungsional spesifik. Dengan struktur seperti ini, setiap modul dapat dikembangkan, diuji, dan di-maintain secara terpisah tanpa mengganggu modul lainnya. Hal ini memberikan beberapa keuntungan signifikan, antara lain meningkatkan maintainability karena kode lebih terorganisir, meningkatkan testability karena setiap modul dapat diuji secara terisolasi, memudahkan proses scaling ketika aplikasi berkembang, serta mempermudah kolaborasi tim pengembangan karena setiap developer dapat fokus pada modul tertentu tanpa konflik dengan pekerjaan developer lain.
+        \hspace*{1.25cm}Arsitektur backend diimplementasikan dengan mengikuti prinsip \textit{modular architecture} yang menjadi karakteristik utama framework NestJS. Pendekatan ini memisahkan aplikasi ke dalam sejumlah modul yang bersifat independen, di mana setiap modul bertanggung jawab atas satu domain fungsional yang spesifik. Dengan struktur tersebut, modul-modul dapat dikembangkan, diuji, dan dipelihara secara terpisah tanpa saling bergantung secara langsung. Penerapan arsitektur modular memberikan beberapa keuntungan yang cukup signifikan. Kode aplikasi menjadi lebih terorganisir sehingga meningkatkan aspek \textit{maintainability}. Selain itu, proses \textit{scaling} menjadi lebih mudah ketika aplikasi berkembang, karena penambahan atau pengembangan fitur dapat difokuskan pada modul tertentu. Pendekatan ini juga mendukung kolaborasi tim pengembangan, karena setiap pengembang dapat bekerja pada modul yang berbeda tanpa menimbulkan konflik dengan pekerjaan pengembang lainnya.
 
         \begin{figure}[h!]
           \centering
@@ -139,25 +135,18 @@ groq-chatbot/
           \label{fig:struktur-folder-backend}
         \end{figure}
 
-        Struktur folder pada gambar \ref{fig:struktur-folder-backend} menunjukkan organisasi kode yang terstruktur dan terpisah berdasarkan fitur serta tanggung jawabnya. Pada level teratas, terdapat folder \texttt{dist/} yang berisi hasil kompilasi kode TypeScript menjadi JavaScript yang siap dijalankan di production, dan folder \texttt{node\_modules/} yang menyimpan semua dependencies atau library yang dibutuhkan oleh aplikasi.
+        \hspace*{1.25cm}Struktur folder pada Gambar \ref{fig:struktur-folder-backend} menunjukkan bahwa proyek backend disusun secara rapi dan modular berdasarkan fungsi masing-masing bagian. Pada level utama terdapat folder \texttt{dist/} yang berisi hasil kompilasi aplikasi, serta folder \texttt{node\_modules/} yang menyimpan seluruh pustaka pendukung yang dibutuhkan sistem.  Folder \texttt{src/} merupakan inti dari aplikasi karena berisi seluruh kode sumber. Di dalamnya terdapat beberapa folder pendukung, seperti \texttt{common/} untuk komponen yang digunakan secara umum di berbagai bagian aplikasi, \texttt{config/} untuk menyimpan pengaturan sistem, dan \texttt{helpers/} untuk fungsi-fungsi bantuan yang sering dipakai.
 
-        Folder \texttt{src/} adalah inti dari aplikasi yang berisi seluruh source code. Di dalamnya terdapat beberapa folder utama dengan fungsi yang berbeda-beda. Folder \texttt{common/} menyimpan komponen-komponen yang digunakan bersama di seluruh aplikasi, seperti decorators, filters, interceptors, atau pipes yang sifatnya global. Folder \texttt{config/} berisi file-file konfigurasi aplikasi seperti pengaturan database, environment variables, atau konfigurasi third-party services. Sementara folder \texttt{helpers/} menyimpan fungsi-fungsi utility atau helper yang membantu proses tertentu dan dapat digunakan di berbagai bagian aplikasi.
+        \hspace*{1.25cm}Folder utama \texttt{modules/} mengelompokkan fitur aplikasi berdasarkan domainnya. Setiap subfolder di dalamnya mewakili satu fitur utama, seperti \texttt{auth/} untuk autentikasi pengguna, \texttt{absa/} untuk analisis sentimen berbasis aspek, \texttt{rag/} untuk chatbot berbasis RAG, \texttt{scraping/} untuk pengambilan data, \texttt{umkm/} untuk pengelolaan data UMKM, dan \texttt{users/} untuk manajemen pengguna. Setiap modul memiliki struktur yang seragam agar mudah dipahami dan dikembangkan. Sebagai contoh, modul \texttt{auth/} memiliki subfolder untuk mengatur validasi data, keamanan akses, serta logika bisnis terkait autentikasi. Selain itu, terdapat file controller untuk menangani permintaan dari pengguna dan file module untuk mengatur konfigurasi modul tersebut.
 
-        Folder \texttt{modules/} merupakan folder terpenting yang mengorganisir seluruh fitur aplikasi berdasarkan domain bisnis. Setiap subfolder di dalamnya merepresentasikan satu modul fungsional yang lengkap dan independen. Sebagai contoh, modul \texttt{auth/} menangani seluruh proses autentikasi dan otorisasi pengguna, modul \texttt{absa/} bertanggung jawab atas fitur Aspect-Based Sentiment Analysis, modul \texttt{rag/} mengelola sistem Retrieval-Augmented Generation, modul \texttt{scraping/} mengurus proses pengambilan data dari sumber eksternal, modul \texttt{umkm/} menangani fitur-fitur yang berkaitan dengan data UMKM, dan modul \texttt{users/} mengelola data dan operasi yang berkaitan dengan pengguna.
+        \hspace*{1.25cm}Pada level \texttt{src/} juga terdapat file penting seperti \texttt{main.ts} sebagai titik awal jalannya aplikasi. Folder \texttt{test/} digunakan untuk menyimpan berkas pengujian guna memastikan setiap fitur berjalan dengan baik. Secara keseluruhan, struktur folder ini memudahkan pengembang dalam mengelola, memahami, dan mengembangkan sistem seiring bertambahnya fitur.
 
-        Setiap modul memiliki struktur internal yang konsisten dan mengikuti pattern yang sama. Sebagai contoh, pada modul \texttt{auth/} terdapat beberapa subfolder yang masing-masing memiliki peran spesifik. Folder \texttt{decorators/} berisi custom decorators yang digunakan untuk menambahkan metadata atau fungsionalitas khusus pada class atau method, seperti decorator untuk mendapatkan informasi user yang sedang login. Folder \texttt{dtos/} menyimpan Data Transfer Objects yang mendefinisikan struktur data yang valid untuk request dan response, seperti \texttt{login.dto.ts} untuk validasi data login dan \texttt{refresh-token.dto.ts} untuk validasi refresh token. Folder \texttt{guards/} berisi authentication guards yang bertugas melindungi endpoint tertentu agar hanya bisa diakses oleh pengguna yang sudah terautentikasi. Folder \texttt{interfaces/} mendefinisikan tipe data atau contract yang digunakan dalam modul tersebut untuk menjaga konsistensi tipe data di TypeScript. Folder \texttt{providers/} menyimpan services seperti \texttt{auth.service.ts} yang berisi business logic dan \texttt{generate-tokens.ts} yang menangani pembuatan JWT token.
-
-        Pada level root modul, terdapat file \texttt{auth.controller.ts} yang berfungsi sebagai pengatur route dan handler untuk HTTP request yang masuk, serta file \texttt{auth.module.ts} yang bertugas mendaftarkan dan mengonfigurasi semua komponen dalam modul auth agar dapat digunakan oleh bagian lain dari aplikasi. Pola struktur yang sama diterapkan pada modul-modul lainnya untuk menjaga konsistensi dan kemudahan pemahaman kode.
-
-        Di luar folder \texttt{modules/}, terdapat beberapa file penting pada level \texttt{src/}. File \texttt{main.ts} adalah entry point aplikasi yang menjalankan server dan melakukan konfigurasi global seperti mengaktifkan CORS, mengatur validation pipe, atau menambahkan middleware. File \texttt{app.module.ts} adalah root module yang mengimport dan mengorganisir semua modul lainnya agar dapat bekerja bersama sebagai satu kesatuan aplikasi. File \texttt{app.controller.ts} dan \texttt{app.service.ts} biasanya digunakan untuk route dan logic sederhana pada level aplikasi, seperti health check endpoint.
-
-        Folder \texttt{test/} di level root menyimpan file-file testing, baik unit test maupun integration test, untuk memastikan setiap bagian aplikasi berfungsi dengan benar. Dengan struktur yang terorganisir seperti ini, developer dapat dengan mudah menemukan dan memodifikasi kode yang dibutuhkan, serta memastikan bahwa setiap perubahan tidak akan menimbulkan side effect yang tidak diinginkan pada bagian lain dari aplikasi. Arsitektur modular NestJS yang diterapkan membuat aplikasi lebih scalable dan mudah untuk dikembangkan seiring dengan bertambahnya fitur dan kompleksitas sistem.
 
   \item \textbf{Hasil Implementasi Pipeline RAG}
 
-        Pipeline Retrieval-Augmented Generation berhasil diimplementasikan sebagai komponen inti sistem chatbot yang memungkinkan interpretasi hasil analisis sentimen melalui interaksi bahasa natural. Pipeline diimplementasikan dalam \texttt{RAGModule} yang mengintegrasikan pemuatan dokumen, pembuatan embedding, penyimpanan vektor, pencarian dokumen relevan, dan generasi jawaban menggunakan Large Language Model dalam dua fase utama yaitu fase ingestion dan fase query.
+        \hspace*{1.25cm}Pipeline \textit{Retrieval-Augmented Generation} berhasil diimplementasikan sebagai komponen inti dalam sistem chatbot, yang memungkinkan interpretasi hasil analisis sentimen melalui interaksi bahasa natural. Seluruh pipeline diorganisasikan di dalam \texttt{RAGModule}, yang mengintegrasikan berbagai proses utama, mulai dari pemuatan dokumen, pembuatan embedding, penyimpanan vektor, pencarian dokumen yang relevan, hingga generasi jawaban menggunakan \textit{Large Language Model}. Implementasi pipeline ini dibagi ke dalam dua fase utama, yaitu fase ingestion dan fase query, yang masing-masing memiliki peran berbeda namun saling melengkapi.
 
-        RAGService berhasil diimplementasikan dengan mengimplementasikan interface \texttt{OnModuleInit} yang menjalankan proses inisialisasi secara otomatis ketika aplikasi pertama kali dinyalakan. Penggunaan lifecycle method ini memastikan bahwa seluruh komponen kritis sistem RAG seperti model LLM, model embedding, koneksi database, dan vector store telah terkonfigurasi dengan benar sebelum sistem mulai melayani request dari pengguna.
+        \hspace*{1.25cm}RAGService berhasil diimplementasikan dengan mengadopsi interface \texttt{OnModuleInit} untuk menjalankan proses inisialisasi secara otomatis saat aplikasi pertama kali dijalankan. Pemanfaatan \textit{lifecycle method} ini memastikan bahwa seluruh komponen kritis dalam sistem RAG, seperti model LLM, model embedding, koneksi ke database, serta \textit{vector store}, telah terkonfigurasi dengan benar sebelum sistem mulai melayani permintaan dari pengguna. Dengan pendekatan ini, risiko kesalahan konfigurasi pada saat runtime dapat diminimalkan dan stabilitas sistem secara keseluruhan dapat terjaga.
 
         \begin{lstlisting}[language=Java, caption=Implementasi RAGService dengan automatic initialization, label=lst:rag-service-init]
 @Injectable()
@@ -206,11 +195,11 @@ export class RAGService implements OnModuleInit {
 }
 \end{lstlisting}
 
-        Tahap inisialisasi berhasil mengkonfigurasi model LLM menggunakan layanan Groq yang dipilih karena menyediakan API inferensi dengan latensi rendah, sangat cocok untuk aplikasi chatbot yang membutuhkan respons cepat. Parameter \texttt{temperature} berhasil diatur pada nilai 0.7 untuk menghasilkan jawaban yang seimbang antara konsistensi dan variasi bahasa, memungkinkan model menghasilkan jawaban yang terdengar natural tanpa menyimpang dari fakta yang terdapat dalam dokumen. Parameter \texttt{maxTokens} diset sebesar 8192 untuk memberikan ruang cukup bagi model dalam menghasilkan jawaban yang panjang dan detail untuk pertanyaan yang kompleks.
+        \hspace*{1.25cm}Tahap inisialisasi sistem berhasil mengonfigurasi model \textit{Large Language Model (LLM)} menggunakan layanan Groq, yang dipilih karena menyediakan model yang cukup banyak dengan harga yang terjaukau. Parameter \texttt{temperature} diatur pada nilai 0.7 untuk mencapai keseimbangan antara konsistensi jawaban dan variasi bahasa. Dengan pengaturan ini, model mampu menghasilkan respons yang terdengar natural tanpa menyimpang dari fakta yang terdapat dalam dokumen konteks. Selain itu, parameter \texttt{maxTokens} diset sebesar 8192 guna memberikan ruang yang memadai bagi model dalam menghasilkan jawaban yang panjang dan detail, khususnya untuk pertanyaan yang bersifat kompleks. Sistem juga berhasil menginisialisasi model embedding menggunakan \textit{Google Generative AI Embeddings} yang berfungsi mengonversi teks menjadi representasi vektor numerik yang merepresentasikan makna semantik. Di sisi lain, koneksi ke database PostgreSQL berhasil dibangun dengan memanfaatkan mekanisme \textit{connection pool}, yaitu penyediaan sejumlah koneksi database yang siap digunakan. Mekanisme ini meningkatkan efisiensi dan performa sistem, terutama ketika harus menangani banyak permintaan secara bersamaan.
 
-        Sistem berhasil menginisialisasi model embedding menggunakan Google Generative AI Embeddings yang berfungsi mengubah teks menjadi representasi vektor numerik yang menangkap makna semantik. Pendekatan ini memungkinkan pencarian dokumen berdasarkan kesamaan makna, bukan sekadar kecocokan kata, sehingga sistem tetap dapat menemukan dokumen relevan meskipun pertanyaan pengguna menggunakan istilah atau susunan kalimat yang berbeda dari dokumen yang tersimpan. Koneksi ke database PostgreSQL berhasil dibangun menggunakan mekanisme connection pool yang menyimpan sejumlah koneksi database siap pakai, meningkatkan efisiensi sistem terutama ketika menangani banyak permintaan bersamaan.
+        \hspace*{1.25cm}Selanjutnya fase ingestion berhasil diimplementasikan sebagai tahap persiapan \textit{knowledge base}. Pada tahap ini, data hasil analisis sentimen yang tersimpan dalam file JSON dimuat dan diolah menjadi dokumen teks yang lebih terstruktur. Pengelompokan dokumen dilakukan berdasarkan kategori informasi yang relevan, seperti ringkasan sentimen keseluruhan, faktor-faktor positif, dan faktor-faktor negatif, sehingga setiap dokumen merepresentasikan satu unit pengetahuan yang jelas.
 
-        Fase ingestion berhasil diimplementasikan untuk menyiapkan knowledge base dengan memuat data hasil analisis sentimen dari file JSON, kemudian mengubahnya menjadi dokumen teks yang terstruktur berdasarkan kategori informasi seperti ringkasan sentimen keseluruhan, faktor positif, dan faktor negatif. Proses ingestion pada kode \ref{lst:ingestion-impl} dirancang dengan menerapkan prinsip idempotent yang memastikan proses dapat dijalankan berulang kali tanpa menyebabkan duplikasi data atau perubahan hasil yang tidak diinginkan.
+        \hspace*{1.25cm}Proses ingestion yang ditunjukkan pada kode \ref{lst:ingestion-impl} dirancang dengan menerapkan prinsip \textit{idempotent}. Prinsip ini memastikan bahwa proses ingestion dapat dijalankan berulang kali tanpa menimbulkan duplikasi data maupun perubahan hasil yang tidak diinginkan. Dengan pendekatan tersebut, sistem tetap konsisten dan efisien, khususnya ketika aplikasi dijalankan ulang atau ketika proses inisialisasi perlu dilakukan kembali tanpa adanya pembaruan data.
 
         \begin{lstlisting}[language=Java, caption=Implementasi RAG Ingestion Pipeline dengan idempotent pattern, label=lst:ingestion-impl]
 private async initializeRAG() {
@@ -251,9 +240,10 @@ private async initializeRAG() {
 }
 \end{lstlisting}
 
-        Penerapan pola idempotent pada proses ingestion sangat penting karena pembuatan embedding merupakan operasi yang relatif mahal dari sisi waktu komputasi dan biaya pemanggilan API. Sistem berhasil melakukan pengecekan jumlah data yang telah tersimpan dalam tabel vector store, dan jika data sudah tersedia, sistem hanya membuat instance \texttt{PGVectorStore} yang terhubung ke tabel tersebut tanpa melakukan operasi penulisan ulang. Pendekatan ini terbukti menghemat waktu inisialisasi aplikasi dan mengurangi biaya operasional, terutama ketika aplikasi mengalami restart tanpa adanya perubahan data.
+        \hspace*{1.25cm}Penerapan pola \textit{idempotent} pada proses ingestion memiliki peran yang sangat krusial, mengingat pembuatan embedding merupakan operasi yang relatif mahal baik dari sisi waktu komputasi maupun biaya pemanggilan API. Sistem berhasil melakukan pengecekan terhadap jumlah data yang telah tersimpan di dalam tabel \textit{vector store}. Apabila data tersebut sudah tersedia, sistem tidak melakukan proses penulisan ulang, melainkan hanya membuat instance \texttt{PGVectorStore} yang terhubung langsung ke tabel yang ada. Pendekatan ini terbukti efektif dalam menghemat waktu inisialisasi aplikasi sekaligus menekan biaya operasional, khususnya ketika aplikasi mengalami \textit{restart} tanpa adanya perubahan data pada \textit{knowledge base}.
 
-        Proses pemuatan dokumen berhasil dilakukan oleh \texttt{LoadDocumentsProvider} yang menerapkan strategi semantic chunking, memecah data berdasarkan unit makna yang utuh seperti ringkasan sentimen keseluruhan, faktor positif, dan faktor negatif. Berbeda dengan chunking berbasis ukuran karakter atau token, semantic chunking yang diimplementasikan berhasil mempertahankan konteks informasi yang utuh dalam setiap dokumen, meningkatkan relevansi hasil retrieval dan kualitas jawaban yang dihasilkan sistem.
+        \hspace*{1.25cm}Proses pemuatan dokumen dijalankan oleh komponen \texttt{LoadDocumentsProvider} yang menerapkan strategi \textit{semantic chunking}. Strategi ini memecah data berdasarkan unit makna yang utuh, seperti ringkasan sentimen keseluruhan, sentimen per kategori, sentimen per brand, \textit{engagement} faktor-faktor positif, dan faktor-faktor negatif. Berbeda dengan pendekatan chunking berbasis ukuran karakter atau jumlah token, \textit{semantic chunking} yang diterapkan mampu mempertahankan konteks informasi secara menyeluruh di dalam setiap dokumen. Hasilnya, relevansi dokumen yang diperoleh pada tahap \textit{retrieval} meningkat, yang pada akhirnya berdampak positif terhadap kualitas jawaban yang dihasilkan oleh sistem.
+
 
         \begin{lstlisting}[language=Java, caption=Implementasi semantic chunking pada LoadDocumentsProvider, label=lst:load-docs-impl]
 @Injectable()
@@ -292,9 +282,10 @@ export class LoadDocumentsProvider {
 }
 \end{lstlisting}
 
-        Setiap dokumen yang dihasilkan berhasil dilengkapi dengan metadata yang berfungsi memperkaya konteks dan mempermudah proses retrieval. Metadata \texttt{source} menyimpan nama file asal dokumen untuk traceability, sementara metadata \texttt{type} mengelompokkan dokumen berdasarkan jenis informasinya seperti \texttt{sentiment\_overview}, \texttt{positive\_factors}, dan \texttt{negative\_factors}. Pemisahan ini memungkinkan sistem memberikan jawaban yang lebih fokus dan relevan ketika pengguna menanyakan aspek spesifik dari analisis sentimen.
+        \hspace*{1.25cm}Setiap dokumen yang dihasilkan berhasil dilengkapi dengan metadata yang berperan penting dalam memperkaya konteks sekaligus mempermudah proses \textit{retrieval}. Metadata \texttt{source} digunakan untuk menyimpan nama file asal dokumen, sehingga sistem tetap memiliki jejak terhadap sumber data yang digunakan. Sementara itu, metadata \texttt{type} berfungsi mengelompokkan dokumen berdasarkan jenis informasinya, seperti \texttt{sentiment\_overview}, \texttt{positive\_factors}, dan \texttt{negative\_factors}. Pemisahan ini memungkinkan sistem memberikan jawaban yang lebih fokus dan relevan ketika pengguna menanyakan aspek tertentu dari analisis sentimen.
 
-        Fase query berhasil diimplementasikan untuk menangani proses end-to-end dari penerimaan pertanyaan hingga generasi jawaban. Implementasi dilakukan menggunakan LangChain Expression Language (LCEL) yang menyusun alur eksekusi sebagai rangkaian proses berurutan dimana setiap tahapan didefinisikan sebagai komponen modular yang saling terhubung. Ketika pengguna mengajukan pertanyaan, sistem berhasil mengubah pertanyaan menjadi embedding dan melakukan similarity search dengan parameter \texttt{k: 3} untuk mengambil tiga dokumen paling relevan berdasarkan cosine similarity.
+        \hspace*{1.25cm}Selanjutnya fase query berhasil diimplementasikan untuk menangani keseluruhan proses, mulai dari penerimaan pertanyaan hingga generasi jawaban. Implementasi fase ini memanfaatkan \textit{LangChain Expression Language (LCEL)} yang menyusun alur eksekusi sebagai rangkaian proses berurutan, di mana setiap tahapan didefinisikan sebagai komponen modular yang saling terhubung. Ketika pengguna mengajukan pertanyaan, sistem mengonversi pertanyaan tersebut menjadi embedding, kemudian melakukan \textit{similarity search} dengan parameter \texttt{k: 3} untuk mengambil tiga dokumen yang paling relevan berdasarkan \textit{cosine similarity}.
+
 
         \begin{lstlisting}[language=Java, caption=Implementasi RAG Query Chain menggunakan LCEL, label=lst:query-chain-impl]
 private async createRAGChain() {
@@ -325,288 +316,289 @@ Jawaban:
 }
 \end{lstlisting}
 
-        Pemilihan nilai tiga dokumen terbukti memberikan keseimbangan antara kualitas konteks dan efisiensi sistem, menyediakan informasi cukup untuk menjawab pertanyaan tanpa membebani LLM dengan data berlebihan yang dapat menurunkan kualitas jawaban atau meningkatkan latensi sistem. Dokumen hasil retrieval berhasil digabungkan menjadi satu teks konteks yang kemudian disusun bersama pertanyaan pengguna dalam prompt terstruktur. Struktur prompt yang diimplementasikan memiliki pemisahan jelas antara konteks dari hasil retrieval dan pertanyaan pengguna, membantu LLM memahami bahwa jawaban harus didasarkan pada informasi yang terdapat dalam konteks, meminimalkan risiko hallucination.
+        \hspace*{1.25cm}Pemilihan jumlah tiga dokumen pada proses \textit{retrieval} dipilih berdasarkan jumlah dokumen / \textit{chunk} yang ada. tiga dokumen mampu memberikan keseimbangan yang cukup baik antara kualitas konteks dan efisiensi sistem. Jumlah ini menyediakan informasi yang memadai untuk menjawab pertanyaan pengguna, tanpa membebani \textit{Large Language Model} dengan konteks berlebihan yang berpotensi menurunkan kualitas jawaban atau meningkatkan latensi sistem.
 
-        RagController berhasil diimplementasikan sebagai antarmuka API yang menjadi titik masuk bagi aplikasi client untuk berinteraksi dengan sistem RAG. Controller mengimplementasikan dua endpoint utama yang melayani kebutuhan berbeda namun saling melengkapi.
+        \hspace*{1.25cm}Dokumen-dokumen hasil retrieval kemudian digabungkan menjadi satu teks konteks yang utuh dan disusun bersama pertanyaan pengguna ke dalam sebuah prompt terstruktur. Struktur prompt yang diterapkan memiliki pemisahan yang jelas antara bagian konteks hasil retrieval dan bagian pertanyaan pengguna. Pemisahan ini membantu model memahami bahwa jawaban yang dihasilkan harus berlandaskan pada informasi yang terdapat di dalam konteks, sehingga risiko terjadinya \textit{hallucination} dapat diminimalkan.
 
-        \begin{lstlisting}[language=Java, caption=Implementasi RagController sebagai API interface, label=lst:rag-controller-impl]
-@Controller('rag')
-export class RagController {
-  constructor(private readonly ragService: RagService) {}
+        \hspace*{1.25cm}Integrasi seluruh komponen sistem menghasilkan alur data yang jelas dan terstruktur, baik pada fase ingest maupun fase query. Pada fase ingest, sistem berhasil membaca file JSON hasil analisis sentimen, kemudian mengonversinya menjadi embedding menggunakan model \textit{Google Generative AI}. Embedding tersebut selanjutnya disimpan ke dalam PostgreSQL yang telah dilengkapi dengan ekstensi \texttt{pgvector}, sehingga data berada dalam format yang optimal untuk kebutuhan \textit{similarity search}. Secara ringkas, alur ini dapat direpresentasikan sebagai berikut:
 
-  @Post('query')
-  async query(@Body() body: any) {
-    const answer = await this.ragService.queryRAG(body.question);
-    return {
-      message: 'Jawaban berhasil dihasilkan',
-      data: answer,
-    };
-  }
-
-  @Get('insights')
-  async insights() {
-    return this.ragService.getInsights();
-  }
-}
-\end{lstlisting}
-
-        Endpoint \texttt{POST /rag/query} berhasil diimplementasikan untuk menerima pertanyaan spesifik dari pengguna, menjalankan seluruh RAG pipeline secara asynchronous, dan mengembalikan jawaban dalam format response yang konsisten. Endpoint \texttt{GET /rag/insights} berhasil diimplementasikan untuk memberikan insight otomatis tanpa memerlukan input pertanyaan, menganalisis data sentimen untuk menghasilkan ringkasan kondisi sentimen, tren perubahan, dan aspek yang paling sering mendapat respon positif atau negatif.
-
-        Integrasi seluruh komponen sistem berhasil menghasilkan alur data yang jelas dan terstruktur dari fase startup hingga runtime. Pada fase startup, sistem berhasil membaca file JSON hasil analisis sentimen, mengubahnya menjadi embedding menggunakan model Google Generative AI, dan menyimpan ke PostgreSQL dengan ekstensi \texttt{pgvector} dalam format yang optimal untuk similarity search. Alur ini dapat direpresentasikan sebagai:
 
         \begin{equation}
           \text{File JSON} \rightarrow \text{Dokumen / Chunking} \rightarrow \text{Embedding} \rightarrow \text{PostgreSQL (pgvector)}
         \end{equation}
 
-        Pada fase runtime ketika pengguna mengajukan pertanyaan, alur proses yang berhasil diimplementasikan menjadi:
+        Pada fase query ketika pengguna mengajukan pertanyaan, alur proses yang berhasil diimplementasikan menjadi:
 
         \begin{equation}
           \text{Pertanyaan} \rightarrow \text{Embedding} \rightarrow \text{Similarity Search} \rightarrow \text{Prompt} \rightarrow \text{LLM} \rightarrow \text{Jawaban}
         \end{equation}
 
+        \hspace*{1.25cm}Arsitektur modular yang berhasil diterapkan memungkinkan setiap komponen dalam pipeline, mulai dari pembacaan dokumen, pembuatan embedding, penyimpanan vektor, pencarian konteks, hingga proses pembuatan jawaban, dikembangkan dan dioptimasi secara independen.
+
+  \item \textbf{Hasil Dokumentasi API Menggunakan Swagger}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.7\textwidth]{backend.sentinela.my.id_api_docs.png}
+          \caption{Antarmuka Dokumentasi \textit{Swagger} API}
+          \label{fig:swagger-ui}
+        \end{figure}
+
+        \hspace*{1.25cm}Pada gambar \ref{fig:swagger-ui} menampilkan antarmuka dokumentasi API sistem chatbot analisis sentimen UMKM yang dibangun menggunakan \textit{Swagger}. seluruh layanan API ditata secara terstruktur sehingga mudah dibaca, dipahami, dan diakses oleh pengembang maupun pihak terkait. Dokumentasi API ini berfungsi sebagai panduan visual yang menjelaskan layanan apa saja yang tersedia dalam sistem serta bagaimana cara menggunakannya. Melalui tampilan ini, pengembang dapat melihat daftar fitur utama sistem, memahami alur kerja layanan, dan mengetahui jenis informasi yang dapat dikirim maupun diterima oleh aplikasi. Antarmuka yang interaktif juga membantu mempermudah proses eksplorasi dan pengujian tanpa memerlukan alat tambahan.
+
+        \hspace*{1.25cm}Secara garis besar, layanan API dikelompokkan ke dalam beberapa bagian utama yang mencerminkan komponen sistem, seperti modul \textit{user}, autentikasi, manajemen data scraping, analisis sentimen, \textit{ABSA}  serta chatbot berbasis \textit{Retrieval-Augmented Generation}. Pengelompokan ini memberikan gambaran yang jelas mengenai struktur sistem dan memudahkan navigasi antar fitur. Setiap layanan dalam dokumentasi dilengkapi dengan penjelasan singkat mengenai fungsinya sehingga pengguna dokumentasi dapat memahami tujuan dan kegunaannya secara cepat. Layanan yang memerlukan autentikasi khusus juga ditandai secara visual agar lebih mudah dikenali.
+
+        \hspace*{1.25cm}Secara keseluruhan, penggunaan \textit{Swagger} dalam sistem ini tidak hanya berperan sebagai dokumentasi teknis, tetapi juga sebagai sarana komunikasi antar tim pengembang. Dokumentasi ini membantu memastikan bahwa seluruh pihak memiliki pemahaman yang sama mengenai cara kerja sistem, sehingga mendukung kelancaran pengembangan, pengujian, dan pemeliharaan di masa mendatang.
+
+  \item \textbf{Hasil Antarmuka Chatbot}
+
+        \hspace*{1.25cm}Gambar \ref{fig:chatbot-interface} menampilkan hasil implementasi antarmuka chatbot yang digunakan pada sistem analisis sentimen UMKM. Antarmuka ini dirancang dengan pendekatan yang sederhana dan responsif agar mudah digunakan oleh pengguna non-teknis, khususnya pelaku UMKM. Tampilan chatbot menyerupai aplikasi percakapan pada umumnya, sehingga pengguna dapat langsung berinteraksi tanpa memerlukan pembelajaran khusus.
+
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.6\textwidth]{chatbot-ss.png}
+          \caption{Antarmuka Chatbot}
+          \label{fig:chatbot-interface}
+        \end{figure}
+
+        \hspace*{1.25cm}Antarmuka chatbot dikembangkan menggunakan React.js sebagai \textit{frontend framework} dan Tailwind CSS untuk pengelolaan tampilan visual. Penggunaan React.js memungkinkan antarmuka bersifat dinamis dan responsif terhadap interaksi pengguna, sementara Tailwind CSS membantu mempercepat proses perancangan tampilan dengan gaya yang konsisten dan modern. Terlihat pula adanya fitur pendukung seperti pesan pembuka otomatis, daftar pertanyaan yang disarankan, indikator status chatbot, serta kolom input untuk mengajukan pertanyaan secara bebas. Secara keseluruhan, antarmuka ini dirancang untuk mendukung pengalaman pengguna yang nyaman dan intuitif, sekaligus menjadi media utama interaksi antara pengguna dan sistem chatbot berbasis RAG yang telah dikembangkan pada sisi backend.
 \end{enumerate}
-
-Arsitektur modular yang berhasil diimplementasikan memungkinkan setiap komponen pipeline seperti pembacaan dokumen, pembuatan embedding, penyimpanan vektor, pencarian konteks, dan pembuatan jawaban dikembangkan dan dioptimasi secara independen. Sistem yang dihasilkan mampu menyimpan dan mencari embedding dengan performa tinggi, memastikan stabilitas bahkan ketika digunakan oleh banyak pengguna secara bersamaan, dengan pola idempotent yang membuat sistem lebih efisien secara biaya dan waktu.
-
 \subsection{Hasil Pengujian dan Integrasi (Testing and Integration)}
-Tahap pengujian dan integrasi dilakukan untuk memvalidasi fungsionalitas sistem serta memastikan bahwa seluruh komponen dapat bekerja secara terintegrasi. Pengujian dilakukan menggunakan metode Black Box Testing yang berfokus pada verifikasi kesesuaian antara input dan output tanpa memperhatikan struktur internal kode. Postman digunakan sebagai tools utama untuk melakukan pengujian terhadap seluruh endpoint REST API yang telah dikembangkan.
+Tahap pengujian dan integrasi dilakukan untuk memvalidasi fungsionalitas sistem serta memastikan bahwa seluruh komponen dapat bekerja secara terintegrasi. Pengujian dilakukan menggunakan metode Black Box Testing yang berfokus pada verifikasi kesesuaian antara input dan output tanpa memperhatikan struktur internal kode. Postman digunakan sebagai tools utama untuk melakukan pengujian terhadap seluruh  \textit{endpoint REST API} yang telah dikembangkan.
 
-Pengujian dilakukan terhadap dua aspek utama sistem, yaitu pengujian fungsionalitas endpoint REST API dan pengujian relevansi jawaban chatbot berbasis RAG. Pengujian endpoint REST API mencakup seluruh modul fungsional sistem, mulai dari endpoint dasar aplikasi, modul autentikasi, manajemen pengguna, layanan RAG, manajemen data UMKM, hingga manajemen hasil scraping. Setiap endpoint diuji menggunakan berbagai skenario yang mencakup kondisi normal (valid input), kondisi error (invalid input).
+Pengujian dilakukan terhadap dua aspek utama sistem, yaitu pengujian fungsionalitas \textit{endpoint REST API} dan pengujian relevansi jawaban chatbot berbasis RAG. Pengujian \textit{endpoint} mencakup seluruh modul fungsional sistem, mulai dari endpoint dasar aplikasi, modul autentikasi, manajemen pengguna, layanan RAG, manajemen data UMKM, hingga manajemen hasil scraping. Setiap endpoint diuji menggunakan berbagai skenario yang mencakup kondisi normal (valid input), kondisi error (invalid input).
 
 \begin{enumerate}
   \item \textbf{Hasil Pengujian Endpoint REST API}
 
-        Tabel \ref{tab:hasil-pengujian-endpoint} menampilkan hasil pengujian fungsionalitas endpoint REST API sistem. Pengujian dilakukan dengan mengirimkan request ke setiap endpoint menggunakan berbagai skenario input, kemudian memverifikasi apakah response yang diterima sesuai dengan ekspektasi yang telah ditetapkan pada tahap desain.
+        \hspace*{1.25cm}Tabel \ref{tab:hasil-pengujian-endpoint} menampilkan hasil pengujian fungsionalitas endpoint REST API sistem. Pengujian dilakukan dengan mengirimkan request ke setiap endpoint menggunakan berbagai skenario input, kemudian memverifikasi apakah response yang diterima sesuai dengan ekspektasi yang telah ditetapkan pada tahap desain.
 
-       \begin{longtable}{|c|p{3.5cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|c|}
-  \caption{Hasil Pengujian Fungsional Endpoint REST API} \label{tab:hasil-pengujian-endpoint} \\
-  \hline
-  \textbf{No} & \textbf{Endpoint} & \textbf{Method} & \textbf{Test Scenario} & \textbf{Expected Result} & \textbf{Status} \\
-  \hline
-  \endfirsthead
+        \begin{longtable}{|c|p{3.5cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|c|}
+          \caption{Hasil Pengujian Fungsional Endpoint REST API} \label{tab:hasil-pengujian-endpoint}                                                                                                        \\
+          \hline
+          \textbf{No} & \textbf{Endpoint}                                 & \textbf{Method} & \textbf{Test Scenario}                   & \textbf{Expected Result}                          & \textbf{Status} \\
+          \hline
+          \endfirsthead
 
-  \hline
-  \textbf{No} & \textbf{Endpoint} & \textbf{Method} & \textbf{Test Scenario} & \textbf{Expected Result} & \textbf{Status} \\
-  \hline
-  \endhead
+          \hline
+          \textbf{No} & \textbf{Endpoint}                                 & \textbf{Method} & \textbf{Test Scenario}                   & \textbf{Expected Result}                          & \textbf{Status} \\
+          \hline
+          \endhead
 
-  \hline
-  \endfoot
+          \hline
+          \endfoot
 
-  \hline
-  \endlastfoot
+          \hline
+          \endlastfoot
 
-  1 & /auth/login & POST & Kredensial valid & Access \& refresh token dikembalikan (HTTP 200) & Passed \\
-  \hline
+          1           & /auth/login                                       & POST            & Kredensial valid                         & Access \& refresh token dikembalikan (HTTP 200)   & Passed          \\
+          \hline
 
-  2 & /auth/login & POST & Username tidak terdaftar & Pesan gagal autentikasi (HTTP 400) & Passed \\
-  \hline
+          2           & /auth/login                                       & POST            & Username tidak terdaftar                 & Pesan gagal autentikasi (HTTP 400)                & Passed          \\
+          \hline
 
-  3 & /auth/login & POST & Kata sandi salah & Pesan gagal autentikasi (HTTP 400) & Passed \\
-  \hline
+          3           & /auth/login                                       & POST            & Kata sandi salah                         & Pesan gagal autentikasi (HTTP 400)                & Passed          \\
+          \hline
 
-  4 & /auth/login & POST & Input tidak lengkap/format salah & Pesan validasi (HTTP 400) & Passed \\
-  \hline
+          4           & /auth/login                                       & POST            & Input tidak lengkap/format salah         & Pesan validasi (HTTP 400)                         & Passed          \\
+          \hline
 
-  5 & /auth/refresh & POST & Refresh token valid & Access token baru terbit (HTTP 200) & Passed \\
-  \hline
+          5           & /auth/refresh                                     & POST            & Refresh token valid                      & Access token baru terbit (HTTP 200)               & Passed          \\
+          \hline
 
-  6 & /auth/refresh & POST & Refresh token kedaluwarsa/invalid & Pesan gagal autentikasi (HTTP 401) & Passed \\
-  \hline
+          6           & /auth/refresh                                     & POST            & Refresh token kedaluwarsa/invalid        & Pesan gagal autentikasi (HTTP 401)                & Passed          \\
+          \hline
 
-  7 & /auth/me & GET & Permintaan dengan bearer token valid & Data pengguna aktif dikembalikan (HTTP 200) & Passed \\
-  \hline
+          7           & /auth/me                                          & GET             & Permintaan dengan bearer token valid     & Data pengguna aktif dikembalikan (HTTP 200)       & Passed          \\
+          \hline
 
-  8 & /auth/me & GET & Permintaan tanpa/dengan token invalid & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          8           & /auth/me                                          & GET             & Permintaan tanpa/dengan token invalid    & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  9 & /auth/logout & POST & Logout dengan token valid & Sesi berakhir, HTTP 200 & Passed \\
-  \hline
+          9           & /auth/logout                                      & POST            & Logout dengan token valid                & Sesi berakhir, HTTP 200                           & Passed          \\
+          \hline
 
-  10 & /auth/logout & POST & Logout tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          10          & /auth/logout                                      & POST            & Logout tanpa token                       & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  11 & /users/register & POST & Data lengkap dan unik & Akun dibuat (HTTP 201) & Passed \\
-  \hline
+          11          & /users/register                                   & POST            & Data lengkap dan unik                    & Akun dibuat (HTTP 201)                            & Passed          \\
+          \hline
 
-  12 & /users/register & POST & Username sudah terdaftar & Pesan gagal (HTTP 400) & Passed \\
-  \hline
+          12          & /users/register                                   & POST            & Username sudah terdaftar                 & Pesan gagal (HTTP 400)                            & Passed          \\
+          \hline
 
-  13 & /users/register & POST & Data kurang lengkap & Pesan validasi (HTTP 400) & Passed \\
-  \hline
+          13          & /users/register                                   & POST            & Data kurang lengkap                      & Pesan validasi (HTTP 400)                         & Passed          \\
+          \hline
 
-  14 & /umkm & GET & Permintaan Data Sentimen Umkm & Menampilkan summary data sentimen umkm (HTTP 200) & Passed \\
-  \hline
+          14          & /umkm                                             & GET             & Permintaan Data Sentimen Umkm            & Menampilkan summary data sentimen umkm (HTTP 200) & Passed          \\
+          \hline
 
-  15 & /rag/query & POST & Pertanyaan valid & Jawaban RAG dikembalikan (HTTP 200) & Passed \\
-  \hline
+          15          & /rag/query                                        & POST            & Pertanyaan valid                         & Jawaban RAG dikembalikan (HTTP 200)               & Passed          \\
+          \hline
 
-  16 & /rag/query & POST & Payload kosong/invalid & Pesan validasi (HTTP 400) & Passed \\
-  \hline
+          16          & /rag/query                                        & POST            & Payload kosong/invalid                   & Pesan validasi (HTTP 400)                         & Passed          \\
+          \hline
 
-  17 & /rag/query/:scraperId & POST & Pertanyaan valid dengan token sah & Jawaban berbasis data pengguna (HTTP 200) & Passed \\
-  \hline
+          17          & /rag/query/:scraperId                             & POST            & Pertanyaan valid dengan token sah        & Jawaban berbasis data pengguna (HTTP 200)         & Passed          \\
+          \hline
 
-  18 & /rag/query/:scraperId & POST & Permintaan tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          18          & /rag/query/:scraperId                             & POST            & Permintaan tanpa token                   & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  19 & /rag/query/:scraperId & POST & Payload kosong/invalid & Pesan validasi (HTTP 400) & Passed \\
-  \hline
+          19          & /rag/query/:scraperId                             & POST            & Payload kosong/invalid                   & Pesan validasi (HTTP 400)                         & Passed          \\
+          \hline
 
-  20 & /rag/insights & GET & Permintaan insight sentimen umkm & Insight sentimen umkm dikembalikan (HTTP 200) & Passed \\
-  \hline
+          20          & /rag/insights                                     & GET             & Permintaan insight sentimen umkm         & Insight sentimen umkm dikembalikan (HTTP 200)     & Passed          \\
+          \hline
 
-  21 & /rag/insights/ \allowbreak :scraperId & GET & Token valid, scraper ada & Insight scraper dikembalikan (HTTP 200) & Passed \\
-  \hline
+          21          & /rag/insights/ \allowbreak :scraperId             & GET             & Token valid, scraper ada                 & Insight scraper dikembalikan (HTTP 200)           & Passed          \\
+          \hline
 
-  22 & /rag/insights/ \allowbreak :scraperId & GET & Token tidak dikirim & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          22          & /rag/insights/ \allowbreak :scraperId             & GET             & Token tidak dikirim                      & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  23 & /rag/insights/ \allowbreak :scraperId & GET & Scraper tidak ditemukan & Pesan tidak ditemukan (HTTP 404) & Passed \\
-  \hline
+          23          & /rag/insights/ \allowbreak :scraperId             & GET             & Scraper tidak ditemukan                  & Pesan tidak ditemukan (HTTP 404)                  & Passed          \\
+          \hline
 
-  24 & /scraping/results & POST & Data valid + file JSON sah + token valid & Data scraping tersimpan (HTTP 201) & Passed \\
-  \hline
+          24          & /scraping/results                                 & POST            & Data valid + file JSON sah + token valid & Data scraping tersimpan (HTTP 201)                & Passed          \\
+          \hline
 
-  25 & /scraping/results & POST & Tidak sertakan token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          25          & /scraping/results                                 & POST            & Tidak sertakan token                     & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  26 & /scraping/results & POST & File hilang/format salah/ukuran \> 5MB & Pesan validasi file (HTTP 400) & Passed \\
-  \hline
+          26          & /scraping/results                                 & POST            & File hilang/format salah/ukuran \> 5MB   & Pesan validasi file (HTTP 400)                    & Passed          \\
+          \hline
 
-  27 & /scraping/results & GET & Pengguna punya data & Daftar hasil scraping sendiri (HTTP 200) & Passed \\
-  \hline
+          27          & /scraping/results                                 & GET             & Pengguna punya data                      & Daftar hasil scraping sendiri (HTTP 200)          & Passed          \\
+          \hline
 
-  28 & /scraping/results & GET & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          28          & /scraping/results                                 & GET             & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  29 & /scraping/results/:id & DELETE & Hapus data milik sendiri & Data terhapus (HTTP 200) & Passed \\
-  \hline
+          29          & /scraping/results/:id                             & DELETE          & Hapus data milik sendiri                 & Data terhapus (HTTP 200)                          & Passed          \\
+          \hline
 
-  30 & /scraping/results/:id & DELETE & ID tidak ditemukan & Pesan tidak ditemukan (HTTP 404) & Passed \\
-  \hline
+          30          & /scraping/results/:id                             & DELETE          & ID tidak ditemukan                       & Pesan tidak ditemukan (HTTP 404)                  & Passed          \\
+          \hline
 
-  31 & /scraping/results/:id & DELETE & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          31          & /scraping/results/:id                             & DELETE          & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  32 & /scraping/results/:id/ \allowbreak download/csv & GET & Token valid, ID sah & File CSV terunduh (HTTP 200) & Passed \\
-  \hline
+          32          & /scraping/results/:id/ \allowbreak download/csv   & GET             & Token valid, ID sah                      & File CSV terunduh (HTTP 200)                      & Passed          \\
+          \hline
 
-  33 & /scraping/results/:id/ \allowbreak download/csv & GET & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          33          & /scraping/results/:id/ \allowbreak download/csv   & GET             & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  34 & /scraping/results/:id/ \allowbreak download/csv & GET & ID tidak ditemukan & Pesan tidak ditemukan (HTTP 404) & Passed \\
-  \hline
+          34          & /scraping/results/:id/ \allowbreak download/csv   & GET             & ID tidak ditemukan                       & Pesan tidak ditemukan (HTTP 404)                  & Passed          \\
+          \hline
 
-  35 & /scraping/results/:id/ \allowbreak download/excel & GET & Token valid, ID sah & File XLSX terunduh (HTTP 200) & Passed \\
-  \hline
+          35          & /scraping/results/:id/ \allowbreak download/excel & GET             & Token valid, ID sah                      & File XLSX terunduh (HTTP 200)                     & Passed          \\
+          \hline
 
-  36 & /scraping/results/:id/ \allowbreak download/excel & GET & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          36          & /scraping/results/:id/ \allowbreak download/excel & GET             & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  37 & /scraping/results/:id/ \allowbreak download/excel & GET & ID tidak ditemukan & Pesan tidak ditemukan (HTTP 404) & Passed \\
-  \hline
+          37          & /scraping/results/:id/ \allowbreak download/excel & GET             & ID tidak ditemukan                       & Pesan tidak ditemukan (HTTP 404)                  & Passed          \\
+          \hline
 
-  38 & /absa/:scraperId & POST & Token valid, scraper ada & Analisis ABSA berhasil dibuat (HTTP 201) & Passed \\
-  \hline
+          38          & /absa/:scraperId                                  & POST            & Token valid, scraper ada                 & Analisis ABSA berhasil dibuat (HTTP 201)          & Passed          \\
+          \hline
 
-  39 & /absa/:scraperId & POST & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          39          & /absa/:scraperId                                  & POST            & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  40 & /absa/:scraperId & POST & scraperId bukan UUID valid & Pesan validasi parameter (HTTP 400) & Passed \\
-  \hline
+          40          & /absa/:scraperId                                  & POST            & scraperId bukan UUID valid               & Pesan validasi parameter (HTTP 400)               & Passed          \\
+          \hline
 
-  41 & /absa/:scraperId & GET & Token valid, data tersedia & Hasil ABSA dikembalikan (HTTP 200) & Passed \\
-  \hline
+          41          & /absa/:scraperId                                  & GET             & Token valid, data tersedia               & Hasil ABSA dikembalikan (HTTP 200)                & Passed          \\
+          \hline
 
-  42 & /absa/:scraperId & GET & Scraper belum dianalisis & Pesan tidak ditemukan (HTTP 404) & Passed \\
-  \hline
+          42          & /absa/:scraperId                                  & GET             & Scraper belum dianalisis                 & Pesan tidak ditemukan (HTTP 404)                  & Passed          \\
+          \hline
 
-  43 & /absa/:scraperId & GET & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          43          & /absa/:scraperId                                  & GET             & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
 
-  44 & /absa/:scraperId/ \allowbreak recommendation & GET & Token valid, rekomendasi tersedia & Rekomendasi berbasis ABSA (HTTP 200) & Passed \\
-  \hline
+          44          & /absa/:scraperId/ \allowbreak recommendation      & GET             & Token valid, rekomendasi tersedia        & Rekomendasi berbasis ABSA (HTTP 200)              & Passed          \\
+          \hline
 
-  45 & /absa/:scraperId/ \allowbreak recommendation & GET & Scraper tidak ditemukan & Pesan tidak ditemukan (HTTP 404) & Passed \\
-  \hline
+          45          & /absa/:scraperId/ \allowbreak recommendation      & GET             & Scraper tidak ditemukan                  & Pesan tidak ditemukan (HTTP 404)                  & Passed          \\
+          \hline
 
-  46 & /absa/:scraperId/ \allowbreak recommendation & GET & Tanpa token & Akses ditolak (HTTP 401) & Passed \\
-  \hline
+          46          & /absa/:scraperId/ \allowbreak recommendation      & GET             & Tanpa token                              & Akses ditolak (HTTP 401)                          & Passed          \\
+          \hline
+        \end{longtable}
 
-\end{longtable}
+        \hspace*{1.25cm}Berdasarkan hasil pengujian yang ditampilkan pada Tabel \ref{tab:hasil-pengujian-endpoint}, seluruh 46 skenario pengujian endpoint \textit{REST API} menunjukkan status \textbf{Passed}, yang mengindikasikan bahwa sistem telah beroperasi sesuai dengan spesifikasi yang ditetapkan. Pengujian mencakup berbagai aspek fungsional sistem, termasuk mekanisme autentikasi dan otorisasi yang melibatkan 10 skenario, manajemen pengguna dengan 3 skenario pada modul \textit{user}, serta layanan RAG yang diuji melalui 9 skenario berbeda. Hasil pengujian menunjukkan bahwa sistem mampu menangani validasi input dengan tepat, mengembalikan kode status \textit{HTTP} yang sesuai untuk setiap kondisi, dan memberikan pesan error yang informatif ketika terjadi kesalahan.
 
-Berdasarkan hasil pengujian yang ditampilkan pada Tabel \ref{tab:hasil-pengujian-endpoint}, seluruh 46 skenario pengujian endpoint REST API menunjukkan status ``Passed'', yang mengindikasikan bahwa sistem telah beroperasi sesuai dengan spesifikasi yang ditetapkan. Pengujian mencakup berbagai aspek fungsional sistem, termasuk mekanisme autentikasi dan otorisasi yang melibatkan 10 skenario pengujian pada modul \texttt{/auth}, manajemen pengguna dengan 3 skenario pada modul \texttt{/users/register}, serta layanan RAG yang diuji melalui 9 skenario berbeda. Hasil pengujian menunjukkan bahwa sistem mampu menangani validasi input dengan tepat, mengembalikan kode status HTTP yang sesuai untuk setiap kondisi, dan memberikan pesan error yang informatif ketika terjadi kesalahan.
-
-Pengujian modul autentikasi membuktikan bahwa sistem dapat membedakan antara kredensial yang valid dan tidak valid, mengelola siklus hidup token dengan baik, serta menerapkan mekanisme otorisasi yang ketat pada endpoint yang memerlukan autentikasi. Modul manajemen data scraping, yang mencakup 14 skenario pengujian, berhasil memvalidasi operasi Create dan Delete beserta fitur ekspor data dalam format CSV dan Excel. Sementara itu, modul ABSA yang diuji melalui 9 skenario menunjukkan kemampuan sistem dalam melakukan analisis sentimen berbasis aspek dan menghasilkan rekomendasi strategis berdasarkan hasil analisis tersebut. Keberhasilan seluruh skenario pengujian ini mengonfirmasi bahwa integrasi antar-modul berjalan dengan baik dan sistem siap untuk memasuki tahap pengujian relevansi jawaban chatbot RAG.
+        \hspace*{1.25cm}Pengujian modul autentikasi membuktikan bahwa sistem dapat membedakan antara kredensial yang valid dan tidak valid, mengelola siklus hidup token dengan baik, serta menerapkan mekanisme otorisasi yang ketat pada \textit{endpoint} yang memerlukan autentikasi. Modul manajemen data scraping, yang mencakup 14 skenario pengujian, berhasil memvalidasi operasi \textit{create} dan \textit{delete} beserta fitur ekspor data dalam format CSV dan Excel. Sementara itu, modul \textit{ABSA} yang diuji melalui 9 skenario menunjukkan kemampuan sistem dalam melakukan analisis sentimen berbasis aspek dan menghasilkan rekomendasi strategis berdasarkan hasil analisis tersebut. Keberhasilan seluruh skenario pengujian ini mengonfirmasi bahwa integrasi antar-modul berjalan dengan baik dan sistem siap untuk memasuki tahap pengujian relevansi jawaban chatbot RAG.
 
   \item \textbf{Hasil Pengujian Relevansi Jawaban Chatbot RAG}
 
-        Selain pengujian fungsionalitas endpoint, dilakukan pula pengujian terhadap kualitas dan relevansi jawaban yang dihasilkan oleh sistem chatbot berbasis RAG. Pengujian ini bertujuan untuk memverifikasi apakah sistem mampu memberikan jawaban yang relevan dan kontekstual berdasarkan pertanyaan yang diajukan pengguna. Tabel \ref{tab:hasil-pengujian-rag} menampilkan hasil pengujian relevansi jawaban chatbot terhadap berbagai jenis pertanyaan yang mewakili use case umum dalam analisis sentimen UMKM.
+        \hspace*{1.25cm}Selain pengujian fungsionalitas endpoint, penelitian ini juga melakukan pengujian terhadap kualitas dan relevansi jawaban yang dihasilkan oleh sistem chatbot berbasis RAG. Fokus pengujian tidak lagi pada apakah layanan berjalan dengan benar, melainkan pada sejauh mana sistem mampu memahami pertanyaan pengguna dan menyusun jawaban yang sesuai dengan konteks data yang tersedia.
 
-       \begin{longtable}{|c|p{6cm}|p{6cm}|c|}
-  \caption{Hasil Pengujian Relevansi Jawaban Chatbot RAG} \label{tab:hasil-pengujian-rag} \\
-  \hline
-  \textbf{No} & \textbf{Pertanyaan (Questions)} & \textbf{Jawaban (Answers)} & \textbf{Relevan?} \\
-  \hline
-  \endfirsthead
+        \hspace*{1.25cm}Pengujian ini dirancang untuk memverifikasi kemampuan sistem dalam memberikan jawaban yang relevan, informatif, dan berbasis pada \textit{knowledge base} yang dimiliki. Dengan kata lain, evaluasi diarahkan untuk melihat apakah mekanisme \textit{retrieval} dan \textit{generation} dapat bekerja secara selaras ketika menghadapi berbagai jenis pertanyaan. Tabel \ref{tab:hasil-pengujian-rag} menyajikan ringkasan hasil pengujian relevansi jawaban chatbot terhadap beragam pertanyaan yang mewakili \textit{use case} umum dalam analisis sentimen UMKM.
 
-  \hline
-  \textbf{No} & \textbf{Pertanyaan (Questions)} & \textbf{Jawaban (Answers)} & \textbf{Relevan?} \\
-  \hline
-  \endhead
 
-  \hline
-  \endfoot
+        \begin{longtable}{|c|p{6cm}|p{6cm}|c|}
+          \caption{Hasil Pengujian Relevansi Jawaban Chatbot RAG} \label{tab:hasil-pengujian-rag}                                                                                                                                                                                                                                                                                                                                                                         \\
+          \hline
+          \textbf{No} & \textbf{Pertanyaan (Questions)}                                       & \textbf{Jawaban (Answers)}                                                                                                                                                                                                                                                                                                                            & \textbf{Relevan?} \\
+          \hline
+          \endfirsthead
 
-  \hline
-  \endlastfoot
+          \hline
+          \textbf{No} & \textbf{Pertanyaan (Questions)}                                       & \textbf{Jawaban (Answers)}                                                                                                                                                                                                                                                                                                                            & \textbf{Relevan?} \\
+          \hline
+          \endhead
 
-  1 & Apa maksud dari distribusi sentimen keseluruhan? & Distribusi sentimen menunjukkan bahwa mayoritas komentar bersifat netral, dengan 13.774 komentar (91,9\%), diikuti sentimen positif sebanyak 1.103 komentar (7,4\%), dan sentimen negatif hanya 107 komentar (0,7\%). Hal ini mengindikasikan bahwa sebagian besar pelanggan memberikan ulasan yang objektif tanpa kecenderungan emosional yang kuat. & Ya \\
-  \hline
+          \hline
+          \endfoot
 
-  2 & Kategori kuliner mana yang memiliki rasio sentimen positif tertinggi? & Berdasarkan analisis data, kategori dengan rasio sentimen positif tertinggi adalah Kuliner - Makanan Tradisional dengan rasio positif 15.6\%. & Ya \\
-  \hline
+          \hline
+          \endlastfoot
 
-  3 & Brand mana yang memiliki rasio sentimen positif tertinggi? & Brand dengan rasio sentimen positif tertinggi adalah Gacoan dengan 15.6\%, diikuti oleh Mieganbatte dengan 12.6\%. & Ya \\
-  \hline
+          1           & Apa maksud dari distribusi sentimen keseluruhan?                      & Distribusi sentimen menunjukkan bahwa mayoritas komentar bersifat netral, dengan 13.774 komentar (91,9\%), diikuti sentimen positif sebanyak 1.103 komentar (7,4\%), dan sentimen negatif hanya 107 komentar (0,7\%). Hal ini mengindikasikan bahwa sebagian besar pelanggan memberikan ulasan yang objektif tanpa kecenderungan emosional yang kuat. & Ya                \\
+          \hline
 
-  4 & Bagaimana perbandingan rata-rata likes berdasarkan kategori sentimen? & Rata-rata likes tertinggi terdapat pada sentimen negatif (251.9), diikuti positif (251.2), dan netral (247.6). Data ini menunjukkan bahwa konten dengan sentimen negatif cenderung mendapat sedikit lebih banyak engagement dalam bentuk likes, kemungkinan karena konten kontroversial lebih menarik perhatian. & Ya \\
-  \hline
+          2           & Kategori kuliner mana yang memiliki rasio sentimen positif tertinggi? & Berdasarkan analisis data, kategori dengan rasio sentimen positif tertinggi adalah Kuliner - Makanan Tradisional dengan rasio positif 15.6\%.                                                                                                                                                                                                         & Ya                \\
+          \hline
 
-  5 & Apa faktor positif yang paling sering muncul dalam ulasan? & Kata yang paling sering muncul dalam sentimen positif adalah "enak" dengan 277 kemunculan, diikuti "pas" (162) dan "mantap" (143). Kata-kata ini mengindikasikan bahwa kualitas rasa menjadi faktor utama yang membuat pelanggan memberikan ulasan positif terhadap produk kuliner UMKM. & Ya \\
-  \hline
+          3           & Brand mana yang memiliki rasio sentimen positif tertinggi?            & Brand dengan rasio sentimen positif tertinggi adalah Gacoan dengan 15.6\%, diikuti oleh Mieganbatte dengan 12.6\%.                                                                                                                                                                                                                                    & Ya                \\
+          \hline
 
-\end{longtable}
+          4           & Bagaimana perbandingan rata-rata likes berdasarkan kategori sentimen? & Rata-rata likes tertinggi terdapat pada sentimen negatif (251.9), diikuti positif (251.2), dan netral (247.6). Data ini menunjukkan bahwa konten dengan sentimen negatif cenderung mendapat sedikit lebih banyak engagement dalam bentuk likes, kemungkinan karena konten kontroversial lebih menarik perhatian.                                      & Ya                \\
+          \hline
 
-        Hasil pengujian menunjukkan bahwa sistem chatbot berbasis RAG mampu memberikan jawaban yang relevan dan kontekstual terhadap berbagai jenis pertanyaan. Sistem berhasil melakukan retrieval dokumen yang sesuai dengan konteks pertanyaan dan menghasilkan jawaban yang informatif serta mudah dipahami oleh pengguna non-teknis. Kemampuan sistem dalam menginterpretasikan data numerik menjadi insight yang dapat memberikan wawasan yang bermanfaat menunjukkan bahwa implementasi RAG pipeline telah berfungsi sesuai dengan tujuan penelitian.
+          5           & Apa faktor positif yang paling sering muncul dalam ulasan?            & Kata yang paling sering muncul dalam sentimen positif adalah "enak" dengan 277 kemunculan, diikuti "pas" (162) dan "mantap" (143). Kata-kata ini mengindikasikan bahwa kualitas rasa menjadi faktor utama yang membuat pelanggan memberikan ulasan positif terhadap produk kuliner UMKM.                                                              & Ya                \\
+          \hline
+
+          6           & Siapa nama presiden indonesia?                                        & Maaf, saya tidak memiliki informasi tersebut dalam konteks yang diberikan.                                                                                                                                                                                                                                                                            & Ya                \\
+          \hline
+
+          7           & Bagaimana cara membuat pisang goreng?                                 & Maaf, saya tidak memiliki informasi tentang cara membuat pisang goreng dalam konteks yang diberikan.                                                                                                                                                                                                                                                  & Ya                \\
+          \hline
+        \end{longtable}
+
+        \hspace*{1.25cm}Hasil pengujian menunjukkan bahwa sistem chatbot berbasis RAG mampu memberikan jawaban yang relevan dan kontekstual untuk berbagai jenis pertanyaan yang diajukan. Sistem dapat melakukan proses pencarian dokumen yang sesuai dengan konteks pertanyaan, kemudian memanfaatkan informasi tersebut untuk menghasilkan jawaban yang informatif dan relatif mudah dipahami, khususnya oleh pengguna non-teknis. Hal tersebut mengindikasikan bahwa implementasi pipeline RAG telah berjalan sesuai dengan tujuan penelitian, yaitu menjembatani data analitik yang kompleks dengan kebutuhan informasi praktis pelaku UMKM melalui interaksi bahasa alami.
+
 
 \end{enumerate}
 
 \section{Pembahasan}
 
-Penelitian ini telah berhasil mengimplementasikan sistem chatbot analisis sentimen UMKM berbasis web dengan integrasi model Retrieval-Augmented Generation (RAG) menggunakan NestJS sebagai backend framework dan LangChain.js sebagai orkestrasi pipeline RAG. Keseluruhan proses implementasi sistem dimulai dari tahap analisis kebutuhan yang mengidentifikasi permasalahan mendasar, yaitu kesulitan pelaku UMKM dalam memahami visualisasi data hasil analisis sentimen yang disajikan dalam bentuk grafik dan tabel. Identifikasi masalah ini menjadi landasan bagi pengembangan solusi berbasis chatbot yang mampu menjembatani kesenjangan pemahaman antara data analitik kompleks dengan kebutuhan informasi praktis pelaku UMKM yang mayoritas tidak memiliki latar belakang teknis dalam bidang statistik atau data science.
+Penelitian ini berhasil mengimplementasikan sebuah sistem chatbot analisis sentimen UMKM berbasis web dengan mengintegrasikan pendekatan \textit{Retrieval-Augmented Generation (RAG)}. Sistem dikembangkan menggunakan NestJS sebagai \textit{backend framework} dan LangChain.js sebagai orkestrator pipeline RAG. Seluruh proses implementasi diawali dari tahap analisis kebutuhan yang mengidentifikasi permasalahan utama, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang umumnya disajikan dalam bentuk grafik dan tabel. Visualisasi semacam ini sering kali kurang ramah bagi pengguna non-teknis, khususnya pelaku UMKM yang tidak memiliki latar belakang di bidang statistik atau \textit{data science}. Temuan tersebut menjadi dasar perancangan solusi berbasis chatbot yang berperan sebagai jembatan antara data analitik yang kompleks dan kebutuhan informasi praktis pengguna.
 
-Tahap spesifikasi sistem menghasilkan blueprint kebutuhan yang terstruktur dan detail, mencakup empat komponen fungsional utama yang menjadi tulang punggung aplikasi. Sistem autentikasi dan autorisasi berbasis JSON Web Token dipilih sebagai mekanisme keamanan karena sifatnya yang stateless dan efisien, memungkinkan verifikasi identitas pengguna tanpa harus menyimpan session di sisi server. Modul manajemen data hasil scraping Instagram dirancang dengan fungsionalitas create dan delete untuk memfasilitasi pengelolaan data mentah yang menjadi input bagi proses analisis sentimen. API Gateway diposisikan sebagai lapisan orkestrasi yang menghubungkan frontend dengan microservices eksternal, memberikan fleksibilitas dalam pengembangan dan pemeliharaan setiap komponen secara independen. Komponen inti penelitian adalah chatbot berbasis RAG yang memungkinkan interaksi bahasa natural untuk memperoleh interpretasi kontekstual terhadap hasil analisis sentimen, dengan pendekatan yang menggabungkan proses retrieval dokumen relevan dan generation jawaban menggunakan Large Language Model untuk menghasilkan respons yang akurat dan berbasis fakta.
+Tahap spesifikasi sistem menghasilkan sebuah \textit{blueprint} kebutuhan yang terstruktur dan cukup detail, dengan empat komponen fungsional utama sebagai fondasi aplikasi. Pertama, sistem autentikasi dan autorisasi berbasis \textit{JSON Web Token} dipilih karena sifatnya yang \textit{stateless} dan efisien, memungkinkan proses verifikasi identitas tanpa ketergantungan pada penyimpanan sesi di sisi server. Kedua, modul manajemen data hasil \textit{scraping} Instagram dirancang dengan fungsi \textit{create} dan \textit{delete} untuk memudahkan pengelolaan data mentah yang menjadi input utama analisis sentimen. Ketiga, \textit{API Gateway} berperan sebagai lapisan orkestrasi yang menghubungkan frontend dengan layanan \textit{ABSA} dan \textit{Recommendation Content}, sehingga setiap komponen dapat dikembangkan dan dipelihara secara independen. Komponen keempat sekaligus menjadi inti penelitian adalah chatbot berbasis RAG, yang memungkinkan interaksi bahasa natural untuk memperoleh interpretasi kontekstual atas hasil analisis sentimen dengan mengombinasikan proses \textit{retrieval} dokumen relevan dan \textit{generation} jawaban menggunakan \textit{Large Language Model}.
 
-Desain sistem mengadopsi arsitektur tiga lapis yang memisahkan tanggung jawab secara jelas antara presentation layer, application layer, dan data layer. Lapisan presentasi menggunakan React.js untuk menyajikan visualisasi data sentimen dan antarmuka chatbot yang intuitif, sementara seluruh pemrosesan data dan logika bisnis ditangani oleh backend NestJS pada lapisan aplikasi. Lapisan data mengimplementasikan PostgreSQL dengan ekstensi pgvector sebagai backbone penyimpanan yang menerapkan pendekatan hybrid, mengombinasikan model relasional ter-normalisasi untuk data struktural dengan penyimpanan berbasis vektor untuk kebutuhan RAG. Perancangan pipeline RAG menjadi salah satu hasil utama tahap desain, terdiri dari dua fase independen namun saling terkait: RAG Ingestion Pipeline yang memproses file JSON hasil analisis sentimen menjadi dokumen terstruktur dan menyimpannya sebagai embedding vektor, serta RAG Query Pipeline yang menangani proses end-to-end dari penerimaan pertanyaan hingga generasi jawaban berbasis konteks yang relevan.
+Pada tahap desain, sistem menggunakan arsitektur tiga lapis yang memisahkan tanggung jawab secara jelas antara \textit{presentation layer}, \textit{application layer}, dan \textit{data layer}. Lapisan presentasi dikembangkan menggunakan React.js untuk menampilkan visualisasi data sentimen serta antarmuka chatbot yang intuitif. Seluruh logika bisnis dan pemrosesan data ditangani oleh backend NestJS pada lapisan aplikasi. Sementara itu, lapisan data memanfaatkan PostgreSQL dengan ekstensi \textit{pgvector} sebagai tempat penyimpanan, menerapkan pendekatan hibrida yang menggabungkan model relasional ter-normalisasi untuk data struktural dengan penyimpanan vektor untuk mendukung kebutuhan RAG. Salah satu keluaran penting dari tahap desain adalah perancangan pipeline RAG yang terdiri dari dua fase saling terkait, yaitu RAG Ingestion Pipeline dan RAG Query Pipeline.
 
-Implementasi sistem dimulai dengan penyiapan lingkungan pengembangan menggunakan Node.js LTS dan NestJS framework yang dipilih karena menyediakan struktur modular yang mendukung pengembangan aplikasi berskala menengah hingga besar. Konfigurasi sistem dirancang dengan pemisahan kode aplikasi dan parameter lingkungan, dimana informasi sensitif seperti kredensial database dan API key disimpan dalam file environment yang tidak termasuk dalam version control system, meningkatkan keamanan sekaligus memudahkan pengelolaan konfigurasi di berbagai lingkungan deployment. Implementasi basis data PostgreSQL berhasil mengaktifkan ekstensi pgvector yang menambahkan tipe data vector beserta operator dan fungsi untuk similarity search seperti cosine distance, memungkinkan sistem melakukan pencarian dokumen berdasarkan kesamaan semantik. Pengelolaan skema database menggunakan TypeORM sebagai Object-Relational Mapping tool yang menyederhanakan interaksi dengan database dan mendukung repository pattern untuk memisahkan logika akses data dari business logic.
+Tahap implementasi diawali dengan penyiapan lingkungan pengembangan menggunakan Node.js versi LTS dan framework NestJS. Pemilihan teknologi ini didasarkan pada stabilitas, dukungan jangka panjang, serta kemampuannya menyediakan struktur modular yang sesuai untuk aplikasi berskala menengah hingga besar. Konfigurasi sistem dirancang dengan memisahkan kode aplikasi dan parameter lingkungan, di mana informasi sensitif seperti kredensial database dan \textit{API key} disimpan dalam file \textit{environment} yang tidak disertakan dalam \textit{version control system}. Pendekatan ini meningkatkan keamanan sekaligus mempermudah pengelolaan konfigurasi pada berbagai lingkungan \textit{deployment}. Implementasi basis data PostgreSQL berhasil mengaktifkan ekstensi \textit{pgvector}, yang menambahkan tipe data \textit{vector} serta operator \textit{similarity search} seperti \textit{cosine similarity}. Pengelolaan skema database dilakukan menggunakan TypeORM sebagai \textit{Object-Relational Mapping} untuk memisahkan logika akses data dari \textit{business logic}.
 
-Arsitektur backend diimplementasikan mengikuti prinsip modular architecture yang memisahkan aplikasi menjadi beberapa modul independen dengan tanggung jawab spesifik. Struktur folder yang terorganisir memudahkan pengembangan, pengujian, dan pemeliharaan sistem, dengan folder modules sebagai inti yang mengorganisir seluruh fitur aplikasi berdasarkan domain bisnis. Setiap modul memiliki struktur internal yang konsisten, mencakup decorators untuk metadata dan fungsionalitas khusus, DTOs untuk validasi struktur data, guards untuk proteksi endpoint, interfaces untuk konsistensi tipe data, serta providers yang menyimpan business logic. Pendekatan modular ini memberikan keuntungan signifikan dalam hal maintainability karena kode lebih terorganisir, testability karena setiap modul dapat diuji secara terisolasi, kemudahan scaling ketika aplikasi berkembang, serta mempermudah kolaborasi tim pengembangan.
+Arsitektur backend diimplementasikan mengikuti prinsip \textit{modular architecture}. Aplikasi dibagi ke dalam beberapa modul independen dengan tanggung jawab yang spesifik, seperti autentikasi, manajemen data, dan RAG. Struktur folder yang terorganisir memudahkan proses pengembangan, pengujian, serta pemeliharaan. Setiap modul memiliki struktur internal yang konsisten, mencakup \textit{decorators}, \textit{DTOs}, \textit{guards}, \textit{interfaces}, dan \textit{providers}. Pendekatan ini memberikan keuntungan dari sisi \textit{maintainability}, kemudahan \textit{scaling}, serta mendukung kolaborasi tim pengembang.
 
-Pipeline Retrieval-Augmented Generation diimplementasikan sebagai komponen inti yang mengintegrasikan pemuatan dokumen, pembuatan embedding, penyimpanan vektor, pencarian dokumen relevan, dan generasi jawaban dalam dua fase utama. RAGService mengimplementasikan interface OnModuleInit untuk menjalankan proses inisialisasi otomatis ketika aplikasi pertama kali dinyalakan, memastikan seluruh komponen kritis seperti model LLM, model embedding, koneksi database, dan vector store telah terkonfigurasi dengan benar sebelum sistem mulai melayani request. Tahap inisialisasi berhasil mengkonfigurasi model LLM menggunakan layanan Groq dengan parameter temperature 0.7 untuk menghasilkan jawaban yang seimbang antara konsistensi dan variasi bahasa, serta maxTokens 8192 untuk memberikan ruang cukup bagi jawaban yang panjang dan detail. Model embedding menggunakan Google Generative AI berhasil diinisialisasi untuk mengubah teks menjadi representasi vektor numerik yang menangkap makna semantik, memungkinkan pencarian dokumen berdasarkan kesamaan makna bukan hanya kecocokan kata.
+Pipeline RAG diimplementasikan sebagai komponen inti sistem dalam dua fase utama. Fase ingestion menerapkan prinsip \textit{idempotent} untuk menghindari pembuatan embedding ulang yang bersifat mahal dari sisi komputasi dan biaya. Sistem melakukan pengecekan data yang telah tersimpan sebelum melakukan penulisan ulang. Proses pemuatan dokumen menggunakan strategi \textit{semantic chunking} berdasarkan unit makna yang utuh, seperti ringkasan sentimen dan faktor positif maupun negatif, serta dilengkapi metadata untuk keperluan \textit{filtering} dokumen. Fase query diimplementasikan menggunakan \textit{LangChain Expression Language (LCEL)} dengan alur eksekusi berurutan. Pertanyaan pengguna diubah menjadi embedding, dilakukan \textit{similarity search} dengan parameter $k = 3$, lalu digabungkan ke dalam prompt terstruktur bersama konteks hasil retrieval untuk meminimalkan risiko halusinasi.
 
-Fase ingestion menerapkan prinsip idempotent yang sangat penting karena pembuatan embedding merupakan operasi yang relatif mahal dari sisi waktu komputasi dan biaya pemanggilan API. Sistem melakukan pengecekan jumlah data yang telah tersimpan dalam tabel vector store, dan jika data sudah tersedia, hanya membuat instance PGVectorStore tanpa melakukan operasi penulisan ulang, menghemat waktu inisialisasi aplikasi dan mengurangi biaya operasional terutama ketika aplikasi mengalami restart tanpa adanya perubahan data. Proses pemuatan dokumen menerapkan strategi semantic chunking yang memecah data berdasarkan unit makna yang utuh seperti ringkasan sentimen keseluruhan, faktor positif, dan faktor negatif, berbeda dengan chunking berbasis ukuran karakter atau token yang dapat memotong konteks informasi di tengah-tengah. Setiap dokumen dilengkapi dengan metadata source untuk traceability dan metadata type untuk mengelompokkan dokumen berdasarkan jenis informasinya, memungkinkan sistem memberikan jawaban yang lebih fokus dan relevan ketika pengguna menanyakan aspek spesifik dari analisis sentimen.
-
-Fase query diimplementasikan menggunakan LangChain Expression Language (LCEL) yang menyusun alur eksekusi sebagai rangkaian proses berurutan dengan setiap tahapan didefinisikan sebagai komponen modular yang saling terhubung. Ketika pengguna mengajukan pertanyaan, sistem mengubah pertanyaan menjadi embedding dan melakukan similarity search dengan parameter k equals 3 untuk mengambil tiga dokumen paling relevan berdasarkan cosine similarity. Pemilihan nilai tiga dokumen memberikan keseimbangan antara kualitas konteks dan efisiensi sistem, menyediakan informasi cukup untuk menjawab pertanyaan tanpa membebani LLM dengan data berlebihan yang dapat menurunkan kualitas jawaban atau meningkatkan latensi. Dokumen hasil retrieval digabungkan menjadi satu teks konteks yang disusun bersama pertanyaan pengguna dalam prompt terstruktur dengan pemisahan jelas antara konteks dan pertanyaan, membantu LLM memahami bahwa jawaban harus didasarkan pada informasi yang terdapat dalam konteks untuk meminimalkan risiko hallucination.
-
-RagController berhasil diimplementasikan sebagai antarmuka API yang menjadi titik masuk bagi aplikasi client untuk berinteraksi dengan sistem RAG melalui dua endpoint utama. Endpoint POST /rag/query menerima pertanyaan spesifik dari pengguna, menjalankan seluruh RAG pipeline secara asynchronous, dan mengembalikan jawaban dalam format response yang konsisten, sementara endpoint GET /rag/insights memberikan insight otomatis tanpa memerlukan input pertanyaan dengan menganalisis data sentimen untuk menghasilkan ringkasan kondisi sentimen, tren perubahan, dan aspek yang paling sering mendapat respon positif atau negatif. Integrasi seluruh komponen menghasilkan alur data yang jelas dari fase startup dimana sistem membaca file JSON hasil analisis sentimen, mengubahnya menjadi embedding, dan menyimpan ke PostgreSQL dengan pgvector, hingga fase runtime dimana pertanyaan pengguna diubah menjadi embedding, dilakukan similarity search, dikonstruksi prompt, diproses oleh LLM, dan dihasilkan jawaban yang relevan dan kontekstual.
-
-Pengujian sistem dilakukan menggunakan metode Black Box Testing yang berfokus pada verifikasi kesesuaian antara input dan output tanpa memperhatikan struktur internal kode, dengan Postman sebagai tools utama untuk melakukan pengujian terhadap seluruh endpoint REST API. Hasil pengujian menunjukkan bahwa seluruh 46 skenario pengujian endpoint berhasil passed, mencakup pengujian endpoint dasar aplikasi, modul autentikasi dengan berbagai kondisi valid dan invalid, manajemen pengguna termasuk registrasi dengan validasi email dan data lengkap, layanan RAG untuk query pertanyaan dan request insight, serta manajemen data UMKM dan hasil scraping dengan berbagai kondisi otorisasi. Pengujian relevansi jawaban chatbot berbasis RAG terhadap 5 pertanyaan yang mewakili use case umum dalam analisis sentimen UMKM menunjukkan bahwa sistem mampu memberikan jawaban yang relevan dan kontekstual, berhasil melakukan retrieval dokumen yang sesuai dengan konteks pertanyaan dan menghasilkan jawaban yang informatif serta mudah dipahami oleh pengguna non-teknis.
-
-Keberhasilan implementasi sistem ini menunjukkan bahwa pendekatan Retrieval-Augmented Generation efektif diterapkan untuk menjembatani kesenjangan pemahaman antara visualisasi data analitik dan kebutuhan informasi praktis pelaku UMKM. Arsitektur modular yang diterapkan memungkinkan setiap komponen pipeline seperti pembacaan dokumen, pembuatan embedding, penyimpanan vektor, pencarian konteks, dan pembuatan jawaban dikembangkan dan dioptimasi secara independen. Sistem yang dihasilkan mampu menyimpan dan mencari embedding dengan performa tinggi, memastikan stabilitas bahkan ketika digunakan oleh banyak pengguna secara bersamaan, dengan pola idempotent yang membuat sistem lebih efisien secara biaya dan waktu. Kemampuan sistem dalam menginterpretasikan data numerik menjadi insight yang dapat memberikan wawasan yang bermanfaat, memberikan rekomendasi strategis berdasarkan analisis sentimen, serta menjawab pertanyaan spesifik tentang tren, engagement, dan perbandingan antar brand menunjukkan bahwa tujuan penelitian untuk mengembangkan chatbot analisis sentimen UMKM berbasis RAG telah tercapai dengan baik.
-
-Meskipun demikian, terdapat beberapa aspek yang dapat menjadi perhatian untuk pengembangan lebih lanjut. Pemilihan nilai k equals 3 pada similarity search meskipun memberikan keseimbangan yang baik, dapat dioptimasi lebih lanjut dengan menerapkan dynamic k selection yang menyesuaikan jumlah dokumen yang diambil berdasarkan kompleksitas pertanyaan atau tingkat confidence dari hasil similarity search. Parameter temperature 0.7 pada model LLM yang saat ini bersifat statis dapat dijadikan configurable atau adaptive berdasarkan jenis pertanyaan, dimana pertanyaan yang membutuhkan jawaban faktual dapat menggunakan temperature lebih rendah untuk meningkatkan konsistensi, sementara pertanyaan yang membutuhkan insight kreatif dapat menggunakan temperature lebih tinggi. Strategi semantic chunking yang diterapkan saat ini berdasarkan struktur JSON dapat dikembangkan lebih lanjut dengan menerapkan teknik overlapping chunks atau hierarchical chunking untuk memastikan tidak ada informasi penting yang hilang di batas antar chunk. Implementasi caching mechanism pada level retrieval dan generation dapat meningkatkan performa sistem untuk pertanyaan yang sering diajukan, mengurangi latensi respons dan biaya pemanggilan API LLM.
-
-Secara keseluruhan, penelitian ini telah berhasil membuktikan bahwa integrasi Retrieval-Augmented Generation dengan arsitektur backend modular berbasis NestJS merupakan pendekatan yang efektif untuk mengembangkan chatbot analisis sentimen yang mampu memberikan interpretasi kontekstual terhadap data analitik kompleks. Penggunaan Model Fountain sebagai metodologi pengembangan terbukti memberikan fleksibilitas yang dibutuhkan dalam menghadapi perubahan requirement dan memungkinkan pengembangan komponen secara paralel dan iteratif. Implementasi sistem yang terstruktur, terukur, dan mudah dipelihara memberikan fondasi yang solid untuk pengembangan fitur lanjutan dan skalabilitas sistem di masa mendatang, menjadikan penelitian ini sebagai kontribusi yang signifikan dalam bidang pengembangan chatbot berbasis AI untuk analisis sentimen UMKM di Indonesia.
+Pengujian sistem dilakukan menggunakan metode \textit{Black Box Testing} dengan Postman sebagai alat bantu. Hasil pengujian menunjukkan seluruh 46 skenario pengujian endpoint berhasil dilewati. Selain itu, pengujian relevansi jawaban chatbot terhadap 7 pertanyaan evaluasi menunjukkan bahwa sistem mampu melakukan pencarian dokumen yang sesuai dan menghasilkan jawaban yang informatif serta mudah dipahami oleh pengguna non-teknis. Secara keseluruhan, penelitian ini membuktikan bahwa pendekatan RAG efektif untuk menjembatani kesenjangan pemahaman antara visualisasi data analitik dan kebutuhan informasi praktis pelaku UMKM. Arsitektur modular dan pipeline RAG yang diimplementasikan memberikan fleksibilitas, efisiensi, serta performa yang baik.
