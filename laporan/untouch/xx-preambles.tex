@@ -20,6 +20,7 @@
 % Mengatur indentasi paragraf
 \usepackage{indentfirst}  % Memastikan paragraf pertama di setiap section memiliki indentasi
 \setlength\parindent{1.25cm} % Mengatur jarak indentasi paragraf menjadi 1.25 cm
+\setlength{\parskip}{0pt} % Menghilangkan jarak ekstra antar paragraf
 
 % Mengatur font utama dokumen menjadi Times New Roman
 \usepackage{pslatex}
@@ -30,13 +31,16 @@
 
 % Pengaturan daftar isi, daftar gambar, dan daftar tabel
 \usepackage{tocloft}
+\renewcommand{\cftdotsep}{1}
+
 \cftsetpnumwidth{1.5em}
 \cftsetrmarg{2em}
-\setlength{\cftsecnumwidth}{2.3em} %awal 1.5em
-\setlength{\cftsubsecnumwidth}{3.2em} %awal 1.5em
+\setlength{\cftsecnumwidth}{2em} %awal 1.5em
+\setlength{\cftsubsecnumwidth}{3em} %awal 1.5em
 \renewcommand{\cftchapdotsep}{\cftdotsep}
-\setlength{\cftbeforechapskip}{3pt}
-
+\setlength{\cftbeforechapskip}{0pt}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
 
 % Penyesuaian judul bab dalam daftar isi agar ditampilkan sebagai "BAB"
 \renewcommand\cftchappresnum{BAB }
@@ -44,6 +48,23 @@
 \newlength\mylen
 \settowidth\mylen{\bfseries BAB 1 :\ } % Menyesuaikan lebar penomoran bab
 \cftsetindents{chap}{0pt}{\mylen}
+
+% Penyesuaian indent daftar gambar & tabel
+% Prefix daftar gambar & tabel
+\renewcommand{\cftfigpresnum}{\bfseries Gambar }
+\renewcommand{\cftfigaftersnum}{\normalfont\hspace{0.5em}}
+
+\renewcommand{\cfttabpresnum}{\bfseries Tabel }
+\renewcommand{\cfttabaftersnum}{\normalfont\hspace{0.5em}}
+
+%% Lebar nomor yang proporsional
+\newlength{\myfiglen}
+\settowidth{\myfiglen}{\bfseries Gambar 9.99 }
+\cftsetindents{fig}{0pt}{\myfiglen}
+
+\newlength{\mytablen}
+\settowidth{\mytablen}{\bfseries Tabel 9.99 }
+\cftsetindents{tab}{0pt}{\mytablen}
 
 % Pengaturan format dan penomoran judul bab
 \usepackage{titlesec}
@@ -55,6 +76,8 @@
 \titlespacing*{\chapter}{0pt}{-1cm}{20pt}
 \titlespacing*{\section}{0pt}{10pt}{0cm}
 \titlespacing*{\subsection}{0pt}{10pt}{0cm}
+\titleformat{\subsubsection}{\fontsize{12}{14}\bfseries}{\thesubsubsection}{0.675cm}{}
+\titlespacing*{\subsubsection}{0pt}{10pt}{0cm}
 
 % Pengaturan untuk caption gambar dan tabel
 \usepackage[font=small, format=plain, labelfont=bf, up, textfont=up]{caption}
@@ -64,28 +87,35 @@
 \captionsetup[figure]{labelsep=space}
 \captionsetup[table]{labelsep=space,justification=raggedright,singlelinecheck=false}
 
+% Mengatur jarak antara gambar dan teks
+\setlength{\textfloatsep}{10pt}  % Jarak antara gambar dan teks di atas/bawah
+\setlength{\floatsep}{10pt}      % Jarak antar gambar
+\setlength{\intextsep}{10pt}     % Jarak untuk gambar di tengah teks
+
 % Mengatur nomor caption gambar dan tabel sesuai bab
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 
 % Mengatur hyphenation (pemisahan kata) agar lebih rapi
-\tolerance=1
-\emergencystretch=\maxdimen
-\hyphenpenalty=10000
-\hbadness=10000
+\tolerance=500
+\emergencystretch=1em
+\hyphenpenalty=50
+\hbadness=5000
 
 % Pengaturan tabel, multirow, dan ukuran kolom otomatis
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{colortbl} % Untuk mewarnai sel tabel
+\usepackage{array}
+\usepackage{ragged2e}
 
 % Pengaturan margin halaman
 \usepackage{geometry}
 \geometry{
-      left=3cm,          % Margin kiri
-      top=2cm,           % Margin atas
-      right=2cm,         % Margin kanan
-      bottom=2cm,        % Margin bawah
+    inner=3cm,         % Margin dalam (binding)
+    outer=2cm,         % Margin luar
+    top=2cm,           % Margin atas
+    bottom=2cm,        % Margin bawah
 }
 
 % Paket untuk notasi matematika
@@ -106,31 +136,35 @@
 \usepackage{enumitem}
 \setlist{nosep} % Menghilangkan jarak antar item dalam list
 \newenvironment{packed_enum}{ % Membuat lingkungan untuk daftar bernomor
-      \begin{enumerate}[leftmargin=1.5\parindent]
-            \setlength{\itemsep}{0pt}
-            \setlength{\parskip}{0pt}
-            \setlength{\parsep}{0pt}
-            }{\end{enumerate}}
+    \begin{enumerate}[leftmargin=1.5\parindent]
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{0pt}
+        }{\end{enumerate}}
 
 \newenvironment{packed_item}{ % Membuat lingkungan untuk daftar berpoin
-      \begin{itemize}[leftmargin=1.375\parindent]
-            \setlength{\itemsep}{0pt}
-            \setlength{\parskip}{0pt}
-            \setlength{\parsep}{0pt}
-            }{\end{itemize}}
+    \begin{itemize}[leftmargin=1.375\parindent]
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{0pt}
+        }{\end{itemize}}
 
 % Paket untuk bibliografi menggunakan BibTeX
 \usepackage[sort]{natbib}
-\bibliographystyle{newapa} % Ganti dengan apalike jika menggunakan Overleaf
+\bibliographystyle{apalike} % Ganti dengan apalike jika menggunakan Overleaf
 
 % Paket untuk tabel yang panjang dan melampaui satu halaman
 \usepackage{longtable}
+\usepackage{placeins}
 
 % Paket untuk memasukkan hyperlink dalam dokumen
 \usepackage{hyperref}
 
 % Pengaturan label otomatis untuk berbagai elemen (gambar, tabel, persamaan)
 \usepackage{cleveref}
+\usepackage{fancybox}
+\usepackage{tcolorbox}
+
 \crefname{figure}{gambar}{gambar}
 \Crefname{figure}{Gambar}{Gambar}
 \crefname{table}{tabel}{tabel}
@@ -148,39 +182,39 @@
 \AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{chapter}.\arabic{lstlisting}}}
 
 \captionsetup[lstlisting]{
-      format=plain,
-      labelfont=bf,
-      justification=centering,
-      singlelinecheck=false,
-      labelsep=space
+    format=plain,
+    labelfont=bf,
+    justification=centering,
+    singlelinecheck=false,
+    labelsep=space
 }
 
 % Paket untuk menampilkan kode program
 \usepackage{listings}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \lstdefinestyle{mystyle}{
-      backgroundcolor=\color{backcolour},
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      numberstyle=\tiny\color{codegray},
-      stringstyle=\color{codepurple},
-      basicstyle=\ttfamily\footnotesize,
-      columns=fullflexible,
-      breakatwhitespace=false,
-      breaklines=true,
-      captionpos=b,
-      keepspaces=true,
-      numbers=left,
-      numbersep=5pt,
-      showspaces=false,
-      showstringspaces=false,
-      showtabs=false,
-      tabsize=2,
-      lineskip=-1pt
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    columns=fullflexible,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    lineskip=-1pt
 }
 \lstset{style=mystyle}
 
@@ -197,4 +231,33 @@
 
 %untuk if-then
 \usepackage{ifthen}
-%% DILARANG EDIT BAGIAN INI
+
+% ===== Halaman kosong dengan teks =====
+\makeatletter
+\newcommand{\halamankosong}{%
+    \clearpage
+    \ifodd\c@page
+        % sudah ganjil → tidak perlu apa-apa
+    \else
+        \thispagestyle{empty}
+        \null
+        \vfill
+        \begin{center}
+            \textit{-- Halaman ini sengaja dikosongkan --}
+        \end{center}
+        \vfill
+        \clearpage
+    \fi
+}
+\makeatother
+
+% =====================================================
+% Hilangkan jarak antar bab pada Daftar Gambar & Tabel
+% =====================================================
+\setlength{\cftbeforechapskip}{0pt}
+\setlength{\cftbeforefigskip}{0pt}
+\setlength{\cftbeforetabskip}{0pt}
+
+\makeatletter
+\renewcommand{\addvspace}[1]{}
+\makeatother

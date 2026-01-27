@@ -3,7 +3,7 @@
 %==================================================================
 
 %% DILARANG EDIT BAGIAN INI
-\documentclass[12pt, a4paper, onecolumn, oneside, final]{report}
+\documentclass[12pt, a4paper, onecolumn, twoside, openright]{report}
 
 \input{a0-identitas}
 \input{untouch/xx-preambles}
@@ -36,38 +36,62 @@
 	\include{untouch/xx-sampul-laporan}
 	\pagenumbering{roman}
 	\include{untouch/xx-sampuldalam-laporan}
+	\halamankosong
 
 	\begin{spacing}{1.2}
 		\include{a4-persembahan}
+		\halamankosong
 		\include{a9-motto} % Uncomment jika ingin menggunakan halaman motto
+		\halamankosong
 	\end{spacing}
 
 	\begin{spacing}{1.5}
 		\include{untouch/xx-pernyataan-poliwangi}
+		\halamankosong
 	\end{spacing}
 
-	\include{untouch/xx-persetujuan-ujian}
+	% \include{untouch/xx-persetujuan-ujian}
 	\include{untouch/xx-pengesahan}
+	\halamankosong
 
 	\begin{spacing}{1.2}
 		\include{a2-abstrak}
+		\halamankosong
+
 		\include{a3-abstract}
+		\halamankosong
+
 		\include{a5-katapengantar}
+		\halamankosong
+
 		\include{untouch/xx-daftar}
+		\halamankosong
 	\end{spacing}
 
 	\pagenumbering{arabic}
 
 	\begin{spacing}{1.5}
 		\include{b1-bab1}
+		\halamankosong
+
 		\include{b2-bab2}
+		\halamankosong
+
 		\include{b3-bab3}
+		\halamankosong
+
 		\include{b4-bab4}
+		\halamankosong
+
 		\include{b5-bab5}
+		\halamankosong
+
 		% \include{b6-bab6} %HANYA TUTORIAL HAPUS SAAT PENULISAN
 	\end{spacing}
 }
 \input{untouch/xx-daftarpustaka}
+\halamankosong
+
 \input{a8-lampiran}
 \end{document}
 %% DILARANG EDIT BAGIAN INI

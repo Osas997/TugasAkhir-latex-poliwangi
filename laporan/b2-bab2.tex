@@ -25,25 +25,26 @@ Komentar, ulasan, dan mentions yang muncul di media sosial merupakan bentuk \tex
 
 
 \subsection{Analisis Sentimen}
-Analisis sentimen, yang sering juga disebut sebagai opinion mining, pada dasarnya merupakan proses memahami bagaimana seseorang menilai atau merasakan sesuatu melalui bahasa yang ia gunakan. Fokusnya bukan sekadar membaca teks, tetapi menafsirkan sikap, emosi, atau pandangan penulis terhadap suatu topik, produk, maupun layanan tertentu. Dalam praktiknya, teks biasanya dikategorikan ke dalam tiga kelompok utama, yaitu positif, negatif, dan netral. Meski begitu, pembagian ini tidak selalu kaku. Dalam beberapa pendekatan, klasifikasi dibuat lebih detail, misalnya sangat positif, positif, netral, negatif, dan sangat negatif, agar nuansa opini dapat ditangkap dengan lebih tepat.
+Analisis sentimen, yang sering juga disebut sebagai \textit{opinion mining}, pada dasarnya merupakan proses memahami bagaimana seseorang menilai atau merasakan sesuatu melalui bahasa yang ia gunakan. Fokusnya bukan sekadar membaca teks, tetapi menafsirkan sikap, emosi, atau pandangan penulis terhadap suatu topik, produk, maupun layanan tertentu. Dalam praktiknya, teks biasanya dikategorikan ke dalam tiga kelompok utama, yaitu positif, negatif, dan netral. Meski begitu, pembagian ini tidak selalu kaku. Dalam beberapa pendekatan, klasifikasi dibuat lebih detail, misalnya sangat positif, positif, netral, negatif, dan sangat negatif, agar nuansa opini dapat ditangkap dengan lebih tepat.
 
 \begin{enumerate}
       \item \textbf{Pendekatan Analisis Sentimen}
 
-            \hspace*{1.25cm}Analisis sentimen dapat dilakukan melalui beberapa pendekatan utama yang masing-masing memiliki karakteristik, kelebihan, dan keterbatasan tersendiri. Pemilihan pendekatan yang tepat sangat bergantung pada kompleksitas data teks, ketersediaan data berlabel, serta tujuan analisis yang ingin dicapai. Secara umum, pendekatan analisis sentimen dapat diklasifikasikan menjadi tiga kategori utama, yaitu pendekatan berbasis leksikon, machine learning, dan deep learning.
+            \hspace*{1.25cm}Analisis sentimen dapat dilakukan melalui beberapa pendekatan utama yang masing-masing memiliki karakteristik, kelebihan, dan keterbatasan tersendiri. Pemilihan pendekatan yang tepat sangat bergantung pada kompleksitas data teks, ketersediaan data berlabel, serta tujuan analisis yang ingin dicapai. Secara umum, pendekatan analisis sentimen dapat dikelompokkan ke dalam tiga kategori utama, yaitu pendekatan berbasis leksikon, \textit{machine learning}, dan \textit{deep learning}.
+
 
             \begin{enumerate}
-                  \item Lexicon-based approach adalah pendekatan yang menggunakan kamus sentimen yang berisi daftar kata-kata beserta polaritas sentimen yang telah ditentukan sebelumnya, seperti positif, negatif, atau netral. Pendekatan ini relatif sederhana dan tidak memerlukan data latih, sehingga mudah diimplementasikan. Namun, pendekatan berbasis leksikon memiliki keterbatasan dalam menangani teks yang kompleks, ambigu, atau mengandung sarkasme, serta kurang mampu memahami konteks kalimat secara menyeluruh.
+                  \item Lexicon-based approach merupakan pendekatan berbasis leksikon yang memanfaatkan kamus sentimen yang berisi daftar kata beserta polaritas sentimen yang telah ditentukan sebelumnya, seperti positif, negatif, atau netral. Pendekatan ini relatif sederhana dan tidak memerlukan data latih, sehingga mudah diimplementasikan. Namun, metode ini memiliki keterbatasan dalam menangani teks yang kompleks, ambigu, atau mengandung sarkasme, serta kurang mampu memahami konteks kalimat secara menyeluruh.
 
-                  \item Machine learning approach menggunakan algoritma machine learning seperti Naive Bayes, Support Vector Machine (SVM), atau Random Forest yang telah dilatih dengan menggunakan data yang berlabel untuk mengklasifikasikan sentimen. Pendekatan ini biasanya memiliki akurasi yang lebih baik dibandingkan dengan pendekatan leksikon karena mampu belajar dari pola data yang ada. Contohnya, \citep{permana_sentimen_2023} menggunakan Naive Bayes Classifier untuk menganalisis sentimen opini masyarakat terhadap UMKM di media sosial Twitter, yang menunjukkan bahwa pendekatan ini efektif digunakan untuk mengolah data teks media sosial.
+                  \item Machine learning approach menggunakan algoritma klasifikasi seperti \textit{Naive Bayes}, \textit{Support Vector Machine (SVM)}, atau \textit{Random Forest} yang dilatih menggunakan data berlabel untuk mengklasifikasikan sentimen. Pendekatan ini umumnya menghasilkan akurasi yang lebih baik dibandingkan metode berbasis leksikon karena mampu mempelajari pola dari data yang tersedia. Sebagai contoh, \citep{permana_sentimen_2023} menerapkan \textit{Naive Bayes Classifier} untuk menganalisis sentimen opini masyarakat terhadap UMKM di media sosial Twitter, dan menunjukkan bahwa pendekatan ini efektif untuk mengolah data teks media sosial.
 
-                  \item Deep learning approach menggunakan arsitektur neural network yang lebih kompleks, seperti Long Short-Term Memory (LSTM), Convolutional Neural Network (CNN), serta model berbasis transformer seperti BERT dan RoBERTa. Pendekatan ini memiliki kemampuan yang lebih baik dalam menangkap konteks, hubungan antar kata, serta makna semantik dalam teks yang panjang dan tidak terstruktur. Hal ini membuat pendekatan deep learning sangat cocok untuk analisis sentimen pada data media sosial yang bersifat dinamis dan kompleks. Contohnya, \citep{ningrum_pengembangan_2025} menggunakan model BERT untuk melakukan analisis sentimen terhadap komentar TikTok pada UMKM, hasilnya menunjukkan peningkatan performa dibandingkan dengan metode tradisional.
+                  \item Deep learning approach memanfaatkan arsitektur \textit{neural network} yang lebih kompleks, seperti \textit{Long Short-Term Memory (LSTM)}, \textit{Convolutional Neural Network (CNN)}, serta model berbasis transformer seperti BERT dan RoBERTa. Pendekatan ini memiliki kemampuan yang lebih baik dalam menangkap konteks, hubungan antar kata, serta makna semantik dalam teks yang panjang dan tidak terstruktur. Oleh karena itu, pendekatan \textit{deep learning} sangat sesuai untuk analisis sentimen pada data media sosial yang bersifat dinamis dan kompleks. Sebagai contoh, penelitian oleh \citep{ningrum_pengembangan_2025} menunjukkan bahwa penggunaan model BERT untuk analisis sentimen komentar TikTok pada UMKM mampu meningkatkan performa dibandingkan metode tradisional. \\
             \end{enumerate}
 
 
       \item \textbf{Analisis Sentimen pada Media Sosial}
 
-            \hspace*{1.25cm}Analisis sentimen pada media sosial memiliki tantangan yang berbeda dibandingkan dengan analisis teks formal. Bahasa yang digunakan di media sosial cenderung bersifat informal dan tidak terstruktur, dengan ciri khas seperti penggunaan slang, singkatan, emoji, hashtag, serta variasi gaya bahasa yang sering kali tidak mengikuti kaidah tata bahasa baku. Karakteristik ini membuat proses pemrosesan teks dan interpretasi sentimen menjadi lebih kompleks, sehingga diperlukan pendekatan analisis yang tepat dan cukup robust agar hasil yang diperoleh tetap akurat.
+            \hspace*{1.25cm}Analisis sentimen pada media sosial memiliki tantangan yang berbeda dibandingkan dengan analisis teks formal. Bahasa yang digunakan di media sosial cenderung bersifat informal dan tidak terstruktur, dengan ciri khas seperti penggunaan slang, singkatan, emoji, hashtag, serta variasi gaya bahasa yang sering kali tidak mengikuti kaidah tata bahasa baku. Karakteristik ini membuat proses pemrosesan teks dan interpretasi sentimen menjadi lebih kompleks, sehingga diperlukan pendekatan analisis yang tepat agar hasil yang diperoleh tetap akurat.
 
             \hspace*{1.25cm}Meskipun demikian, sejumlah penelitian terdahulu menunjukkan bahwa analisis sentimen pada media sosial tetap mampu menghasilkan temuan yang bernilai. Penelitian yang dilakukan oleh \citep{zaenab_kurnia_analisis_2024}, misalnya, menganalisis sentimen komentar terkait kerja sama TikTok Shop dan Tokopedia di platform Instagram dengan menggunakan metode \textit{Naive Bayes Classifier}. Hasil penelitian tersebut menunjukkan tingkat akurasi sebesar 83\%, yang mengindikasikan bahwa algoritma \textit{machine learning} masih dapat bekerja dengan baik dalam mengklasifikasikan sentimen pada data media sosial yang dinamis dan beragam.
 
@@ -56,7 +57,9 @@ Analisis sentimen, yang sering juga disebut sebagai opinion mining, pada dasarny
 
 Retrieval-Augmented Generation (RAG) merupakan salah satu pendekatan dalam bidang \textit{Natural Language Processing (NLP)} yang menggabungkan dua komponen utama, yakni mekanisme \textit{retrieval} untuk pengambilan informasi dan model generatif untuk generasi teks. Pendekatan ini pertama kali diperkenalkan oleh \citep{lewis_retrieval-augmented_2021} sebagai upaya untuk mengatasi keterbatasan model bahasa generatif konvensional, khususnya pada tugas-tugas yang membutuhkan akses terhadap pengetahuan eksternal yang luas, dinamis, dan terus berkembang.
 
-Secara konsep, RAG bekerja dengan memperluas kemampuan model bahasa melalui integrasi sumber informasi eksternal yang relevan. Alih-alih hanya mengandalkan pengetahuan yang telah tertanam dalam parameter model saat pelatihan, RAG memungkinkan sistem untuk mencari dan mengambil dokumen atau data terkait dari basis pengetahuan eksternal sebelum menghasilkan jawaban. Dengan demikian, model tidak hanya bergantung pada ingatan internalnya, tetapi juga dapat memanfaatkan informasi terbaru dan spesifik terhadap konteks pertanyaan pengguna. Pendekatan ini memberikan beberapa keunggulan dibandingkan model generatif murni. Pertama, RAG dapat mengurangi risiko \textit{hallucination}, yaitu kondisi ketika model menghasilkan informasi yang tidak akurat atau tidak berdasar fakta. Kedua, RAG memungkinkan sistem tetap relevan terhadap informasi terbaru tanpa perlu melatih ulang model secara keseluruhan. Ketiga, RAG meningkatkan transparansi jawaban karena model dapat merujuk pada sumber informasi yang diambil sebagai dasar responsnya.
+Secara konsep, RAG bekerja dengan memperluas kemampuan model bahasa melalui integrasi sumber informasi eksternal yang relevan. Alih-alih hanya mengandalkan pengetahuan yang telah tertanam dalam parameter model saat pelatihan, RAG memungkinkan sistem untuk mencari dan mengambil dokumen atau data terkait dari basis pengetahuan eksternal sebelum menghasilkan jawaban. Dengan demikian, model tidak hanya bergantung pada ingatan internalnya, tetapi juga dapat memanfaatkan informasi terbaru dan spesifik terhadap konteks pertanyaan pengguna.
+
+Dalam konteks penelitian ini, penggunaan RAG bukan sekadar pilihan arsitektur modern, tetapi merupakan kebutuhan yang muncul dari karakteristik data yang digunakan. Data sentimen media sosial UMKM bersifat dinamis karena komentar dan opini pengguna terus bertambah dari waktu ke waktu, sehingga distribusi sentimen dan insight yang dihasilkan selalu mengalami pembaruan. Model bahasa generatif konvensional tidak memiliki akses terhadap perubahan data tersebut karena pengetahuannya bersifat statis berdasarkan data pelatihan sebelumnya. Oleh sebab itu, RAG digunakan agar chatbot selalu merujuk pada \textit{knowledge base} yang berisi hasil analisis sentimen terbaru, sehingga jawaban yang diberikan benar-benar merefleksikan kondisi aktual sentimen publik, bukan sekadar pengetahuan umum yang tersimpan dalam model.
 
 Dengan karakteristik tersebut, RAG menjadi pendekatan yang sangat cocok untuk aplikasi berbasis pengetahuan, seperti chatbot layanan pelanggan, sistem tanya jawab berbasis dokumen, analisis data, serta berbagai domain yang membutuhkan integrasi antara pemrosesan bahasa alami dan akses informasi eksternal secara dinamis.
 
@@ -143,7 +146,7 @@ Dengan kemampuan tersebut, NestJS menjadi fondasi backend yang tepat untuk mendu
 
 \subsection{Model Fountain}
 
-Model Fountain merupakan metodologi pengembangan perangkat lunak yang bersifat iteratif dan inkremental, yang pertama kali diperkenalkan oleh \citep{henderson-sellers_object-oriented_1990} sebagai alternatif terhadap model waterfall yang bersifat sekuensial dan rigid. Berbeda dengan model waterfall yang mengharuskan setiap tahap diselesaikan secara berurutan, model Fountain memberikan fleksibilitas yang lebih tinggi dengan memungkinkan terjadinya iterasi dan tumpang tindih antar tahapan pengembangan. Nama \textit{Fountain} digunakan karena alur pengembangannya menyerupai aliran air mancur, yang tidak hanya mengalir secara linear ke bawah, tetapi juga dapat mengalir kembali ke atas untuk proses penyempurnaan serta menyebar ke samping untuk memungkinkan pengembangan paralel.
+Model Fountain merupakan metodologi pengembangan perangkat lunak yang bersifat iteratif dan inkremental, yang pertama kali diperkenalkan oleh \citep{henderson-sellers_object-oriented_1990} sebagai alternatif terhadap model waterfall yang bersifat sekuensial. Berbeda dengan model waterfall yang mengharuskan setiap tahap diselesaikan secara berurutan, model Fountain memberikan fleksibilitas yang lebih tinggi dengan memungkinkan terjadinya iterasi dan tumpang tindih antar tahapan pengembangan. Nama \textit{Fountain} digunakan karena alur pengembangannya menyerupai aliran air mancur, yang tidak hanya mengalir secara linear ke bawah, tetapi juga dapat mengalir kembali ke atas untuk proses penyempurnaan serta menyebar ke samping untuk memungkinkan pengembangan paralel.
 
 \begin{figure}[h]
       \centering
@@ -154,33 +157,39 @@ Model Fountain merupakan metodologi pengembangan perangkat lunak yang bersifat i
 
 Gambar \ref{fig:fountain-model} memperlihatkan representasi visual dari model Fountain, di mana setiap fase pengembangan tidak bersifat terpisah secara kaku, melainkan saling terhubung dan dapat berlangsung secara iteratif. Diagram tersebut menggambarkan bahwa hasil dari suatu tahap dapat kembali memengaruhi tahap sebelumnya, sehingga proses evaluasi dan perbaikan dapat dilakukan secara berulang sepanjang siklus pengembangan sistem. Pendekatan ini sangat sesuai untuk pengembangan perangkat lunak yang kompleks dan dinamis, di mana kebutuhan sistem dapat berubah seiring waktu.
 
-\subsubsection{Tahapan dalam Model Fountain}
-
-Meskipun bersifat fleksibel dan iteratif, model Fountain tetap memiliki tahapan-tahapan utama yang menjadi acuan dalam pengembangan sistem. Tahapan-tahapan ini tidak harus dijalankan secara linier, melainkan dapat saling tumpang tindih dan dilakukan secara paralel sesuai dengan kebutuhan proyek. Adapun tahapan utama dalam model Fountain adalah sebagai berikut:
+Meskipun bersifat fleksibel dan iteratif, model Fountain tetap memiliki tahapan-tahapan utama yang menjadi acuan dalam pengembangan sistem. Tahapan-tahapan ini tidak harus dijalankan secara linier, melainkan dapat saling tumpang tindih dan dilakukan secara paralel sesuai dengan kebutuhan proyek. Adapun tahapan utama dalam model Fountain adalah sebagai berikut: \\
 
 \begin{enumerate}
-      \item \textbf{Analysis}:
+      \item \textbf{Analysis}
+
             Tahap analisis bertujuan untuk memahami permasalahan yang akan diselesaikan oleh sistem serta konteks operasionalnya. Pada tahap ini dilakukan analisis terhadap kebutuhan pengguna, proses bisnis, serta batasan sistem yang akan dikembangkan.
 
-      \item \textbf{Requirements Specification}:
+      \item \textbf{Requirements Specification}
+
             Tahap ini berfokus pada identifikasi dan dokumentasi kebutuhan sistem, baik kebutuhan fungsional maupun non-fungsional. Dalam model Fountain, spesifikasi kebutuhan tidak bersifat final dan dapat direvisi kapan saja apabila ditemukan kebutuhan baru atau perubahan pada kebutuhan pengguna.
 
-      \item \textbf{Design}:
+      \item \textbf{Design}
+
             Tahap perancangan meliputi desain arsitektur sistem, perancangan basis data, antarmuka pengguna, serta komponen-komponen sistem lainnya. Model Fountain memungkinkan proses desain dilakukan secara paralel untuk berbagai komponen, sehingga mempercepat pengembangan sistem secara keseluruhan.
 
-      \item \textbf{Coding}:
+      \item \textbf{Coding}
+
             Tahap coding merupakan proses implementasi sistem berdasarkan desain yang telah dibuat. Pengembangan dilakukan secara inkremental, di mana modul atau fitur dikembangkan secara bertahap dan dapat langsung diuji serta dievaluasi sebelum melanjutkan ke modul berikutnya.
 
-      \item \textbf{Testing and Integration}:
+      \item \textbf{Testing and Integration}
+
             Pada tahap ini dilakukan pengujian terhadap setiap komponen sistem serta proses integrasi antar komponen untuk memastikan sistem berfungsi sesuai dengan spesifikasi. Dalam model Fountain, pengujian dilakukan secara berkelanjutan selama proses pengembangan, bukan hanya pada tahap akhir.
 
-      \item \textbf{Operation}:
+      \item \textbf{Operation}
+
             Tahap operation mencakup penggunaan sistem dalam lingkungan operasional nyata. Pada tahap ini, sistem mulai digunakan oleh pengguna dan kinerjanya diamati untuk mengidentifikasi potensi permasalahan atau kebutuhan perbaikan.
 
-      \item \textbf{Maintenance}:
+      \item \textbf{Maintenance}
+
             Tahap maintenance berfokus pada pemeliharaan sistem, perbaikan kesalahan, serta penyesuaian sistem terhadap perubahan kebutuhan pengguna atau lingkungan operasional. Feedback dari pengguna menjadi masukan penting dalam tahap ini.
 
-      \item \textbf{Evolution}:
+      \item \textbf{Evolution}
+
             Tahap evolution merupakan kelanjutan dari maintenance, di mana sistem dikembangkan lebih lanjut melalui penambahan fitur baru atau peningkatan kemampuan sistem agar tetap relevan dan adaptif terhadap kebutuhan jangka panjang.
 \end{enumerate}
 
@@ -197,32 +206,33 @@ Berikut adalah tabel perbandingan penelitian terkait yang relevan dengan pengemb
 
 
 \begin{longtable}{|c|p{2.8cm}|p{2.5cm}|p{4cm}|p{4.5cm}|}
-      \caption{Tabel perbandingan penelitian terkait} \label{tab:perbandingan_penelitian}                                                                                                                                                               \\
+      \caption{Tabel perbandingan penelitian terkait} \label{tab:perbandingan_penelitian}                                                                                                                                                                                           \\
       \hline
-      \textbf{No} & \textbf{Peneliti}              & \textbf{Teknologi}                    & \textbf{Judul}                                                     & \textbf{Fitur}                                                                        \\ \hline
+      \textbf{No} & \textbf{Peneliti}                        & \textbf{Teknologi}                    & \textbf{Judul}                                                                       & \textbf{Fitur}                                                                        \\ \hline
       \endfirsthead
 
       \hline
-      \textbf{No} & \textbf{Peneliti}              & \textbf{Teknologi}                    & \textbf{Judul}                                                     & \textbf{Fitur}                                                                        \\ \hline
+      \textbf{No} & \textbf{Peneliti}                        & \textbf{Teknologi}                    & \textbf{Judul}                                                                       & \textbf{Fitur}                                                                        \\ \hline
       \endhead
 
       \hline
       \endfoot
 
-      1           & Permana et al. (2023)          & Naive Bayes Classifier, Twitter API   & Sentimen Analisis Opini Masyarakat Terhadap UMKM pada Twitter      & Klasifikasi sentimen (positif, netral, negatif) dengan akurasi tinggi untuk data UMKM \\ \hline
-      2           & Zaenab Kurnia et al. (2024)    & Naive Bayes Classifier, Instagram API & Analisis Sentimen Komentar TikTok Shop \& Tokopedia di Instagram   & Analisis sentimen komentar Instagram dengan akurasi 84\%                              \\ \hline
-      3           & Ningrum et al. (2025)          & BERT, TikTok API                      & Bot Komentar Otomatis dengan Analisis Sentimen BERT untuk UMKM     & Sentimen berbasis deep learning + auto comment untuk engagement                       \\ \hline
-      4           & Lewis et al. (2021)            & RAG, BERT, DPR                        & Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks   & Paper dasar RAG: retrieval + generation untuk Q\&A                                    \\ \hline
-      5           & Pratama \& Sisephaputra (2024) & RAG, LangChain, Vector DB             & Sistem Helpdesk Chatbot dengan Metode RAG                          & Retrieval dokumen + respons berbasis knowledge base                                   \\ \hline
-      6           & Husain et al. (2025)           & RAG, LLM, Vector Store                & Academic Services Chatbot Based on RAG                             & Retrieval dokumen akademik + generation jawaban akurat                                \\ \hline
-      7           & Pokhrel et al. (2025)          & RAG, Web Scraping, Semantic Search    & Practical Application of RAG for Website-Based Chatbots            & RAG untuk chatbot website: scraping + semantic search                                 \\ \hline
-      8           & Vidivelli et al. (2024)        & LangChain, RAG, Custom LLM            & Efficiency-Driven Chatbot: LangChain + RAG + LLM Fusion            & Integrasi RAG efisien + optimasi performa                                             \\ \hline
-      9           & Muhammad \& Paputungan (2024)  & NestJS, REST API, TypeScript          & Backend Server with REST API Architecture for E-Wallet System      & Modular backend NestJS + dependency injection + REST API                              \\ \hline
-      10          & Kavaz et al. (2023)            & NLP, Chatbot, Data Visualization      & Natural Language Interface for Data Visualization (Scoping Review) & Review chatbot untuk interpretasi visualisasi data                                    \\ \hline
+      1           & \citep{permana_sentimen_2023}            & Naive Bayes Classifier, Twitter API   & Sentimen Analisis Opini Masyarakat Terhadap UMKM pada Twitter                        & Klasifikasi sentimen (positif, netral, negatif) dengan akurasi tinggi untuk data UMKM \\ \hline
+      2           & \citep{zaenab_kurnia_analisis_2024}      & Naive Bayes Classifier, Instagram API & Analisis Sentimen Komentar TikTok Shop \& Tokopedia di Instagram                     & Analisis sentimen komentar Instagram dengan akurasi 83\%                              \\ \hline
+      3           & \citep{cahyanti_perancangan_2025}        & RAG, Llama3, MistralAi                & Perancangan Sistem Informasi Chatbot Retrieval Augmented Generation Berbasis Website & chatbot untuk meningkatkan akurasi respons, kemampuan
+      menangani pertanyaan kompleks                                                                                                                                                                                                                                                 \\ \hline
+      4           & \citep{lewis_retrieval-augmented_2021}   & RAG, BERT                             & Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks                     & Paper dasar RAG: retrieval + generation untuk Q\&A                                    \\ \hline
+      5           & \citep{pratama_pengembangan_2024}        & RAG, LangChain, Vector DB             & Sistem Helpdesk Chatbot dengan Metode RAG                                            & Retrieval dokumen + respons berbasis knowledge base                                   \\ \hline
+      6           & \citep{husain_development_2025}          & RAG, LLM, Vector Store                & Academic Services Chatbot Based on RAG                                               & Retrieval dokumen akademik + generation jawaban akurat                                \\ \hline
+      7           & \citep{pokhrel_practical_2025}           & RAG, Web Scraping, Semantic Search    & Practical Application of RAG for Website-Based Chatbots                              & RAG untuk chatbot website: scraping + semantic search                                 \\ \hline
+      8           & \citep{vidivelli_efficiency-driven_2024} & LangChain, RAG, Custom LLM            & Efficiency-Driven Chatbot: LangChain + RAG + LLM Fusion                              & Integrasi RAG efisien + optimasi performa                                             \\ \hline
+      9           & \citep{muhammad_development_2024}        & NestJS, REST API, TypeScript          & Backend Server with REST API Architecture for E-Wallet System                        & Modular backend NestJS + dependency injection + REST API                              \\ \hline
+      10          & \citep{kavaz_chatbot-based_2023}         & NLP, Chatbot, Data Visualization      & Natural Language Interface for Data Visualization (Scoping Review)                   & Review chatbot untuk interpretasi visualisasi data                                    \\ \hline
 \end{longtable}
 
 
-Berdasarkan tabel \ref{tab:perbandingan_penelitian}, dapat diamati bahwa penelitian terkait analisis sentimen UMKM dan implementasi RAG telah berkembang pesat dalam beberapa tahun terakhir. Penelitian 1--3 menunjukkan berbagai pendekatan analisis sentimen untuk UMKM di media sosial, mulai dari metode klasik Naive Bayes hingga deep learning berbasis BERT. Penelitian 4--8 mendemonstrasikan implementasi RAG dalam berbagai domain seperti helpdesk, layanan akademik, dan website, membuktikan efektivitas metode ini untuk meningkatkan akurasi dan relevansi respons chatbot. Penelitian 9 memberikan justifikasi penggunaan NestJS sebagai backend framework yang robust dan scalable. Penelitian 10 mendukung konsep chatbot sebagai solusi untuk mengatasi kesenjangan pemahaman visualisasi data.
+Berdasarkan tabel \ref{tab:perbandingan_penelitian}, dapat diamati bahwa penelitian terkait analisis sentimen UMKM dan implementasi RAG telah berkembang pesat dalam beberapa tahun terakhir. Penelitian 1--2 menunjukkan berbagai pendekatan analisis sentimen untuk UMKM di media sosial, mulai dari metode klasik Naive Bayes hingga deep learning berbasis BERT. Penelitian 3--8 mendemonstrasikan implementasi RAG dalam berbagai domain seperti helpdesk, layanan akademik, dan website, membuktikan efektivitas metode ini untuk meningkatkan akurasi dan relevansi respons chatbot. Penelitian 9 memberikan justifikasi penggunaan NestJS sebagai backend framework yang efisien dan scalable. Penelitian 10 mendukung konsep chatbot sebagai solusi untuk mengatasi kesenjangan pemahaman visualisasi data.
 
 \section{Analisis Gap Penelitian}
 

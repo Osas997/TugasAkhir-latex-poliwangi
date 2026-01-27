@@ -6,7 +6,76 @@
 \chapter[HASIL DAN PEMBAHASAN]{\\ HASIL DAN PEMBAHASAN}
 
 \section{Hasil}
-Bagian ini memaparkan hasil penelitian yang disusun secara sistematis berdasarkan lima tahapan dalam Fountain Model sebagaimana telah diuraikan pada Bab 3. Setiap subseksi menjelaskan Hasil Analisis Kebutuhan dan temuan pada masing-masing tahap pengembangan sistem, Hasil Spesifikasi Sistem, Hasil Desain Sistem, Hasil Implementasi Sistem, Hasil Pengujian dan Integrasi
+\subsection{Prestasi dalam Kompetisi Jatim Datathon}
+
+Kompetisi Jatim Datathon adalah ajang analisis data berskala provinsi yang dirancang sebagai wadah kolaboratif bagi para mahasiswa dalam mengolah, menganalisis, dan memvisualisasikan data untuk menghasilkan solusi berbasis data yang dapat menjawab berbagai tantangan di wilayah Jawa Timur. Kompetisi ini menekankan penggunaan \textit{data science}, \textit{data analytics}, dan \textit{data visualization} sebagai dasar dalam proses pengambilan keputusan yang didukung oleh bukti empiris (\textit{evidence-based decision making}).
+
+Pada pelaksanaannya, para peserta Jatim Datathon dihadapkan pada tantangan untuk mengolah dataset terbuka yang disediakan oleh pemerintah daerah Jawa Timur dan mengintegrasikannya dengan sumber data tambahan yang relevan. Output dari proses pengolahan data tersebut kemudian diwujudkan dalam bentuk solusi kreatif yang memiliki peluang untuk diterapkan secara konkret. Penulis beserta rekan dalam tim \textbf{Jevon Ordrick} dari Politeknik Negeri Banyuwangi ikut serta dalam kompetisi dengan mengangkat proyek bertajuk \textit{``Pemanfaatan Analisis Sentimen Media Sosial untuk Meningkatkan Citra dan Daya Saing UMKM Lokal''}. Fokus utama proyek ini adalah menganalisis sentimen publik terhadap Usaha Mikro, Kecil, dan Menengah (UMKM) di Jawa Timur melalui platform media sosial, dengan mengaplikasikan metode \textit{Natural Language Processing (NLP)} dan menyajikan hasil analisis melalui \textit{website dashboard} yang dilengkapi visualisasi data.
+
+Kompetisi dimulai dengan fase pengumpulan dan pemrosesan data, yang kemudian dilanjutkan dengan penyusunan proposal sebagai prasyarat mengikuti tahap seleksi awal. Proposal yang disusun mencakup pemaparan konteks permasalahan, pendekatan metodologi yang diterapkan, sumber data yang digunakan, serta desain solusi yang diajukan. Setelah melewati proses kurasi dan evaluasi oleh panel juri, penulis bersama tim berhasil dinyatakan lolos dan masuk ke dalam jajaran finalis Jatim Datathon.
+
+Tabel \ref{tab:finalis_jatim_datathon} menyajikan daftar tim finalis Jatim Datathon berdasarkan Berita Acara Rapat Finalisasi Hasil Penilaian Jatim Datathon Nomor: 01/BA.DATATHON/IX/2025. Berdasarkan penilaian panel juri, tim \textbf{Jevon Ordrick} dari Politeknik Negeri Banyuwangi berhasil meraih posisi keenam dengan skor akhir 86,75 dan dinyatakan memenuhi syarat untuk melaju ke babak final kompetisi. Pada fase ini, seluruh finalis diharuskan menyempurnakan solusi yang telah diajukan, mencakup pengembangan sistem, pendalaman analisis data, serta persiapan materi presentasi dan demonstrasi sistem.
+
+\begin{table}[H]
+  \centering
+  \caption{Daftar Finalis Jatim Datathon Berdasarkan Berita Acara Rapat Finalisasi Hasil Penilaian}
+  \label{tab:finalis_jatim_datathon}
+  \begin{tabular}{|c|l|l|c|}
+    \hline
+    \textbf{No} & \textbf{Nama Tim}        & \textbf{Asal Institusi}               & \textbf{Skor Akhir} \\
+    \hline
+    1           & JTGBN TOP                & Universitas Airlangga                 & 89,85               \\
+    \hline
+    2           & Capek Summit Lupa Submit & Institut Teknologi Sepuluh Nopember   & 88,65               \\
+    \hline
+    3           & Isok Turu Sreset         & Institut Teknologi Sepuluh Nopember   & 88,20               \\
+    \hline
+    4           & Technoguys               & Universitas Negeri Semarang           & 88,15               \\
+    \hline
+    5           & Terasvirta               & Institut Teknologi Sepuluh Nopember   & 87,95               \\
+    \hline
+    \textbf{6}  & \textbf{Jevon Ordrick}   & \textbf{Politeknik Negeri Banyuwangi} & \textbf{86,75}      \\
+    \hline
+    7           & Five Refactor's          & Universitas Pembangunan Nasional      & 86,50               \\
+    \hline
+    8           & Agriboss                 & Petra Christian University            & 86,20               \\
+    \hline
+    9           & Pecandu Data             & Institut Teknologi Sepuluh Nopember   & 85,85               \\
+    \hline
+    10          & SINAR                    & Universitas Airlangga                 & 85,85               \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Babak final Jatim Datathon diselenggarakan melalui mekanisme presentasi dan demonstrasi solusi di hadapan panel juri. Dalam tahap ini, penulis bersama tim mempersentasikan hasil analisis sentimen media sosial terhadap UMKM yang diimplementasikan dalam bentuk \textit{dashboard interaktif berbasis web}. Dashboard yang dikembangkan menampilkan sebaran sentimen, analisis berdasarkan kategori UMKM, kinerja merek, serta identifikasi kata kunci positif dan negatif yang dominan muncul dalam ulasan masyarakat.
+
+\begin{table}[H]
+  \centering
+  \caption{Kriteria Penilaian Babak Final Jatim Datathon}
+  \label{tab:kriteria_jatim_datathon}
+  \begin{tabular}{|c|l|p{7cm}|c|}
+    \hline
+    \textbf{No} & \textbf{Aspek Penilaian}     & \textbf{Deskripsi}                                                                           & \textbf{Persentase} \\
+    \hline
+    1           & Inovasi dan Relevansi Solusi & Kesesuaian solusi dengan masalah, tingkat kebaruan, dan manfaat bagi pemangku kepentingan    & 40\%                \\
+    \hline
+    2           & Metodologi dan Analisis Data & Ketepatan pendekatan analisis, pemrosesan data, serta interpretasi hasil                     & 30\%                \\
+    \hline
+    3           & Presentasi dan Demonstrasi   & Kejelasan dalam penyampaian materi, kualitas visualisasi, serta kesiapan implementasi sistem & 30\%                \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Berdasarkan evaluasi panel juri pada babak final, tim \textbf{Jevon Ordrick} berhasil memperoleh predikat \textbf{Juara III Jatim Datathon} dengan perolehan skor akhir sebesar \textbf{84}. Prestasi ini menunjukkan bahwa solusi yang dirancang dinilai mampu memberikan kontribusi signifikan dalam penggunaan analisis data untuk mendukung peningkatan reputasi dan daya saing UMKM di wilayah Jawa Timur.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{juara.png}
+  \caption{Pengumuman Pemenang Jatim Datathon}
+  \label{fig:juara_jatim_datathon}
+\end{figure}
+
+Gambar \ref{fig:juara_jatim_datathon} menampilkan pengumuman hasil final Jatim Datathon, di mana tim penulis memperoleh posisi Juara III. Pencapaian ini merupakan bentuk pengakuan terhadap kompetensi penulis dalam mengimplementasikan ilmu analisis data, \textit{machine learning}, serta visualisasi data ke dalam solusi yang aplikatif dan sesuai dengan kebutuhan masyarakat serta pelaku UMKM lokal.
 
 \subsection{Hasil Analisis Kebutuhan Sistem (Analysis)}
 Tahap analisis kebutuhan sistem berhasil mengidentifikasi permasalahan utama yang melatarbelakangi penelitian ini, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang umumnya disajikan dalam bentuk visualisasi data seperti grafik dan tabel. Hasil menunjukkan bahwa penyajian data secara visual saja belum cukup membantu, karena pengguna membutuhkan penjelasan yang lebih naratif dan mudah dipahami melalui interaksi berbasis bahasa natural.
@@ -333,8 +402,6 @@ Jawaban:
           \text{Pertanyaan} \rightarrow \text{Embedding} \rightarrow \text{Similarity Search} \rightarrow \text{Prompt} \rightarrow \text{LLM} \rightarrow \text{Jawaban}
         \end{equation}
 
-        \hspace*{1.25cm}Arsitektur modular yang berhasil diterapkan memungkinkan setiap komponen dalam pipeline, mulai dari pembacaan dokumen, pembuatan embedding, penyimpanan vektor, pencarian konteks, hingga proses pembuatan jawaban, dikembangkan dan dioptimasi secara independen.
-
   \item \textbf{Hasil Dokumentasi API Menggunakan Swagger}
 
         \begin{figure}[H]
@@ -588,17 +655,22 @@ Pengujian dilakukan terhadap dua aspek utama sistem, yaitu pengujian fungsionali
 \end{enumerate}
 
 \section{Pembahasan}
+Penelitian ini berhasil mengimplementasikan sistem chatbot analisis sentimen UMKM berbasis web dengan mengintegrasikan pendekatan \textit{Retrieval-Augmented Generation (RAG)}. Sistem dikembangkan menggunakan NestJS sebagai \textit{backend framework} dan LangChain.js sebagai orkestrator pipeline RAG. Seluruh proses pengembangan diawali dari tahap analisis kebutuhan yang mengidentifikasi permasalahan utama, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang umumnya disajikan dalam bentuk grafik dan tabel. Bentuk visualisasi tersebut sering kali kurang ramah bagi pengguna non-teknis, khususnya pelaku UMKM yang tidak memiliki latar belakang statistik atau \textit{data science}. Temuan ini menjadi landasan perancangan solusi berbasis chatbot yang berperan sebagai jembatan antara data analitik yang kompleks dan kebutuhan informasi praktis pengguna.
 
-Penelitian ini berhasil mengimplementasikan sebuah sistem chatbot analisis sentimen UMKM berbasis web dengan mengintegrasikan pendekatan \textit{Retrieval-Augmented Generation (RAG)}. Sistem dikembangkan menggunakan NestJS sebagai \textit{backend framework} dan LangChain.js sebagai orkestrator pipeline RAG. Seluruh proses implementasi diawali dari tahap analisis kebutuhan yang mengidentifikasi permasalahan utama, yaitu kesulitan pelaku UMKM dalam memahami hasil analisis sentimen yang umumnya disajikan dalam bentuk grafik dan tabel. Visualisasi semacam ini sering kali kurang ramah bagi pengguna non-teknis, khususnya pelaku UMKM yang tidak memiliki latar belakang di bidang statistik atau \textit{data science}. Temuan tersebut menjadi dasar perancangan solusi berbasis chatbot yang berperan sebagai jembatan antara data analitik yang kompleks dan kebutuhan informasi praktis pengguna.
+Pemilihan pendekatan RAG dalam penelitian ini didasarkan pada kebutuhan sistem untuk mengakses dan menginterpretasikan data yang bersifat dinamis. Berbeda dengan model generatif konvensional yang hanya mengandalkan pengetahuan statis hasil pelatihan, chatbot analisis sentimen UMKM harus mampu merujuk pada data sentimen terkini yang terus berubah seiring aktivitas media sosial. Data sentimen Instagram memiliki karakteristik yang tidak tetap, di mana opini publik, tren diskusi, serta persepsi terhadap suatu brand dapat berubah dalam waktu singkat. Model bahasa besar konvensional tidak memiliki kemampuan untuk mengakses informasi terbaru setelah proses pelatihan selesai, sehingga menimbulkan kesenjangan temporal yang signifikan. Dalam konteks ini, RAG memberikan solusi dengan memungkinkan sistem mengambil informasi faktual terbaru dari \textit{knowledge base} sebelum menghasilkan jawaban.
 
-Tahap spesifikasi sistem menghasilkan sebuah \textit{blueprint} kebutuhan yang terstruktur dan cukup detail, dengan empat komponen fungsional utama sebagai fondasi aplikasi. Pertama, sistem autentikasi dan autorisasi berbasis \textit{JSON Web Token} dipilih karena sifatnya yang \textit{stateless} dan efisien, memungkinkan proses verifikasi identitas tanpa ketergantungan pada penyimpanan sesi di sisi server. Kedua, modul manajemen data hasil \textit{scraping} Instagram dirancang dengan fungsi \textit{create} dan \textit{delete} untuk memudahkan pengelolaan data mentah yang menjadi input utama analisis sentimen. Ketiga, \textit{API Gateway} berperan sebagai lapisan orkestrasi yang menghubungkan frontend dengan layanan \textit{ABSA} dan \textit{Recommendation Content}, sehingga setiap komponen dapat dikembangkan dan dipelihara secara independen. Komponen keempat sekaligus menjadi inti penelitian adalah chatbot berbasis RAG, yang memungkinkan interaksi bahasa natural untuk memperoleh interpretasi kontekstual atas hasil analisis sentimen dengan mengombinasikan proses \textit{retrieval} dokumen relevan dan \textit{generation} jawaban menggunakan \textit{Large Language Model}.
+Tanpa mekanisme retrieval, model AI generatif cenderung menghasilkan jawaban yang bersifat umum dan spekulatif. Ketika dihadapkan pada pertanyaan spesifik, seperti distribusi sentimen terhadap suatu brand UMKM, model konvensional hanya mampu memberikan respons berbasis asumsi atau pengetahuan umum. Kondisi ini berpotensi menyesatkan pelaku UMKM dalam pengambilan keputusan bisnis. Sebaliknya, pendekatan RAG memastikan bahwa setiap jawaban yang dihasilkan selalu berlandaskan pada data hasil analisis sentimen yang aktual. Pipeline RAG secara otomatis melakukan pencarian dokumen relevan dari \textit{knowledge base}, kemudian menggunakan informasi tersebut sebagai konteks dalam proses generasi jawaban. Dengan demikian, respons yang diberikan bukan sekadar narasi yang terdengar meyakinkan, melainkan interpretasi data yang akurat dan dapat dipertanggungjawabkan.
 
-Pada tahap desain, sistem menggunakan arsitektur tiga lapis yang memisahkan tanggung jawab secara jelas antara \textit{presentation layer}, \textit{application layer}, dan \textit{data layer}. Lapisan presentasi dikembangkan menggunakan React.js untuk menampilkan visualisasi data sentimen serta antarmuka chatbot yang intuitif. Seluruh logika bisnis dan pemrosesan data ditangani oleh backend NestJS pada lapisan aplikasi. Sementara itu, lapisan data memanfaatkan PostgreSQL dengan ekstensi \textit{pgvector} sebagai tempat penyimpanan, menerapkan pendekatan hibrida yang menggabungkan model relasional ter-normalisasi untuk data struktural dengan penyimpanan vektor untuk mendukung kebutuhan RAG. Salah satu keluaran penting dari tahap desain adalah perancangan pipeline RAG yang terdiri dari dua fase saling terkait, yaitu RAG Ingestion Pipeline dan RAG Query Pipeline.
+Keunggulan lain dari RAG terletak pada fleksibilitas pembaruan pengetahuan tanpa memerlukan pelatihan ulang model bahasa. Dalam domain analisis sentimen media sosial yang dinamis, data baru dapat terus ditambahkan ke dalam \textit{knowledge base} melalui proses ingestion. Sistem dapat langsung memanfaatkan data tersebut tanpa biaya dan waktu besar yang biasanya dibutuhkan untuk \textit{fine-tuning} model bahasa. Pendekatan ini jauh lebih efisien dan selaras dengan karakteristik media sosial yang terus menghasilkan data baru setiap hari.
 
-Tahap implementasi diawali dengan penyiapan lingkungan pengembangan menggunakan Node.js versi LTS dan framework NestJS. Pemilihan teknologi ini didasarkan pada stabilitas, dukungan jangka panjang, serta kemampuannya menyediakan struktur modular yang sesuai untuk aplikasi berskala menengah hingga besar. Konfigurasi sistem dirancang dengan memisahkan kode aplikasi dan parameter lingkungan, di mana informasi sensitif seperti kredensial database dan \textit{API key} disimpan dalam file \textit{environment} yang tidak disertakan dalam \textit{version control system}. Pendekatan ini meningkatkan keamanan sekaligus mempermudah pengelolaan konfigurasi pada berbagai lingkungan \textit{deployment}. Implementasi basis data PostgreSQL berhasil mengaktifkan ekstensi \textit{pgvector}, yang menambahkan tipe data \textit{vector} serta operator \textit{similarity search} seperti \textit{cosine similarity}. Pengelolaan skema database dilakukan menggunakan TypeORM sebagai \textit{Object-Relational Mapping} untuk memisahkan logika akses data dari \textit{business logic}.
+Pada tahap spesifikasi sistem menghasilkan \textit{blueprint} kebutuhan yang terstruktur dengan empat komponen fungsional utama. Pertama, sistem autentikasi dan autorisasi berbasis \textit{JSON Web Token (JWT)} dipilih karena sifatnya yang \textit{stateless} dan efisien. Kedua, modul manajemen data hasil scraping Instagram menyediakan fungsi \textit{create} dan \textit{delete} untuk mengelola data mentah analisis sentimen. Ketiga, \textit{API Gateway} berperan sebagai lapisan orkestrasi yang menghubungkan frontend dengan layanan ABSA dan sistem rekomendasi konten. Keempat, chatbot berbasis RAG menjadi inti sistem yang memungkinkan interaksi bahasa natural untuk memperoleh interpretasi kontekstual atas data sentimen.
 
-Arsitektur backend diimplementasikan mengikuti prinsip \textit{modular architecture}. Aplikasi dibagi ke dalam beberapa modul independen dengan tanggung jawab yang spesifik, seperti autentikasi, manajemen data, dan RAG. Struktur folder yang terorganisir memudahkan proses pengembangan, pengujian, serta pemeliharaan. Setiap modul memiliki struktur internal yang konsisten, mencakup \textit{decorators}, \textit{DTOs}, \textit{guards}, \textit{interfaces}, dan \textit{providers}. Pendekatan ini memberikan keuntungan dari sisi \textit{maintainability}, kemudahan \textit{scaling}, serta mendukung kolaborasi tim pengembang.
+Pada tahap desain, sistem mengadopsi arsitektur tiga lapis yang memisahkan \textit{presentation layer}, \textit{application layer}, dan \textit{data layer}. Frontend dikembangkan menggunakan React.js untuk menampilkan visualisasi sentimen dan antarmuka chatbot, sementara seluruh logika bisnis ditangani oleh backend NestJS. Lapisan data memanfaatkan PostgreSQL dengan ekstensi \textit{pgvector}, menerapkan pendekatan hibrida yang menggabungkan penyimpanan relasional dan vektor. Pipeline RAG dirancang dalam dua fase utama, yaitu \textit{RAG Ingestion Pipeline} untuk memproses dan menyimpan data terbaru, serta \textit{RAG Query Pipeline} untuk memastikan setiap pertanyaan dijawab berdasarkan data aktual.
 
-Pipeline RAG diimplementasikan sebagai komponen inti sistem dalam dua fase utama. Fase ingestion menerapkan prinsip \textit{idempotent} untuk menghindari pembuatan embedding ulang yang bersifat mahal dari sisi komputasi dan biaya. Sistem melakukan pengecekan data yang telah tersimpan sebelum melakukan penulisan ulang. Proses pemuatan dokumen menggunakan strategi \textit{semantic chunking} berdasarkan unit makna yang utuh, seperti ringkasan sentimen dan faktor positif maupun negatif, serta dilengkapi metadata untuk keperluan \textit{filtering} dokumen. Fase query diimplementasikan menggunakan \textit{LangChain Expression Language (LCEL)} dengan alur eksekusi berurutan. Pertanyaan pengguna diubah menjadi embedding, dilakukan \textit{similarity search} dengan parameter $k = 3$, lalu digabungkan ke dalam prompt terstruktur bersama konteks hasil retrieval untuk meminimalkan risiko halusinasi.
+Tahap implementasi dimulai dengan penyiapan lingkungan pengembangan menggunakan Node.js versi LTS dan NestJS. Konfigurasi sistem dirancang dengan memisahkan kode aplikasi dan parameter lingkungan untuk meningkatkan keamanan dan fleksibilitas \textit{deployment}. Basis data PostgreSQL diimplementasikan dengan ekstensi \textit{pgvector} untuk mendukung \textit{similarity search}, sementara pengelolaan skema database dilakukan menggunakan TypeORM untuk memisahkan \textit{business logic} dari logika akses data.
 
-Pengujian sistem dilakukan menggunakan metode \textit{Black Box Testing} dengan Postman sebagai alat bantu. Hasil pengujian menunjukkan seluruh 46 skenario pengujian endpoint berhasil dilewati. Selain itu, pengujian relevansi jawaban chatbot terhadap 7 pertanyaan evaluasi menunjukkan bahwa sistem mampu melakukan pencarian dokumen yang sesuai dan menghasilkan jawaban yang informatif serta mudah dipahami oleh pengguna non-teknis. Secara keseluruhan, penelitian ini membuktikan bahwa pendekatan RAG efektif untuk menjembatani kesenjangan pemahaman antara visualisasi data analitik dan kebutuhan informasi praktis pelaku UMKM. Arsitektur modular dan pipeline RAG yang diimplementasikan memberikan fleksibilitas, efisiensi, serta performa yang baik.
+Arsitektur backend diimplementasikan menggunakan pendekatan modular, di mana setiap modul memiliki tanggung jawab yang jelas. Struktur ini mempermudah pengembangan, pengujian, dan pemeliharaan sistem, sekaligus mendukung skalabilitas dan kolaborasi tim. Pipeline RAG diimplementasikan dengan dua fase utama. Fase ingestion menerapkan prinsip \textit{idempotent} untuk menghindari pembuatan embedding ulang yang mahal, serta menggunakan strategi \textit{semantic chunking} agar setiap dokumen merepresentasikan unit makna yang utuh. Fase query diimplementasikan menggunakan LangChain Expression Language (LCEL), dengan proses embedding pertanyaan, \textit{similarity search} dengan parameter $k=3$, serta konstruksi prompt terstruktur yang menggabungkan konteks dan pertanyaan pengguna.
+
+Pengujian sistem dilakukan menggunakan metode \textit{Black Box Testing}. Seluruh 46 skenario pengujian endpoint berhasil dijalankan, menunjukkan bahwa sistem bekerja secara konsisten. Pengujian relevansi jawaban chatbot juga membuktikan bahwa sistem mampu menghasilkan jawaban yang informatif, kontekstual, dan berbasis data aktual. Kemampuan sistem dalam menyajikan angka spesifik hasil analisis sentimen menegaskan bahwa jawaban yang dihasilkan benar-benar berasal dari \textit{knowledge base}, bukan dari asumsi model.
+
+Secara keseluruhan, penelitian ini menunjukkan bahwa pendekatan RAG merupakan kebutuhan fundamental dalam pengembangan chatbot analisis sentimen UMKM yang menuntut akurasi data real-time. Arsitektur modular dan pipeline RAG yang diterapkan tidak hanya memberikan fleksibilitas dan efisiensi, tetapi juga memastikan bahwa setiap informasi yang disampaikan kepada pelaku UMKM selalu berlandaskan pada data sentimen terkini yang dapat dipertanggungjawabkan, sehingga mendukung pengambilan keputusan bisnis yang lebih tepat dan berbasis data.
