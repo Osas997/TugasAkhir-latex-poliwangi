@@ -10,7 +10,13 @@
 
 % Pengaturan jarak antar baris dan penyesuaian kotak teks agar rata kiri
 \usepackage{setspace}
-\usepackage[raggedrightboxes]{ragged2e}
+\usepackage[none]{hyphenat}
+\usepackage{ragged2e}
+\usepackage{microtype}
+
+% Atur paragraf untuk justify tanpa hyphenation
+\setlength{\RaggedRightRightskip}{\fill}
+\setlength{\RaggedRightParfillskip}{\fill}
 
 % Paket untuk memasukkan gambar dalam dokumen
 \usepackage{graphicx}
@@ -97,10 +103,12 @@
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 
 % Mengatur hyphenation (pemisahan kata) agar lebih rapi
-\tolerance=500
+\tolerance=9999
 \emergencystretch=1em
-\hyphenpenalty=50
-\hbadness=5000
+\hyphenpenalty=9999
+\hbadness=9999
+\lefthyphenmin=62
+\righthyphenmin=62
 
 % Pengaturan tabel, multirow, dan ukuran kolom otomatis
 \usepackage{tabularx}

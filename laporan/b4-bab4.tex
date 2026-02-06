@@ -84,8 +84,6 @@ Analisis lebih lanjut terhadap karakteristik pengguna mengungkapkan bahwa sebagi
 
 Pada tahap ini juga berhasil ditetapkan batasan ruang lingkup penelitian secara jelas. Penelitian tidak mencakup proses \textit{scraping} data Instagram maupun pengembangan model analisis sentimen, karena kedua komponen tersebut dikembangkan oleh tim kolaborasi yang berbeda. Fokus penelitian diarahkan pada pengembangan sistem backend berbasis NestJS serta implementasi chatbot berbasis \textit{Retrieval-Augmented Generation (RAG)} yang memanfaatkan hasil analisis sentimen sebagai \textit{knowledge base}.
 
-Hasil analisis kebutuhan pengguna menunjukkan bahwa sistem yang dikembangkan harus mampu menyediakan antarmuka untuk mengakses informasi sentimen, memberikan interpretasi kontekstual terhadap data numerik, serta menyajikan rekomendasi strategis yang dapat langsung diterapkan oleh pelaku UMKM. Kebutuhan-kebutuhan inilah yang kemudian menjadi landasan utama dalam perumusan spesifikasi sistem pada tahap selanjutnya.
-
 \subsection{Hasil Spesifikasi Sistem (Requirements Specifications)}
 Berdasarkan hasil analisis kebutuhan, tahap spesifikasi sistem menghasilkan dokumentasi kebutuhan fungsional dan non-fungsional yang disusun secara terstruktur. Kebutuhan fungsional sistem dirumuskan ke dalam empat komponen utama yang menjadi tulang punggung aplikasi. Komponen pertama adalah sistem autentikasi dan autorisasi berbasis \textit{JSON Web Token (JWT)} yang berperan memastikan keamanan akses pengguna. Mekanisme JWT dipilih karena bersifat \textit{stateless} dan efisien, sehingga proses verifikasi identitas dapat dilakukan tanpa menyimpan \textit{session} di sisi server.
 
@@ -127,7 +125,10 @@ Ruang lingkup implementasi mencakup beberapa aspek utama yang telah dirancang pa
 
         \hspace*{1.25cm}Konfigurasi sistem dirancang dengan agar terpisah kode program. Informasi sensitif, seperti kredensial database, \textit{API key} layanan AI untuk Groq dan Google Generative AI, serta \textit{secret token} yang digunakan pada autentikasi JWT, disimpan dalam file environment \texttt{.env} yang tidak disertakan ke dalam \textit{version control system}. Pendekatan ini meningkatkan aspek keamanan sekaligus mempermudah pengelolaan konfigurasi pada berbagai lingkungan, seperti \textit{development}, \textit{staging}, dan \textit{production}, tanpa perlu melakukan perubahan pada kode sumber aplikasi. Seluruh konfigurasi tersebut kemudian dimuat ke dalam aplikasi NestJS menggunakan package \texttt{@nestjs/config}. Package ini memungkinkan akses variabel lingkungan secara terstruktur melalui mekanisme \textit{dependency injection}. Implementasi konfigurasi dilakukan dengan mendefinisikan \texttt{ConfigModule} sebagai \textit{global module}, sehingga setiap modul dalam aplikasi dapat mengakses parameter konfigurasi yang dibutuhkan secara aman dan konsisten, seperti yang ditunjukkan pada implementasi berikut:
 
-        \begin{lstlisting}[language=Java, caption=Implementasi ConfigModule sebagai global configuration, label=lst:config-module]
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=Java, basicstyle=\ttfamily\footnotesize, frame=single]
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
@@ -144,8 +145,42 @@ import { ConfigModule } from '@nestjs/config';
 })
 export class AppModule {}
 \end{lstlisting}
+          \end{minipage}
+          \caption{Implementasi ConfigModule sebagai global configuration}
+          \label{fig:config-module}
+        \end{figure}
 
         \hspace*{1.25cm}Dengan konfigurasi tersebut, perubahan parameter sistem dapat dilakukan tanpa perlu memodifikasi kode sumber aplikasi. Penyesuaian cukup dilakukan dengan mengubah nilai pada file \textit{environment} sesuai dengan kebutuhan masing-masing lingkungan \textit{deployment}. Pendekatan ini tidak hanya menjaga kebersihan dan konsistensi kode, tetapi juga meminimalkan risiko kesalahan akibat perubahan langsung pada kode aplikasi.
+
+        \hspace*{1.25cm}Setelah lingkungan pengembangan dasar disiapkan, tahap selanjutnya adalah instalasi \textit{package} LangChain.js beserta dependensi pendukungnya. LangChain.js merupakan \textit{framework} utama yang digunakan untuk mengimplementasikan pipeline RAG dalam penelitian ini. Instalasi dilakukan menggunakan \textit{package manager} npm dengan perintah \texttt{npm install langchain} yang mengunduh dan memasang \textit{core library} LangChain.js beserta seluruh modul dasarnya.
+
+        \hspace*{1.25cm}Selain \textit{package} utama LangChain.js, sistem juga memerlukan beberapa \textit{package} tambahan untuk mendukung integrasi dengan berbagai layanan eksternal. \textit{Package} \texttt{@langchain/google-genai} diinstal untuk mengintegrasikan model \textit{embedding} dari Google Generative AI yang digunakan dalam proses konversi teks menjadi vektor. \textit{Package} \texttt{@langchain/groq} dipasang untuk memungkinkan komunikasi dengan layanan Groq AI sebagai penyedia model \textit{Large Language Model}. Untuk mendukung penyimpanan vektor di PostgreSQL, sistem menginstal \textit{package} \texttt{@langchain/community} yang menyediakan komponen \texttt{PGVectorStore}. Seluruh instalasi \textit{package} ini dapat dilakukan secara bersamaan menggunakan perintah berikut:
+
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=bash, basicstyle=\ttfamily\footnotesize, frame=single]
+npm install langchain @langchain/google-genai @langchain/groq @langchain/community
+\end{lstlisting}
+          \end{minipage}
+          \caption{Instalasi package LangChain.js dan dependensi pendukung}
+          \label{fig:install-package}
+        \end{figure}
+
+        \hspace*{1.25cm}Selain \textit{package} LangChain.js, beberapa dependensi pendukung lainnya juga perlu diinstal. \textit{Package} \texttt{pg} dipasang sebagai \textit{driver} PostgreSQL untuk Node.js yang memungkinkan komunikasi antara aplikasi dan \textit{database}. \textit{Package} \texttt{pgvector} diinstal untuk menyediakan \textit{type definitions} TypeScript yang kompatibel dengan ekstensi \texttt{pgvector} di PostgreSQL. Kedua \textit{package} ini dapat diinstal menggunakan perintah:
+
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=bash, basicstyle=\ttfamily\footnotesize, frame=single]
+npm install pg pgvector
+\end{lstlisting}
+          \end{minipage}
+          \caption{Instalasi PostgreSQL driver}
+          \label{fig:install-postgre}
+        \end{figure}
+
+        \hspace*{1.25cm}Setelah seluruh \textit{package} berhasil diinstal, sistem melakukan verifikasi instalasi dengan memeriksa file \texttt{package.json} untuk memastikan bahwa semua dependensi tercatat dengan versi yang sesuai. Verifikasi ini penting untuk menjamin kompatibilitas antar-\textit{package} dan menghindari konflik versi yang dapat menyebabkan \textit{runtime error}. Dengan instalasi yang lengkap dan terverifikasi, sistem siap untuk mengimplementasikan komponen-komponen RAG menggunakan \textit{framework} LangChain.js.
 
   \item \textbf{Hasil Implementasi Basis Data}
 
@@ -153,9 +188,16 @@ export class AppModule {}
 
         \hspace*{1.25cm}Untuk mendukung kebutuhan \textit{Retrieval-Augmented Generation}, ekstensi \texttt{pgvector} berhasil diaktifkan agar database dapat menyimpan embedding teks dalam bentuk vektor numerik dan melakukan operasi \textit{similarity search} secara efisien. Aktivasi ekstensi ini merupakan langkah yang sederhana namun bersifat fundamental bagi keseluruhan sistem RAG, karena memungkinkan PostgreSQL tidak hanya berfungsi sebagai penyimpanan data relasional, tetapi juga sebagai \textit{vector store} yang mendukung pencarian berbasis kemiripan makna. Proses aktivasi dilakukan melalui perintah SQL khusus yang dijalankan pada database.
 
-        \begin{lstlisting}[language=SQL, caption=Aktivasi ekstensi pgvector pada PostgreSQL, label=lst:pgvector-enable]
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=SQL, basicstyle=\ttfamily\footnotesize, frame=single]
 CREATE EXTENSION IF NOT EXISTS vector;
 \end{lstlisting}
+          \end{minipage}
+          \caption{Aktivasi ekstensi pgvector pada PostgreSQL}
+          \label{lst:pgvector-enable}
+        \end{figure}
 
         \hspace*{1.25cm}Perintah aktivasi ekstensi tersebut berhasil menambahkan tipe data \texttt{vector(n)}, di mana $n$ merepresentasikan dimensi vektor, beserta berbagai operator dan fungsi yang mendukung proses \textit{similarity search}. Operator yang tersedia mencakup \textit{cosine distance} (\texttt{<=>}), \textit{L2 distance} (\texttt{<->}), dan \textit{inner product} (\texttt{<\#>}). Adanya ekstensi ini memungkinkan sistem melakukan pencarian berbasis kemiripan makna menggunakan metrik \textit{cosine similarity}, yang menjadi fondasi utama proses \textit{retrieval} dalam RAG. Dengan demikian, pencarian dokumen tidak lagi bergantung pada kecocokan kata kunci semata, melainkan pada kesamaan semantik antar teks.
 
@@ -167,7 +209,8 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
         \begin{figure}[h!]
           \centering
-          \begin{verbatim}
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single]
 groq-chatbot/
 |-- dist/
 |-- node_modules/
@@ -199,7 +242,8 @@ groq-chatbot/
 |   -- main.ts
 |-- test/
 -- .dockerignore
-\end{verbatim}
+                  \end{lstlisting}
+          \end{minipage}
           \caption{Struktur direktori proyek backend chatbot berbasis NestJS}
           \label{fig:struktur-folder-backend}
         \end{figure}
@@ -213,11 +257,41 @@ groq-chatbot/
 
   \item \textbf{Hasil Implementasi Pipeline RAG}
 
-        \hspace*{1.25cm}Pipeline \textit{Retrieval-Augmented Generation} berhasil diimplementasikan sebagai komponen inti dalam sistem chatbot, yang memungkinkan interpretasi hasil analisis sentimen melalui interaksi bahasa natural. Seluruh pipeline diorganisasikan di dalam \texttt{RAGModule}, yang mengintegrasikan berbagai proses utama, mulai dari pemuatan dokumen, pembuatan embedding, penyimpanan vektor, pencarian dokumen yang relevan, hingga generasi jawaban menggunakan \textit{Large Language Model}. Implementasi pipeline ini dibagi ke dalam dua fase utama, yaitu fase ingestion dan fase query, yang masing-masing memiliki peran berbeda namun saling melengkapi.
+        \hspace*{1.25cm}\textit{Pipeline Retrieval-Augmented Generation} berhasil diimplementasikan sebagai komponen inti dalam sistem chatbot, yang memungkinkan interpretasi hasil analisis sentimen melalui interaksi bahasa alami. Seperti yang telah dirancang pada tahap desain, seluruh \textit{pipeline} diorganisasikan di dalam \texttt{RAGModule} yang mengintegrasikan berbagai proses utama menggunakan \textit{framework} LangChain.js. Implementasi ini mencakup pembuatan \textit{embedding} melalui \texttt{GoogleGenerativeAIEmbeddings}, penyimpanan vektor dengan \texttt{PGVectorStore}, pencarian dokumen yang relevan menggunakan \texttt{VectorStoreRetriever}, hingga generasi jawaban melalui model \texttt{ChatGroq}. Sesuai dengan rancangan, \textit{pipeline} ini dibagi ke dalam dua fase utama, yaitu fase \textit{ingestion} dan fase \textit{query}, yang masing-masing memiliki peran berbeda namun saling melengkapi.
 
-        \hspace*{1.25cm}RAGService berhasil diimplementasikan dengan mengadopsi interface \texttt{OnModuleInit} untuk menjalankan proses inisialisasi secara otomatis saat aplikasi pertama kali dijalankan. Pemanfaatan \textit{lifecycle method} ini memastikan bahwa seluruh komponen kritis dalam sistem RAG, seperti model LLM, model embedding, koneksi ke database, serta \textit{vector store}, telah terkonfigurasi dengan benar sebelum sistem mulai melayani permintaan dari pengguna. Dengan pendekatan ini, risiko kesalahan konfigurasi pada saat runtime dapat diminimalkan dan stabilitas sistem secara keseluruhan dapat terjaga.
+        \hspace*{1.25cm}\texttt{RAGService} berhasil diimplementasikan dengan mengadopsi \textit{interface} \texttt{OnModuleInit} dari NestJS untuk menjalankan proses inisialisasi secara otomatis saat aplikasi pertama kali dijalankan. Pemanfaatan \textit{lifecycle method} ini memastikan bahwa seluruh komponen kritis dalam sistem RAG telah terkonfigurasi dengan benar sebelum sistem mulai melayani permintaan dari pengguna. Komponen-komponen yang diinisialisasi meliputi model \textit{Large Language Model} dari Groq, model \textit{embedding} dari Google Generative AI, koneksi \textit{database} PostgreSQL melalui mekanisme \textit{connection pool}, serta \textit{vector store} yang memanfaatkan ekstensi \texttt{pgvector}. Dengan pendekatan ini, risiko kesalahan konfigurasi pada saat \textit{runtime} dapat diminimalkan dan stabilitas sistem secara keseluruhan dapat terjaga. \\
 
-        \begin{lstlisting}[language=Java, caption=Implementasi RAGService dengan automatic initialization, label=lst:rag-service-init]
+        \hspace*{1.25cm}Sebelum implementasi \textit{service}, langkah awal yang dilakukan adalah mengimpor \textit{class} dan \textit{function} yang dibutuhkan dari berbagai \textit{package}. Proses ini penting karena menyediakan akses ke komponen LangChain.js, NestJS, serta dependensi pendukung lain yang menjadi dasar sistem RAG. Dari \texttt{@nestjs/common}, sistem mengimpor \texttt{Injectable}, \texttt{Logger}, dan \texttt{OnModuleInit} untuk kebutuhan \textit{service} dan \textit{lifecycle}. Dari \texttt{@nestjs/config}, diimpor \texttt{ConfigService} untuk membaca konfigurasi dari \textit{environment}.
+
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=Java, basicstyle=\ttfamily\footnotesize, frame=single]
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { ChatGroq } from '@langchain/groq';
+import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
+import { PGVectorStore } from '@langchain/community/vectorstores/pgvector';
+import { PromptTemplate } from '@langchain/core/prompts';
+import { StringOutputParser } from '@langchain/core/output_parsers';
+import { RunnableSequence } from '@langchain/core/runnables';
+import { Pool } from 'pg';
+import { LoadDocumentsProvider } from './providers/load-documents.provider';
+\end{lstlisting}
+          \end{minipage}
+          \caption{Import dependencies untuk implementasi RAG Service}
+          \label{lst:rag-imports}
+        \end{figure}
+
+        \hspace*{1.25cm}Komponen utama LangChain.js diimpor sesuai fungsinya. \texttt{ChatGroq} digunakan untuk mengakses \textit{Large Language Model} dari Groq AI, \texttt{GoogleGenerativeAIEmbeddings} untuk mengubah teks menjadi vektor \textit{embedding}, dan \texttt{PGVectorStore} untuk menyimpan serta mencari vektor di PostgreSQL dengan ekstensi \textit{pgvector}. Sementara itu, \texttt{PromptTemplate}, \texttt{StringOutputParser}, dan \texttt{RunnableSequence} dari \texttt{@langchain/core} digunakan untuk menyusun \textit{prompt}, memproses keluaran model, dan membangun alur \textit{chain} menggunakan \textit{LangChain Expression Language (LCEL)}.
+
+        \hspace*{1.25cm}Selain itu, sistem juga menggunakan \texttt{Pool} dari \textit{package} \texttt{pg} untuk mengelola koneksi PostgreSQL secara efisien, serta \texttt{LoadDocumentsProvider} sebagai \textit{provider} lokal yang bertugas memuat dan memproses dokumen JSON dengan pendekatan \textit{semantic chunking}. Struktur \textit{import} yang ringkas dan terorganisir ini memudahkan pengembangan serta pemeliharaan kode.
+
+
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=Java, basicstyle=\ttfamily\footnotesize, frame=single]
 @Injectable()
 export class RAGService implements OnModuleInit {
   private readonly logger = new Logger(RAGService.name);
@@ -263,25 +337,30 @@ export class RAGService implements OnModuleInit {
   }
 }
 \end{lstlisting}
+          \end{minipage}
+          \caption{Implementasi RAGService dengan automatic initialization}
+          \label{lst:rag-service-init}
+        \end{figure}
 
-        \hspace*{1.25cm}Tahap inisialisasi sistem berhasil mengonfigurasi model \textit{Large Language Model (LLM)} menggunakan layanan Groq, yang dipilih karena menyediakan model yang cukup banyak dengan harga yang terjaukau. Parameter \texttt{temperature} diatur pada nilai 0.7 untuk mencapai keseimbangan antara konsistensi jawaban dan variasi bahasa. Dengan pengaturan ini, model mampu menghasilkan respons yang terdengar natural tanpa menyimpang dari fakta yang terdapat dalam dokumen konteks. Selain itu, parameter \texttt{maxTokens} diset sebesar 8192 guna memberikan ruang yang memadai bagi model dalam menghasilkan jawaban yang panjang dan detail, khususnya untuk pertanyaan yang bersifat kompleks. Sistem juga berhasil menginisialisasi model embedding menggunakan \textit{Google Generative AI Embeddings} yang berfungsi mengonversi teks menjadi representasi vektor numerik yang merepresentasikan makna semantik. Di sisi lain, koneksi ke database PostgreSQL berhasil dibangun dengan memanfaatkan mekanisme \textit{connection pool}, yaitu penyediaan sejumlah koneksi database yang siap digunakan. Mekanisme ini meningkatkan efisiensi dan performa sistem, terutama ketika harus menangani banyak permintaan secara bersamaan.
+        \hspace*{1.25cm}Tahap inisialisasi sistem berhasil mengonfigurasi model \textit{Large Language Model} menggunakan \textit{class} \texttt{ChatGroq} dari LangChain.js yang menyediakan integrasi dengan layanan Groq AI. Model yang digunakan adalah \texttt{openai/gpt-oss-20b}, yang dipilih karena menyediakan performa yang baik dengan harga yang terjangkau. Parameter \texttt{temperature} diatur pada nilai 0.7 untuk mencapai keseimbangan antara konsistensi jawaban dan variasi bahasa yang natural. Parameter \texttt{maxTokens} diset sebesar 8192 guna memberikan ruang yang memadai bagi model dalam menghasilkan jawaban yang panjang dan detail, khususnya untuk pertanyaan yang bersifat kompleks.
 
-        \hspace*{1.25cm}Selanjutnya fase ingestion berhasil diimplementasikan sebagai tahap persiapan \textit{knowledge base}. Pada tahap ini, data hasil analisis sentimen yang tersimpan dalam file JSON dimuat dan diolah menjadi dokumen teks yang lebih terstruktur. Pengelompokan dokumen dilakukan berdasarkan kategori informasi yang relevan, seperti ringkasan sentimen keseluruhan, faktor-faktor positif, dan faktor-faktor negatif, sehingga setiap dokumen merepresentasikan satu unit pengetahuan yang jelas.
+        \hspace*{1.25cm}Sistem juga berhasil menginisialisasi model \textit{embedding} menggunakan \textit{class} \texttt{GoogleGenerativeAIEmbeddings} dari LangChain.js dengan model \texttt{gemini-embedding-001}. Pemilihan model ini sesuai dengan rancangan pada Bab 3, karena kemampuannya dalam memahami teks berbahasa Indonesia, termasuk bahasa informal dan konteks media sosial yang biasa ditemukan pada komentar Instagram. Model ini berfungsi mengonversi teks menjadi representasi vektor numerik yang merepresentasikan makna semantik dari teks tersebut. Di sisi lain, koneksi ke \textit{database} PostgreSQL berhasil dibangun dengan memanfaatkan mekanisme \textit{connection pool} melalui \textit{library} \texttt{pg}. Mekanisme ini meningkatkan efisiensi dan performa sistem dengan menyediakan sejumlah koneksi \textit{database} yang siap digunakan, terutama ketika harus menangani banyak permintaan secara bersamaan.
 
-        \hspace*{1.25cm}Proses ingestion yang ditunjukkan pada kode \ref{lst:ingestion-impl} dirancang dengan menerapkan prinsip \textit{idempotent}. Prinsip ini memastikan bahwa proses ingestion dapat dijalankan berulang kali tanpa menimbulkan duplikasi data maupun perubahan hasil yang tidak diinginkan. Dengan pendekatan tersebut, sistem tetap konsisten dan efisien, khususnya ketika aplikasi dijalankan ulang atau ketika proses inisialisasi perlu dilakukan kembali tanpa adanya pembaruan data.
-
-        \begin{lstlisting}[language=Java, caption=Implementasi RAG Ingestion Pipeline dengan idempotent pattern, label=lst:ingestion-impl]
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=Java, basicstyle=\ttfamily\footnotesize, frame=single]
 private async initializeRAG() {
   const documents = await this.loadDocumentsProvider.loadDocuments();
   this.logger.log(`Berhasil memuat ${documents.length} dokumen dari JSON`);
 
-  const schema = this.configService.get('DATABASE_SCHEMA') || 'public';
-  const table = this.configService.get('DATABASE_TABLE_NAME') || 'langchain_documents';
+  const schema = this.configService.get('DATABASE_SCHEMA');
+  const table = this.configService.get('DATABASE_TABLE_NAME') ;
   const qualifiedForStore = `${schema}.${table}`;
 
   let existingCount = 0;
   try {
-    const result = await this.pool.query(
+    const result = await pool.query(
       `SELECT COUNT(1) AS count FROM "${schema}"."${table}"`,
     );
     existingCount = parseInt(result.rows?.[0]?.count || '0', 10);
@@ -308,13 +387,21 @@ private async initializeRAG() {
   await this.createRAGChain();
 }
 \end{lstlisting}
+          \end{minipage}
+          \caption{Implementasi RAG Ingestion Pipeline dengan idempotent pattern}
+          \label{lst:ingestion-impl}
+        \end{figure}
 
-        \hspace*{1.25cm}Penerapan pola \textit{idempotent} pada proses ingestion memiliki peran yang sangat krusial, mengingat pembuatan embedding merupakan operasi yang relatif mahal baik dari sisi waktu komputasi maupun biaya pemanggilan API. Sistem berhasil melakukan pengecekan terhadap jumlah data yang telah tersimpan di dalam tabel \textit{vector store}. Apabila data tersebut sudah tersedia, sistem tidak melakukan proses penulisan ulang, melainkan hanya membuat instance \texttt{PGVectorStore} yang terhubung langsung ke tabel yang ada. Pendekatan ini terbukti efektif dalam menghemat waktu inisialisasi aplikasi sekaligus menekan biaya operasional, khususnya ketika aplikasi mengalami \textit{restart} tanpa adanya perubahan data pada \textit{knowledge base}.
+        \hspace*{1.25cm}Selanjutnya, fase \textit{ingestion} berhasil diimplementasikan  pada gambar \ref{lst:ingestion-impl} sebagai tahap persiapan \textit{knowledge base} sesuai dengan rancangan RAG \textit{Ingestion Pipeline} pada Bab 3. Pada tahap ini, data hasil analisis sentimen yang tersimpan dalam \textit{file} JSON dimuat menggunakan modul \texttt{fs} Node.js dan dikonversi menjadi objek \texttt{Document} dari LangChain.js. Berbeda dengan pendekatan \textit{chunking} berbasis ukuran karakter atau jumlah \textit{token}, sistem menerapkan strategi \textit{semantic chunking} di mana pemecahan dokumen dilakukan berdasarkan struktur dan makna semantik dari data. Pengelompokan dokumen dilakukan berdasarkan unit informasi yang bermakna, seperti ringkasan sentimen keseluruhan, faktor-faktor positif, dan faktor-faktor negatif, sehingga setiap dokumen merepresentasikan satu kesatuan informasi yang utuh. \\
 
-        \hspace*{1.25cm}Proses pemuatan dokumen dijalankan oleh komponen \texttt{LoadDocumentsProvider} yang menerapkan strategi \textit{semantic chunking}. Strategi ini memecah data berdasarkan unit makna yang utuh, seperti ringkasan sentimen keseluruhan, sentimen per kategori, sentimen per brand, \textit{engagement} faktor-faktor positif, dan faktor-faktor negatif. Berbeda dengan pendekatan chunking berbasis ukuran karakter atau jumlah token, \textit{semantic chunking} yang diterapkan mampu mempertahankan konteks informasi secara menyeluruh di dalam setiap dokumen. Hasilnya, relevansi dokumen yang diperoleh pada tahap \textit{retrieval} meningkat, yang pada akhirnya berdampak positif terhadap kualitas jawaban yang dihasilkan oleh sistem.
+        \hspace*{1.25cm}Proses \textit{ingestion} yang ditunjukkan pada Kode \ref{lst:ingestion-impl} dirancang dengan menerapkan prinsip \textit{idempotent}, yang memastikan bahwa proses dapat dijalankan berulang kali tanpa menimbulkan duplikasi data. Sistem melakukan pengecekan terhadap keberadaan data di dalam tabel \textit{vector store} sebelum memutuskan apakah perlu melakukan proses \textit{embedding} dan penyimpanan ulang. Pendekatan ini sangat penting mengingat pembuatan \textit{embedding} melalui API Google Generative AI merupakan operasi yang relatif mahal baik dari sisi waktu komputasi maupun biaya pemanggilan API.
 
+        \hspace*{1.25cm}Apabila data sudah tersedia di \textit{database}, sistem hanya membuat \textit{instance} \texttt{PGVectorStore} yang terhubung langsung ke tabel yang ada menggunakan konstruktor standar. Namun, jika data belum tersedia, sistem menggunakan \textit{method} \texttt{fromDocuments()} yang secara otomatis melakukan beberapa proses sekaligus: mengonversi setiap dokumen menjadi \textit{embedding} melalui API Google Generative AI, membuat tabel \textit{database} jika belum ada dengan skema yang sesuai untuk menyimpan vektor, menyimpan vektor \textit{embedding} beserta metadata dan teks asli dokumen ke dalam PostgreSQL, serta membuat indeks vektor untuk optimasi pencarian menggunakan operator \textit{cosine distance}. Pendekatan ini terbukti efektif dalam menghemat waktu inisialisasi aplikasi sekaligus menekan biaya operasional, khususnya ketika aplikasi mengalami \textit{restart} tanpa adanya perubahan data pada \textit{knowledge base}.
 
-        \begin{lstlisting}[language=Java, caption=Implementasi semantic chunking pada LoadDocumentsProvider, label=lst:load-docs-impl]
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=Java, basicstyle=\ttfamily\footnotesize, frame=single]
 @Injectable()
 export class LoadDocumentsProvider {
   async loadDocuments(): Promise<Document[]> {
@@ -350,20 +437,41 @@ export class LoadDocumentsProvider {
   }
 }
 \end{lstlisting}
+          \end{minipage}
+          \caption{Implementasi semantic chunking pada LoadDocumentsProvider}
+          \label{lst:load-docs-impl}
+        \end{figure}
 
-        \hspace*{1.25cm}Setiap dokumen yang dihasilkan berhasil dilengkapi dengan metadata yang berperan penting dalam memperkaya konteks sekaligus mempermudah proses \textit{retrieval}. Metadata \texttt{source} digunakan untuk menyimpan nama file asal dokumen, sehingga sistem tetap memiliki jejak terhadap sumber data yang digunakan. Sementara itu, metadata \texttt{type} berfungsi mengelompokkan dokumen berdasarkan jenis informasinya, seperti \texttt{sentiment\_overview}, \texttt{positive\_factors}, dan \texttt{negative\_factors}. Pemisahan ini memungkinkan sistem memberikan jawaban yang lebih fokus dan relevan ketika pengguna menanyakan aspek tertentu dari analisis sentimen.
+        \hspace*{1.25cm}Proses pemuatan dokumen dijalankan oleh komponen \texttt{LoadDocumentsProvider} yang menerapkan strategi \textit{semantic chunking} yang ditunjukkan pada Gambar \ref{lst:load-docs-impl}. Strategi ini memecah data berdasarkan unit makna yang utuh, bukan berdasarkan jumlah karakter atau \textit{token}. Setiap \textit{file} JSON dibaca menggunakan modul \texttt{fs} Node.js, kemudian dipecah menjadi beberapa dokumen berdasarkan jenis informasinya: ringkasan sentimen keseluruhan (\texttt{sentimentOverall}), faktor-faktor positif (\texttt{faktorPositifTop10}), dan faktor-faktor negatif (\texttt{faktorNegatifTop10}). Setiap \textit{chunk} informasi kemudian dibungkus dalam objek \texttt{Document} dari LangChain.js, yang menyediakan struktur standar dengan properti \texttt{pageContent} untuk menyimpan teks utama dan \texttt{metadata} untuk informasi tambahan.
 
-        \hspace*{1.25cm}Selanjutnya fase query berhasil diimplementasikan untuk menangani keseluruhan proses, mulai dari penerimaan pertanyaan hingga generasi jawaban. Implementasi fase ini memanfaatkan \textit{LangChain Expression Language (LCEL)} yang menyusun alur eksekusi sebagai rangkaian proses berurutan, di mana setiap tahapan didefinisikan sebagai komponen modular yang saling terhubung. Ketika pengguna mengajukan pertanyaan, sistem mengonversi pertanyaan tersebut menjadi embedding, kemudian melakukan \textit{similarity search} dengan parameter \texttt{k: 3} untuk mengambil tiga dokumen yang paling relevan berdasarkan \textit{cosine similarity}.
+        \hspace*{1.25cm}Setiap dokumen yang dihasilkan dilengkapi dengan \textit{metadata} yang berperan penting dalam memperkaya konteks sekaligus mempermudah proses \textit{retrieval}. Pemisahan ini sesuai dengan rancangan pada Bab 3 yang menyatakan bahwa \textit{metadata} membantu meningkatkan akurasi pencarian karena memungkinkan sistem melakukan penyaringan dokumen sesuai dengan konteks pertanyaan pengguna. \\
+
+        \hspace*{1.25cm}Selanjutnya, fase \textit{query} berhasil diimplementasikan pada Gambar \ref{lst:query-chain-impl} untuk menangani keseluruhan proses sejak penerimaan pertanyaan hingga generasi jawaban, sesuai dengan rancangan RAG \textit{Query Pipeline} pada Bab 3. Implementasi fase ini memanfaatkan \textit{LangChain Expression Language (LCEL)} yang menyusun alur eksekusi sebagai rangkaian proses berurutan dalam bentuk \texttt{RunnableSequence}. Dengan LCEL, setiap tahapan didefinisikan sebagai komponen modular yang saling terhubung, mulai dari \textit{retriever} untuk pencarian dokumen, \textit{prompt template} untuk penyusunan konteks, model LLM untuk generasi jawaban, hingga \textit{output parser} untuk mengekstrak teks jawaban dari respons API.
+
+        \hspace*{1.25cm}Ketika pengguna mengajukan pertanyaan, \textit{chain} pertama-tama menjalankan fungsi pada bagian \texttt{context}. Fungsi ini mengonversi pertanyaan pengguna menjadi \textit{embedding} menggunakan model \texttt{gemini-embedding-001} yang sama dengan model yang digunakan saat \textit{ingestion}, kemudian melakukan \textit{similarity search} menggunakan \textit{method} \texttt{asRetriever(\{k: 3\})} pada \texttt{PGVectorStore}. Sesuai dengan rancangan pada Bab 3, parameter \texttt{k: 3} berarti sistem menerapkan strategi \textit{Top-K retrieval} yang mengambil tiga dokumen paling relevan berdasarkan \textit{cosine similarity}. LangChain.js secara otomatis menangani \textit{query embedding}, pencarian kemiripan menggunakan operator \texttt{<=>} untuk \textit{cosine distance} di PostgreSQL dengan ekstensi \texttt{pgvector}, serta pengembalian dokumen-dokumen teratas beserta \textit{metadata} dan \textit{similarity score}.
+
+        \hspace*{1.25cm}Pemilihan jumlah tiga dokumen pada proses \textit{retrieval} sesuai dengan rancangan pada Bab 3 yang menyatakan bahwa nilai ini dipilih berdasarkan jumlah dokumen atau \textit{chunk} yang ada. Jumlah tiga dokumen mampu memberikan keseimbangan yang cukup baik antara kualitas konteks dan efisiensi sistem. Jumlah ini menyediakan informasi yang memadai untuk menjawab pertanyaan pengguna tanpa membebani model \textit{Large Language Model} dengan konteks berlebihan yang berpotensi meningkatkan penggunaan \textit{token} API dan memperlambat proses respons sistem.
 
 
-        \begin{lstlisting}[language=Java, caption=Implementasi RAG Query Chain menggunakan LCEL, label=lst:query-chain-impl]
+        \begin{figure}[h!]
+          \centering
+          \begin{minipage}{0.9\linewidth}
+            \begin{lstlisting}[language=Java, basicstyle=\ttfamily\footnotesize, frame=single]
 private async createRAGChain() {
   const prompt = PromptTemplate.fromTemplate(`
-Konteks:
+Anda adalah asisten analisis sentimen UMKM.
+
+Konteks dari knowledge base:
 {context}
 
-Pertanyaan:
+Pertanyaan pengguna:
 {question}
+
+Instruksi:
+- Jawab pertanyaan berdasarkan konteks yang diberikan
+- Gunakan bahasa Indonesia yang formal namun tetap komunikatif
+- Jika informasi tidak tersedia dalam konteks, sampaikan dengan jujur
+- Berikan insight yang actionable bagi pelaku UMKM
 
 Jawaban:
   `);
@@ -374,7 +482,7 @@ Jawaban:
         const docs = await this.vectorStore
           .asRetriever({ k: 3 })
           .invoke(input.question);
-        return docs.map(d => d.pageContent).join('\n');
+        return docs.map(d => d.pageContent).join('\n\n');
       },
       question: (input) => input.question,
     },
@@ -384,13 +492,16 @@ Jawaban:
   ]);
 }
 \end{lstlisting}
+          \end{minipage}
+          \caption{Implementasi RAG Query Chain menggunakan LCEL}
+          \label{lst:query-chain-impl}
+        \end{figure}
 
-        \hspace*{1.25cm}Pemilihan jumlah tiga dokumen pada proses \textit{retrieval} dipilih berdasarkan jumlah dokumen / \textit{chunk} yang ada. tiga dokumen mampu memberikan keseimbangan yang cukup baik antara kualitas konteks dan efisiensi sistem. Jumlah ini menyediakan informasi yang memadai untuk menjawab pertanyaan pengguna, tanpa membebani \textit{Large Language Model} dengan konteks berlebihan yang berpotensi menurunkan kualitas jawaban atau meningkatkan latensi sistem.
+        \hspace*{1.25cm}Dokumen-dokumen hasil \textit{retrieval} kemudian digabungkan menjadi satu teks konteks yang utuh dengan pemisah baris ganda (\texttt{\textbackslash n\textbackslash n}) untuk menjaga keterbacaan. Konteks ini bersama dengan pertanyaan pengguna kemudian dimasukkan ke dalam \texttt{PromptTemplate} dari LangChain.js. Seperti yang dirancang pada Bab 3, struktur \textit{prompt} memiliki pemisahan yang jelas antara instruksi sistem, konteks hasil \textit{retrieval}, dan pertanyaan pengguna. \textit{Template} ini menggunakan variabel \texttt{\{context\}} untuk menampung dokumen hasil \textit{retrieval} dan variabel \texttt{\{question\}} untuk pertanyaan pengguna. Pemisahan yang jelas ini membantu model memahami bahwa jawaban yang dihasilkan harus berlandaskan pada informasi yang terdapat di dalam konteks, sehingga risiko terjadinya \textit{hallucination} dapat diminimalkan.
 
-        \hspace*{1.25cm}Dokumen-dokumen hasil retrieval kemudian digabungkan menjadi satu teks konteks yang utuh dan disusun bersama pertanyaan pengguna ke dalam sebuah prompt terstruktur. Struktur prompt yang diterapkan memiliki pemisahan yang jelas antara bagian konteks hasil retrieval dan bagian pertanyaan pengguna. Pemisahan ini membantu model memahami bahwa jawaban yang dihasilkan harus berlandaskan pada informasi yang terdapat di dalam konteks, sehingga risiko terjadinya \textit{hallucination} dapat diminimalkan.
+        \hspace*{1.25cm}\textit{Prompt} yang telah tersusun kemudian dikirim ke model \texttt{ChatGroq} yang telah diinisialisasi sebelumnya. LangChain.js menangani komunikasi dengan Groq API secara otomatis, termasuk pengelolaan parameter seperti \texttt{temperature} dan \texttt{maxTokens}, serta penanganan \textit{error} dan mekanisme \textit{retry} jika terjadi kegagalan. Respons dari model LLM berupa struktur objek yang kompleks, sehingga diperlukan \texttt{StringOutputParser} untuk mengekstrak teks jawaban dari struktur tersebut. \textit{Parser} ini merupakan komponen terakhir dalam \textit{chain} yang memastikan output yang dikembalikan adalah teks jawaban yang bersih dan siap ditampilkan kepada pengguna.
 
-        \hspace*{1.25cm}Integrasi seluruh komponen sistem menghasilkan alur data yang jelas dan terstruktur, baik pada fase ingest maupun fase query. Pada fase ingest, sistem berhasil membaca file JSON hasil analisis sentimen, kemudian mengonversinya menjadi embedding menggunakan model \textit{Google Generative AI}. Embedding tersebut selanjutnya disimpan ke dalam PostgreSQL yang telah dilengkapi dengan ekstensi \texttt{pgvector}, sehingga data berada dalam format yang optimal untuk kebutuhan \textit{similarity search}. Secara ringkas, alur ini dapat direpresentasikan sebagai berikut:
-
+        \hspace*{1.25cm}Integrasi seluruh komponen LangChain.js menghasilkan alur data yang jelas dan terstruktur, sesuai dengan rancangan pada Bab 3. Pada fase \textit{ingestion}, sistem berhasil mengimplementasikan alur: pembacaan \textit{file} JSON hasil analisis sentimen menggunakan modul \texttt{fs}, pembuatan objek \texttt{Document} dengan \textit{semantic chunking}, konversi menjadi \textit{embedding} menggunakan \texttt{GoogleGenerativeAIEmbeddings}, hingga penyimpanan ke PostgreSQL dengan \texttt{PGVectorStore}. Secara ringkas, alur ini dapat direpresentasikan sebagai berikut:
 
         \begin{equation}
           \text{File JSON} \rightarrow \text{Dokumen / Chunking} \rightarrow \text{Embedding} \rightarrow \text{PostgreSQL (pgvector)}
@@ -400,7 +511,7 @@ Jawaban:
 
         \begin{equation}
           \text{Pertanyaan} \rightarrow \text{Embedding} \rightarrow \text{Similarity Search} \rightarrow \text{Prompt} \rightarrow \text{LLM} \rightarrow \text{Jawaban}
-        \end{equation}
+        \end{equation} \\
 
   \item \textbf{Hasil Dokumentasi API Menggunakan Swagger}
 
@@ -669,7 +780,7 @@ Pada tahap desain, sistem mengadopsi arsitektur tiga lapis yang memisahkan \text
 
 Tahap implementasi dimulai dengan penyiapan lingkungan pengembangan menggunakan Node.js versi LTS dan NestJS. Konfigurasi sistem dirancang dengan memisahkan kode aplikasi dan parameter lingkungan untuk meningkatkan keamanan dan fleksibilitas \textit{deployment}. Basis data PostgreSQL diimplementasikan dengan ekstensi \textit{pgvector} untuk mendukung \textit{similarity search}, sementara pengelolaan skema database dilakukan menggunakan TypeORM untuk memisahkan \textit{business logic} dari logika akses data.
 
-Arsitektur backend diimplementasikan menggunakan pendekatan modular, di mana setiap modul memiliki tanggung jawab yang jelas. Struktur ini mempermudah pengembangan, pengujian, dan pemeliharaan sistem, sekaligus mendukung skalabilitas dan kolaborasi tim. Pipeline RAG diimplementasikan dengan dua fase utama. Fase ingestion menerapkan prinsip \textit{idempotent} untuk menghindari pembuatan embedding ulang yang mahal, serta menggunakan strategi \textit{semantic chunking} agar setiap dokumen merepresentasikan unit makna yang utuh. Fase query diimplementasikan menggunakan LangChain Expression Language (LCEL), dengan proses embedding pertanyaan, \textit{similarity search} dengan parameter $k=3$, serta konstruksi prompt terstruktur yang menggabungkan konteks dan pertanyaan pengguna.
+Arsitektur backend diimplementasikan menggunakan pendekatan modular, di mana setiap modul memiliki tanggung jawab yang jelas. Struktur ini mempermudah pengembangan, pengujian, dan pemeliharaan sistem, sekaligus mendukung skalabilitas dan kolaborasi tim. Pipeline RAG diimplementasikan dengan dua fase utama. Fase ingestion menerapkan prinsip \textit{idempotent} untuk menghindari pembuatan embedding ulang yang mahal, serta menggunakan strategi \textit{semantic chunking} agar setiap dokumen merepresentasikan unit makna yang utuh. Fase query diimplementasikan menggunakan \textit{LangChain Expression Language (LCEL)}, dengan proses embedding pertanyaan, \textit{similarity search} dengan parameter $k=3$, serta konstruksi prompt terstruktur yang menggabungkan konteks dan pertanyaan pengguna.
 
 Pengujian sistem dilakukan menggunakan metode \textit{Black Box Testing}. Seluruh 46 skenario pengujian endpoint berhasil dijalankan, menunjukkan bahwa sistem bekerja secara konsisten. Pengujian relevansi jawaban chatbot juga membuktikan bahwa sistem mampu menghasilkan jawaban yang informatif, kontekstual, dan berbasis data aktual. Kemampuan sistem dalam menyajikan angka spesifik hasil analisis sentimen menegaskan bahwa jawaban yang dihasilkan benar-benar berasal dari \textit{knowledge base}, bukan dari asumsi model.
 
