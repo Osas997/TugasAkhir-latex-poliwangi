@@ -26,15 +26,15 @@ Dengan demikian, penelitian ini tidak hanya membangun sistem analisis, tetapi ju
 \section{Perumusan Masalah}
 Berdasarkan uraian latar belakang di atas, maka perumusan masalah dalam penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-  \item Bagaimana merancang dan mengimplementasikan API \textit{backend} berbasis NestJS yang menyediakan layanan autentikasi serta \textit{endpoint chatbot} analisis sentimen UMKM?
-  \item Bagaimana mengintegrasikan LangChain.js untuk metode RAG dengan \textit{knowledge base} berbentuk file JSON hasil analisis sentimen media sosial UMKM, agar \textit{chatbot} dapat menghasilkan jawaban yang relevan dan kontekstual terhadap pertanyaan pengguna?
+	\item Bagaimana merancang dan mengimplementasikan API \textit{backend} berbasis NestJS yang menyediakan layanan autentikasi serta \textit{endpoint chatbot} analisis sentimen UMKM?
+	\item Bagaimana mengintegrasikan LangChain.js untuk metode RAG dengan \textit{knowledge base} berbentuk file JSON hasil analisis sentimen media sosial UMKM, agar \textit{chatbot} dapat menghasilkan jawaban yang relevan dan kontekstual terhadap pertanyaan pengguna?
 \end{enumerate}
 
 \section{Tujuan}
 Tujuan dari penelitian ini adalah:
 \begin{enumerate}
-  \item Mengembangkan API \textit{backend} berbasis NestJS yang mencakup modul autentikasi JWT dan layanan \textit{chatbot} analisis sentimen UMKM.
-  \item Mengimplementasikan metode RAG menggunakan LangChain.js dengan \textit{knowledge base} berbentuk file JSON hasil analisis sentimen.
+	\item Mengembangkan API \textit{backend} berbasis NestJS yang mencakup modul autentikasi JWT dan layanan \textit{chatbot} analisis sentimen UMKM.
+	\item Mengimplementasikan metode RAG menggunakan LangChain.js dengan \textit{knowledge base} berbentuk file JSON hasil analisis sentimen.
 \end{enumerate}
 
 \section{Manfaat}
@@ -42,26 +42,26 @@ Penelitian ini diharapkan memberikan manfaat sebagai berikut:
 
 \subsection{Manfaat Teoritis}
 \begin{enumerate}
-  \item Memberikan kontribusi pada literatur mengenai penerapan metode \textit{Retrieval-Augmented Generation} (RAG) dalam \textit{chatbot} berbasis \textit{web} berbahasa Indonesia.
-  \item Menjadi referensi bagi penelitian selanjutnya di bidang integrasi \textit{natural language generation} dengan analisis data visual UMKM.
+	\item Memberikan kontribusi pada literatur mengenai penerapan metode \textit{Retrieval-Augmented Generation} (RAG) dalam \textit{chatbot} berbasis \textit{web} berbahasa Indonesia.
+	\item Menjadi referensi bagi penelitian selanjutnya di bidang integrasi \textit{natural language generation} dengan analisis data visual UMKM.
 \end{enumerate}
 
 \subsection{Manfaat Praktis}
 \begin{enumerate}
-  \item Bagi Pelaku UMKM: Memberikan alat bantu interaktif untuk memahami hasil analisis sentimen publik terhadap produk/layanan mereka.
-  \item Bagi Pengembang Sistem: Memberikan \textit{blueprint} teknis (NestJS + LangChain.js + JSON \textit{knowledge base}) yang dapat diterapkan pada proyek serupa.
-  \item Bagi Lembaga atau Pemerintah: Menjadi dasar pengembangan sistem \textit{chatbot} berbasis AI untuk meningkatkan literasi data dan strategi pemasaran digital UMKM.
+	\item Bagi Pelaku UMKM: Memberikan alat bantu interaktif untuk memahami hasil analisis sentimen publik terhadap produk/layanan mereka.
+	\item Bagi Pengembang Sistem: Memberikan \textit{blueprint} teknis (NestJS + LangChain.js + JSON \textit{knowledge base}) yang dapat diterapkan pada proyek serupa.
+	\item Bagi Lembaga atau Pemerintah: Menjadi dasar pengembangan sistem \textit{chatbot} berbasis AI untuk meningkatkan literasi data dan strategi pemasaran digital UMKM.
 \end{enumerate}
 
 \section{Batasan Masalah}
 
 \begin{enumerate}
-  \item Data yang digunakan berasal dari hasil \textit{scraping} akun \textit{Instagram} UMKM yang sudah sukses (misalnya Mie Gacoan dan Sambal Bakar) di wilayah Jawa Timur.
-  \item Fokus utama penelitian adalah pada pengembangan sistem \textit{backend} berbasis NestJS dan implementasi \textit{chatbot} berbasis \textit{Retrieval-Augmented Generation} (RAG) menggunakan LangChain.js untuk interpretasi hasil analisis sentimen.
-  \item Penelitian ini tidak mencakup proses \textit{scraping} data \textit{Instagram}, \textit{preprocessing} data mentah, atau pengembangan model analisis sentimen, karena komponen-komponen tersebut dikembangkan oleh tim kolaborasi terpisah.
-  \item Evaluasi penelitian berfokus pada aspek teknis implementasi sistem (fungsionalitas API, akurasi \textit{retrieval}, relevansi jawaban \textit{chatbot}) dan tidak mencakup evaluasi pengalaman pengguna (\textit{user experience testing} atau \textit{user acceptance testing}).
-  \item Penelitian ini tidak melakukan pengujian metrik akurasi klasifikasi seperti precision, recall, F1-score, atau confusion matrix terhadap output chatbot, karena fokus evaluasi terletak pada fungsionalitas sistem dan relevansi jawaban berbasis knowledge base, bukan pada performa klasifikasi model machine learning.
-  \item \textit{Knowledge base} untuk sistem RAG terbatas pada data hasil analisis sentimen dalam format JSON dan tidak mencakup sumber pengetahuan eksternal lainnya.
+	\item Data yang digunakan berasal dari hasil \textit{scraping} akun \textit{Instagram} UMKM yang sudah sukses (misalnya Mie Gacoan dan Sambal Bakar) di wilayah Jawa Timur.
+	\item Fokus utama penelitian adalah pada pengembangan sistem \textit{backend} berbasis NestJS dan implementasi \textit{chatbot} berbasis \textit{Retrieval-Augmented Generation} (RAG) menggunakan LangChain.js untuk interpretasi hasil analisis sentimen.
+	\item Penelitian ini tidak mencakup proses \textit{scraping} data \textit{Instagram}, \textit{preprocessing} data mentah, atau pengembangan model analisis sentimen, karena komponen-komponen tersebut dikembangkan oleh tim kolaborasi terpisah.
+	\item Evaluasi penelitian berfokus pada aspek teknis implementasi sistem (fungsionalitas API, akurasi \textit{retrieval}, relevansi jawaban \textit{chatbot}) dan tidak mencakup evaluasi pengalaman pengguna (\textit{user experience testing} atau \textit{user acceptance testing}).
+	\item Penelitian ini tidak melakukan pengujian metrik akurasi klasifikasi seperti precision, recall, F1-score, atau confusion matrix terhadap output chatbot, karena fokus evaluasi terletak pada fungsionalitas sistem dan relevansi jawaban berbasis knowledge base, bukan pada performa klasifikasi model machine learning.
+	\item \textit{Knowledge base} untuk sistem RAG terbatas pada data hasil analisis sentimen dalam format JSON dan tidak mencakup sumber pengetahuan eksternal lainnya.
 \end{enumerate}
 
 % \section{Keaslian Gagasan}

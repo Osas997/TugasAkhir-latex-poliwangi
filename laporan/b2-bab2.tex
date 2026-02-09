@@ -28,27 +28,27 @@ Komentar, ulasan, dan mentions yang muncul di media sosial merupakan bentuk \tex
 Analisis sentimen, yang sering juga disebut sebagai \textit{opinion mining}, pada dasarnya merupakan proses memahami bagaimana seseorang menilai atau merasakan sesuatu melalui bahasa yang ia gunakan. Fokusnya bukan sekadar membaca teks, tetapi menafsirkan sikap, emosi, atau pandangan penulis terhadap suatu topik, produk, maupun layanan tertentu. Dalam praktiknya, teks biasanya dikategorikan ke dalam tiga kelompok utama, yaitu positif, negatif, dan netral. Meski begitu, pembagian ini tidak selalu kaku. Dalam beberapa pendekatan, klasifikasi dibuat lebih detail, misalnya sangat positif, positif, netral, negatif, dan sangat negatif, agar nuansa opini dapat ditangkap dengan lebih tepat.
 
 \begin{enumerate}
-      \item \textbf{Pendekatan Analisis Sentimen}
+	\item \textbf{Pendekatan Analisis Sentimen}
 
-            \hspace*{1.25cm}Analisis sentimen dapat dilakukan melalui beberapa pendekatan utama yang masing-masing memiliki karakteristik, kelebihan, dan keterbatasan tersendiri. Pemilihan pendekatan yang tepat sangat bergantung pada kompleksitas data teks, ketersediaan data berlabel, serta tujuan analisis yang ingin dicapai. Secara umum, pendekatan analisis sentimen dapat dikelompokkan ke dalam tiga kategori utama, yaitu pendekatan berbasis leksikon, \textit{machine learning}, dan \textit{deep learning}.
-
-
-            \begin{enumerate}
-                  \item Lexicon-based approach merupakan pendekatan berbasis leksikon yang memanfaatkan kamus sentimen yang berisi daftar kata beserta polaritas sentimen yang telah ditentukan sebelumnya, seperti positif, negatif, atau netral. Pendekatan ini relatif sederhana dan tidak memerlukan data latih, sehingga mudah diimplementasikan. Namun, metode ini memiliki keterbatasan dalam menangani teks yang kompleks, ambigu, atau mengandung sarkasme, serta kurang mampu memahami konteks kalimat secara menyeluruh.
-
-                  \item Machine learning approach menggunakan algoritma klasifikasi seperti \textit{Naive Bayes}, \textit{Support Vector Machine (SVM)}, atau \textit{Random Forest} yang dilatih menggunakan data berlabel untuk mengklasifikasikan sentimen. Pendekatan ini umumnya menghasilkan akurasi yang lebih baik dibandingkan metode berbasis leksikon karena mampu mempelajari pola dari data yang tersedia. Sebagai contoh, \citep{permana_sentimen_2023} menerapkan \textit{Naive Bayes Classifier} untuk menganalisis sentimen opini masyarakat terhadap UMKM di media sosial Twitter, dan menunjukkan bahwa pendekatan ini efektif untuk mengolah data teks media sosial.
-
-                  \item Deep learning approach memanfaatkan arsitektur \textit{neural network} yang lebih kompleks, seperti \textit{Long Short-Term Memory (LSTM)}, \textit{Convolutional Neural Network (CNN)}, serta model berbasis transformer seperti BERT dan RoBERTa. Pendekatan ini memiliki kemampuan yang lebih baik dalam menangkap konteks, hubungan antar kata, serta makna semantik dalam teks yang panjang dan tidak terstruktur. Oleh karena itu, pendekatan \textit{deep learning} sangat sesuai untuk analisis sentimen pada data media sosial yang bersifat dinamis dan kompleks. Sebagai contoh, penelitian oleh \citep{ningrum_pengembangan_2025} menunjukkan bahwa penggunaan model BERT untuk analisis sentimen komentar TikTok pada UMKM mampu meningkatkan performa dibandingkan metode tradisional. \\
-            \end{enumerate}
+	      \hspace*{1.25cm}Analisis sentimen dapat dilakukan melalui beberapa pendekatan utama yang masing-masing memiliki karakteristik, kelebihan, dan keterbatasan tersendiri. Pemilihan pendekatan yang tepat sangat bergantung pada kompleksitas data teks, ketersediaan data berlabel, serta tujuan analisis yang ingin dicapai. Secara umum, pendekatan analisis sentimen dapat dikelompokkan ke dalam tiga kategori utama, yaitu pendekatan berbasis leksikon, \textit{machine learning}, dan \textit{deep learning}.
 
 
-      \item \textbf{Analisis Sentimen pada Media Sosial}
+	      \begin{enumerate}
+		      \item Lexicon-based approach merupakan pendekatan berbasis leksikon yang memanfaatkan kamus sentimen yang berisi daftar kata beserta polaritas sentimen yang telah ditentukan sebelumnya, seperti positif, negatif, atau netral. Pendekatan ini relatif sederhana dan tidak memerlukan data latih, sehingga mudah diimplementasikan. Namun, metode ini memiliki keterbatasan dalam menangani teks yang kompleks, ambigu, atau mengandung sarkasme, serta kurang mampu memahami konteks kalimat secara menyeluruh.
 
-            \hspace*{1.25cm}Analisis sentimen pada media sosial memiliki tantangan yang berbeda dibandingkan dengan analisis teks formal. Bahasa yang digunakan di media sosial cenderung bersifat informal dan tidak terstruktur, dengan ciri khas seperti penggunaan slang, singkatan, emoji, hashtag, serta variasi gaya bahasa yang sering kali tidak mengikuti kaidah tata bahasa baku. Karakteristik ini membuat proses pemrosesan teks dan interpretasi sentimen menjadi lebih kompleks, sehingga diperlukan pendekatan analisis yang tepat agar hasil yang diperoleh tetap akurat.
+		      \item Machine learning approach menggunakan algoritma klasifikasi seperti \textit{Naive Bayes}, \textit{Support Vector Machine (SVM)}, atau \textit{Random Forest} yang dilatih menggunakan data berlabel untuk mengklasifikasikan sentimen. Pendekatan ini umumnya menghasilkan akurasi yang lebih baik dibandingkan metode berbasis leksikon karena mampu mempelajari pola dari data yang tersedia. Sebagai contoh, \citep{permana_sentimen_2023} menerapkan \textit{Naive Bayes Classifier} untuk menganalisis sentimen opini masyarakat terhadap UMKM di media sosial Twitter, dan menunjukkan bahwa pendekatan ini efektif untuk mengolah data teks media sosial.
 
-            \hspace*{1.25cm}Meskipun demikian, sejumlah penelitian terdahulu menunjukkan bahwa analisis sentimen pada media sosial tetap mampu menghasilkan temuan yang bernilai. Penelitian yang dilakukan oleh \citep{zaenab_kurnia_analisis_2024}, misalnya, menganalisis sentimen komentar terkait kerja sama TikTok Shop dan Tokopedia di platform Instagram dengan menggunakan metode \textit{Naive Bayes Classifier}. Hasil penelitian tersebut menunjukkan tingkat akurasi sebesar 83\%, yang mengindikasikan bahwa algoritma \textit{machine learning} masih dapat bekerja dengan baik dalam mengklasifikasikan sentimen pada data media sosial yang dinamis dan beragam.
+		      \item Deep learning approach memanfaatkan arsitektur \textit{neural network} yang lebih kompleks, seperti \textit{Long Short-Term Memory (LSTM)}, \textit{Convolutional Neural Network (CNN)}, serta model berbasis transformer seperti BERT dan RoBERTa. Pendekatan ini memiliki kemampuan yang lebih baik dalam menangkap konteks, hubungan antar kata, serta makna semantik dalam teks yang panjang dan tidak terstruktur. Oleh karena itu, pendekatan \textit{deep learning} sangat sesuai untuk analisis sentimen pada data media sosial yang bersifat dinamis dan kompleks. Sebagai contoh, penelitian oleh \citep{ningrum_pengembangan_2025} menunjukkan bahwa penggunaan model BERT untuk analisis sentimen komentar TikTok pada UMKM mampu meningkatkan performa dibandingkan metode tradisional. \\
+	      \end{enumerate}
 
-            \hspace*{1.25cm}Penelitian lain oleh \citep{ibrahim_sentiment_2022} mengkaji sentimen pengguna terhadap akun Twitter dan Instagram Perpustakaan Nasional Indonesia. Hasil analisis menunjukkan bahwa sentimen yang muncul didominasi oleh sentimen positif, yang mencerminkan tingkat kepuasan pengguna terhadap layanan yang disediakan. Temuan ini menegaskan bahwa analisis sentimen media sosial tidak hanya relevan untuk memahami opini publik, tetapi juga dapat dimanfaatkan sebagai sumber umpan balik yang berharga dalam proses evaluasi serta peningkatan kualitas layanan.
+
+	\item \textbf{Analisis Sentimen pada Media Sosial}
+
+	      \hspace*{1.25cm}Analisis sentimen pada media sosial memiliki tantangan yang berbeda dibandingkan dengan analisis teks formal. Bahasa yang digunakan di media sosial cenderung bersifat informal dan tidak terstruktur, dengan ciri khas seperti penggunaan slang, singkatan, emoji, hashtag, serta variasi gaya bahasa yang sering kali tidak mengikuti kaidah tata bahasa baku. Karakteristik ini membuat proses pemrosesan teks dan interpretasi sentimen menjadi lebih kompleks, sehingga diperlukan pendekatan analisis yang tepat agar hasil yang diperoleh tetap akurat.
+
+	      \hspace*{1.25cm}Meskipun demikian, sejumlah penelitian terdahulu menunjukkan bahwa analisis sentimen pada media sosial tetap mampu menghasilkan temuan yang bernilai. Penelitian yang dilakukan oleh \citep{zaenab_kurnia_analisis_2024}, misalnya, menganalisis sentimen komentar terkait kerja sama TikTok Shop dan Tokopedia di platform Instagram dengan menggunakan metode \textit{Naive Bayes Classifier}. Hasil penelitian tersebut menunjukkan tingkat akurasi sebesar 83\%, yang mengindikasikan bahwa algoritma \textit{machine learning} masih dapat bekerja dengan baik dalam mengklasifikasikan sentimen pada data media sosial yang dinamis dan beragam.
+
+	      \hspace*{1.25cm}Penelitian lain oleh \citep{ibrahim_sentiment_2022} mengkaji sentimen pengguna terhadap akun Twitter dan Instagram Perpustakaan Nasional Indonesia. Hasil analisis menunjukkan bahwa sentimen yang muncul didominasi oleh sentimen positif, yang mencerminkan tingkat kepuasan pengguna terhadap layanan yang disediakan. Temuan ini menegaskan bahwa analisis sentimen media sosial tidak hanya relevan untuk memahami opini publik, tetapi juga dapat dimanfaatkan sebagai sumber umpan balik yang berharga dalam proses evaluasi serta peningkatan kualitas layanan.
 
 
 \end{enumerate}
@@ -65,57 +65,57 @@ Dengan karakteristik tersebut, RAG menjadi pendekatan yang sangat cocok untuk ap
 
 
 \begin{enumerate}
-      \item \textbf{Arsitektur RAG}
+	\item \textbf{Arsitektur RAG}
 
-            \begin{figure}[h]
-                  \centering
-                  \includegraphics[width=0.8\textwidth]{rag-arsitektur.jpg}
-                  \caption{Arsitektur Retrieval-Augmented Generation (RAG)}
-                  \label{fig:rag-architecture}
-            \end{figure}
+	      \begin{figure}[h]
+		      \centering
+		      \includegraphics[width=0.8\textwidth]{rag-arsitektur.jpg}
+		      \caption{Arsitektur Retrieval-Augmented Generation (RAG)}
+		      \label{fig:rag-architecture}
+	      \end{figure}
 
-            \hspace*{1.25cm}Arsitektur RAG terdiri dari dua pipeline utama yang bekerja secara terintegrasi, yaitu \textit{RAG Ingestion Pipeline} dan \textit{Prompt Elements Pipeline}, sebagaimana ditunjukkan pada Gambar \ref{fig:rag-architecture}. Kedua pipeline ini memiliki peran yang berbeda namun saling melengkapi dalam keseluruhan proses retrieval dan generation.
+	      \hspace*{1.25cm}Arsitektur RAG terdiri dari dua pipeline utama yang bekerja secara terintegrasi, yaitu \textit{RAG Ingestion Pipeline} dan \textit{Prompt Elements Pipeline}, sebagaimana ditunjukkan pada Gambar \ref{fig:rag-architecture}. Kedua pipeline ini memiliki peran yang berbeda namun saling melengkapi dalam keseluruhan proses retrieval dan generation.
 
-            \hspace*{1.25cm}RAG Ingestion Pipeline merupakan tahap awal yang bertujuan untuk menyiapkan dan membangun knowledge base yang akan digunakan dalam proses retrieval. Tahap pertama dalam pipeline ini adalah proses \textit{clean}. Pada tahap ini, data yang berasal dari berbagai sumber seperti dokumen teks, file JSON, maupun sumber data lainnya dibersihkan dari berbagai bentuk noise, termasuk karakter tidak relevan, format yang tidak konsisten, serta informasi yang tidak diperlukan. Proses pembersihan data ini sangat penting untuk memastikan kualitas data yang akan diproses pada tahap selanjutnya. Setelah data dibersihkan, tahap berikutnya adalah \textit{chunk}. Pada tahap ini, dokumen yang telah melalui proses pembersihan dipecah menjadi potongan-potongan kecil atau \textit{chunks}. Proses chunking dilakukan karena embedding model memiliki batasan panjang input, sehingga dokumen yang terlalu panjang tidak dapat diproses secara langsung. Selain itu, chunk yang lebih kecil memungkinkan proses retrieval yang lebih presisi, karena sistem dapat mengambil bagian dokumen yang paling relevan dengan query pengguna.
+	      \hspace*{1.25cm}RAG Ingestion Pipeline merupakan tahap awal yang bertujuan untuk menyiapkan dan membangun knowledge base yang akan digunakan dalam proses retrieval. Tahap pertama dalam pipeline ini adalah proses \textit{clean}. Pada tahap ini, data yang berasal dari berbagai sumber seperti dokumen teks, file JSON, maupun sumber data lainnya dibersihkan dari berbagai bentuk noise, termasuk karakter tidak relevan, format yang tidak konsisten, serta informasi yang tidak diperlukan. Proses pembersihan data ini sangat penting untuk memastikan kualitas data yang akan diproses pada tahap selanjutnya. Setelah data dibersihkan, tahap berikutnya adalah \textit{chunk}. Pada tahap ini, dokumen yang telah melalui proses pembersihan dipecah menjadi potongan-potongan kecil atau \textit{chunks}. Proses chunking dilakukan karena embedding model memiliki batasan panjang input, sehingga dokumen yang terlalu panjang tidak dapat diproses secara langsung. Selain itu, chunk yang lebih kecil memungkinkan proses retrieval yang lebih presisi, karena sistem dapat mengambil bagian dokumen yang paling relevan dengan query pengguna.
 
-            \hspace*{1.25cm}Tahap selanjutnya adalah \textit{embed}, yaitu proses mengubah setiap chunk dokumen menjadi embedding vector menggunakan embedding model. Embedding merupakan representasi numerik berdimensi tinggi yang menangkap makna semantik dari teks. Dengan menggunakan embedding, sistem dapat merepresentasikan teks dalam ruang vektor sehingga memungkinkan perhitungan kesamaan semantik antar teks secara matematis. Embedding vector yang dihasilkan kemudian disimpan pada tahap \textit{vector database}. Pada tahap ini, setiap chunk beserta metadata-nya, seperti sumber dokumen, waktu pembuatan, atau kategori, disimpan dalam sebuah vector database. Vector database seperti Pinecone, Chroma, atau FAISS dirancang khusus untuk melakukan pencarian berbasis similarity secara efisien, bahkan pada skala data yang sangat besar. Database ini memungkinkan sistem untuk menemukan potongan dokumen yang paling relevan terhadap sebuah query dalam waktu yang singkat.
+	      \hspace*{1.25cm}Tahap selanjutnya adalah \textit{embed}, yaitu proses mengubah setiap chunk dokumen menjadi embedding vector menggunakan embedding model. Embedding merupakan representasi numerik berdimensi tinggi yang menangkap makna semantik dari teks. Dengan menggunakan embedding, sistem dapat merepresentasikan teks dalam ruang vektor sehingga memungkinkan perhitungan kesamaan semantik antar teks secara matematis. Embedding vector yang dihasilkan kemudian disimpan pada tahap \textit{vector database}. Pada tahap ini, setiap chunk beserta metadata-nya, seperti sumber dokumen, waktu pembuatan, atau kategori, disimpan dalam sebuah vector database. Vector database seperti Pinecone, Chroma, atau FAISS dirancang khusus untuk melakukan pencarian berbasis similarity secara efisien, bahkan pada skala data yang sangat besar. Database ini memungkinkan sistem untuk menemukan potongan dokumen yang paling relevan terhadap sebuah query dalam waktu yang singkat.
 
-            \hspace*{1.25cm}Setelah knowledge base siap, proses berlanjut ke \textit{Prompt Elements Pipeline}, yaitu tahap yang berfokus pada pemrosesan query pengguna dan pembangkitan jawaban. Proses dimulai dari \textit{user input}, di mana sistem menerima pertanyaan atau permintaan informasi dari pengguna dalam bentuk teks natural. Selanjutnya, pada tahap \textit{user input embedding}, query pengguna diubah menjadi embedding vector menggunakan embedding model yang sama dengan yang digunakan pada RAG Ingestion Pipeline. Konsistensi penggunaan embedding model ini sangat penting untuk memastikan bahwa perhitungan kesamaan antara query dan dokumen dalam vector database dapat dilakukan secara akurat. Embedding query kemudian digunakan pada tahap \textit{vector database retrieval}, di mana sistem melakukan pencarian terhadap vector database untuk mengambil sejumlah \textit{top-K} dokumen atau chunk yang paling relevan berdasarkan metrik kesamaan, seperti cosine similarity atau distance metric lainnya. Chunk yang diambil ini dilengkapi dengan metadata yang memberikan konteks tambahan mengenai sumber informasi.
+	      \hspace*{1.25cm}Setelah knowledge base siap, proses berlanjut ke \textit{Prompt Elements Pipeline}, yaitu tahap yang berfokus pada pemrosesan query pengguna dan pembangkitan jawaban. Proses dimulai dari \textit{user input}, di mana sistem menerima pertanyaan atau permintaan informasi dari pengguna dalam bentuk teks natural. Selanjutnya, pada tahap \textit{user input embedding}, query pengguna diubah menjadi embedding vector menggunakan embedding model yang sama dengan yang digunakan pada RAG Ingestion Pipeline. Konsistensi penggunaan embedding model ini sangat penting untuk memastikan bahwa perhitungan kesamaan antara query dan dokumen dalam vector database dapat dilakukan secara akurat. Embedding query kemudian digunakan pada tahap \textit{vector database retrieval}, di mana sistem melakukan pencarian terhadap vector database untuk mengambil sejumlah \textit{top-K} dokumen atau chunk yang paling relevan berdasarkan metrik kesamaan, seperti cosine similarity atau distance metric lainnya. Chunk yang diambil ini dilengkapi dengan metadata yang memberikan konteks tambahan mengenai sumber informasi.
 
-            \hspace*{1.25cm}Tahap berikutnya adalah \textit{prompt construction}, yaitu proses penggabungan antara query pengguna, chunk dokumen hasil retrieval, dan prompt template. Prompt template berfungsi untuk mengatur struktur prompt serta memberikan instruksi yang jelas kepada Large Language Model (LLM) mengenai bagaimana konteks yang diberikan harus digunakan dalam proses pembangkitan jawaban. Selanjuatnya  tahap \textit{LLM generation}, prompt yang telah dikonstruksi dikirimkan ke LLM untuk menghasilkan jawaban. LLM memanfaatkan kemampuan generatifnya untuk menyusun jawaban, sekaligus menggunakan informasi kontekstual dari retrieved documents sebagai dasar pengetahuan. Tahap akhir dari pipeline ini adalah \textit{generated answer}, yaitu keluaran berupa jawaban dalam bahasa natural yang relevan dengan pertanyaan pengguna dan memiliki dasar faktual yang kuat karena ditopang oleh informasi dari knowledge base.
+	      \hspace*{1.25cm}Tahap berikutnya adalah \textit{prompt construction}, yaitu proses penggabungan antara query pengguna, chunk dokumen hasil retrieval, dan prompt template. Prompt template berfungsi untuk mengatur struktur prompt serta memberikan instruksi yang jelas kepada Large Language Model (LLM) mengenai bagaimana konteks yang diberikan harus digunakan dalam proses pembangkitan jawaban. Selanjuatnya  tahap \textit{LLM generation}, prompt yang telah dikonstruksi dikirimkan ke LLM untuk menghasilkan jawaban. LLM memanfaatkan kemampuan generatifnya untuk menyusun jawaban, sekaligus menggunakan informasi kontekstual dari retrieved documents sebagai dasar pengetahuan. Tahap akhir dari pipeline ini adalah \textit{generated answer}, yaitu keluaran berupa jawaban dalam bahasa natural yang relevan dengan pertanyaan pengguna dan memiliki dasar faktual yang kuat karena ditopang oleh informasi dari knowledge base.
 
-      \item \textbf{Keunggulan RAG}
+	\item \textbf{Keunggulan RAG}
 
-            \hspace*{1.25cm}Retrieval-Augmented Generation (RAG) memiliki sejumlah keunggulan yang menjadikannya lebih unggul dibandingkan dengan \textit{pure generative model}, terutama dalam konteks sistem tanya jawab yang menuntut tingkat akurasi tinggi dan ketergantungan pada pengetahuan faktual. Dengan mengintegrasikan mekanisme \textit{retrieval} dan \textit{generation}, RAG tidak hanya mengandalkan pengetahuan statis yang diperoleh selama proses pelatihan model, tetapi juga mampu memanfaatkan sumber pengetahuan eksternal yang dapat diperbarui secara dinamis.
+	      \hspace*{1.25cm}Retrieval-Augmented Generation (RAG) memiliki sejumlah keunggulan yang menjadikannya lebih unggul dibandingkan dengan \textit{pure generative model}, terutama dalam konteks sistem tanya jawab yang menuntut tingkat akurasi tinggi dan ketergantungan pada pengetahuan faktual. Dengan mengintegrasikan mekanisme \textit{retrieval} dan \textit{generation}, RAG tidak hanya mengandalkan pengetahuan statis yang diperoleh selama proses pelatihan model, tetapi juga mampu memanfaatkan sumber pengetahuan eksternal yang dapat diperbarui secara dinamis.
 
-            \begin{enumerate}
-                  \item Akurasi dan relevansi jawaban yang lebih tinggi, RAG mampu menghasilkan jawaban yang lebih akurat dan relevan karena memanfaatkan \textit{knowledge base} eksternal sebagai sumber informasi utama. Melalui mekanisme \textit{retrieval}, model tidak hanya bergantung pada pengetahuan yang tersimpan dalam parameter hasil pelatihan, tetapi juga menggunakan konteks faktual yang diambil secara dinamis dari dokumen yang relevan. Penelitian oleh \citep{lewis_retrieval-augmented_2021} menunjukkan bahwa pendekatan ini secara signifikan meningkatkan performa pada tugas yang bergantung pada data pengetahuan spesifik, jika dibandingkan dengan model generatif murni.
+	      \begin{enumerate}
+		      \item Akurasi dan relevansi jawaban yang lebih tinggi, RAG mampu menghasilkan jawaban yang lebih akurat dan relevan karena memanfaatkan \textit{knowledge base} eksternal sebagai sumber informasi utama. Melalui mekanisme \textit{retrieval}, model tidak hanya bergantung pada pengetahuan yang tersimpan dalam parameter hasil pelatihan, tetapi juga menggunakan konteks faktual yang diambil secara dinamis dari dokumen yang relevan. Penelitian oleh \citep{lewis_retrieval-augmented_2021} menunjukkan bahwa pendekatan ini secara signifikan meningkatkan performa pada tugas yang bergantung pada data pengetahuan spesifik, jika dibandingkan dengan model generatif murni.
 
-                  \item Kemampuan pembaruan pengetahuan tanpa pelatihan ulang, Salah satu keunggulan utama RAG terletak pada kemampuannya untuk memperbarui pengetahuan sistem tanpa memerlukan proses pelatihan ulang model bahasa. \textit{Knowledge base} dapat diperbarui secara independen seiring dengan adanya data atau informasi terbaru, sehingga sistem tetap adaptif terhadap perubahan. Studi tinjauan sistematis yang dilakukan oleh \citep{murtiyoso_systematic_2025} menegaskan bahwa fleksibilitas ini menjadikan RAG sangat sesuai untuk domain dengan informasi yang dinamis dan cepat berubah.
+		      \item Kemampuan pembaruan pengetahuan tanpa pelatihan ulang, Salah satu keunggulan utama RAG terletak pada kemampuannya untuk memperbarui pengetahuan sistem tanpa memerlukan proses pelatihan ulang model bahasa. \textit{Knowledge base} dapat diperbarui secara independen seiring dengan adanya data atau informasi terbaru, sehingga sistem tetap adaptif terhadap perubahan. Studi tinjauan sistematis yang dilakukan oleh \citep{murtiyoso_systematic_2025} menegaskan bahwa fleksibilitas ini menjadikan RAG sangat sesuai untuk domain dengan informasi yang dinamis dan cepat berubah.
 
-                  \item Transparansi dan verifikasi sumber informasi, Pendekatan RAG memungkinkan sistem melacak serta menyertakan metadata dari dokumen yang digunakan dalam proses pembangkitan jawaban. Dengan demikian, sumber informasi yang mendasari suatu jawaban dapat ditelusuri dan diverifikasi. Fitur ini meningkatkan transparansi serta tingkat kepercayaan pengguna terhadap sistem. Praktik serupa banyak diterapkan pada chatbot berbasis dokumen, sebagaimana ditunjukkan dalam penelitian \citep{pratama_retrieval-augmented_2023} dan \citep{husain_development_2025}.
+		      \item Transparansi dan verifikasi sumber informasi, Pendekatan RAG memungkinkan sistem melacak serta menyertakan metadata dari dokumen yang digunakan dalam proses pembangkitan jawaban. Dengan demikian, sumber informasi yang mendasari suatu jawaban dapat ditelusuri dan diverifikasi. Fitur ini meningkatkan transparansi serta tingkat kepercayaan pengguna terhadap sistem. Praktik serupa banyak diterapkan pada chatbot berbasis dokumen, sebagaimana ditunjukkan dalam penelitian \citep{pratama_retrieval-augmented_2023} dan \citep{husain_development_2025}.
 
-                  \item Efisiensi komputasi dan skalabilitas sistem, Dengan memisahkan penyimpanan pengetahuan dari parameter model generatif, RAG tidak menuntut model berukuran sangat besar untuk menyimpan seluruh informasi di dalam bobotnya. Pendekatan ini lebih efisien dari sisi komputasi dan kebutuhan penyimpanan, serta memungkinkan sistem diskalakan dengan menambahkan data ke dalam \textit{knowledge base} tanpa meningkatkan kompleksitas model. \citep{vidivelli_efficiency-driven_2024} menunjukkan bahwa arsitektur RAG yang diorkestrasi menggunakan framework seperti LangChain dapat meningkatkan efisiensi pengembangan sistem chatbot.
+		      \item Efisiensi komputasi dan skalabilitas sistem, Dengan memisahkan penyimpanan pengetahuan dari parameter model generatif, RAG tidak menuntut model berukuran sangat besar untuk menyimpan seluruh informasi di dalam bobotnya. Pendekatan ini lebih efisien dari sisi komputasi dan kebutuhan penyimpanan, serta memungkinkan sistem diskalakan dengan menambahkan data ke dalam \textit{knowledge base} tanpa meningkatkan kompleksitas model. \citep{vidivelli_efficiency-driven_2024} menunjukkan bahwa arsitektur RAG yang diorkestrasi menggunakan framework seperti LangChain dapat meningkatkan efisiensi pengembangan sistem chatbot.
 
-            \end{enumerate}
+	      \end{enumerate}
 
-      \item \textbf{Implementasi RAG dalam Berbagai Domain}
+	\item \textbf{Implementasi RAG dalam Berbagai Domain}
 
-            \hspace*{1.25cm}Berbagai penelitian menunjukkan bahwa pendekatan \textit{Retrieval-Augmented Generation (RAG)} telah diadopsi secara luas untuk meningkatkan kemampuan model bahasa dalam memahami serta memanfaatkan pengetahuan yang bersifat spesifik domain. Fleksibilitas RAG memungkinkan pendekatan ini diterapkan pada beragam konteks aplikasi dengan karakteristik kebutuhan yang berbeda-beda. Hal tersebut tercermin dari sejumlah studi terdahulu yang menyesuaikan desain dan implementasi RAG sesuai dengan domain yang diteliti.
+	      \hspace*{1.25cm}Berbagai penelitian menunjukkan bahwa pendekatan \textit{Retrieval-Augmented Generation (RAG)} telah diadopsi secara luas untuk meningkatkan kemampuan model bahasa dalam memahami serta memanfaatkan pengetahuan yang bersifat spesifik domain. Fleksibilitas RAG memungkinkan pendekatan ini diterapkan pada beragam konteks aplikasi dengan karakteristik kebutuhan yang berbeda-beda. Hal tersebut tercermin dari sejumlah studi terdahulu yang menyesuaikan desain dan implementasi RAG sesuai dengan domain yang diteliti.
 
-            \hspace*{1.25cm} Dalam konteks helpdesk dan customer service, penelitian oleh \citep{pratama_pengembangan_2024} menunjukkan bahwa integrasi RAG dengan dokumen helpdesk sebagai \textit{knowledge base} memungkinkan chatbot memberikan respons yang lebih relevan dan kontekstual, sehingga meningkatkan kualitas layanan dan mempercepat penyelesaian masalah pengguna.
+	      \hspace*{1.25cm} Dalam konteks helpdesk dan customer service, penelitian oleh \citep{pratama_pengembangan_2024} menunjukkan bahwa integrasi RAG dengan dokumen helpdesk sebagai \textit{knowledge base} memungkinkan chatbot memberikan respons yang lebih relevan dan kontekstual, sehingga meningkatkan kualitas layanan dan mempercepat penyelesaian masalah pengguna.
 
-            \hspace*{1.25cm}Pendekatan serupa juga diterapkan pada layanan akademik, di mana \citep{husain_development_2025} mengembangkan chatbot berbasis RAG untuk membantu mahasiswa mengakses informasi terkait kebijakan dan layanan akademik. Dengan memanfaatkan dokumen institusional sebagai \textit{knowledge base}, sistem yang dihasilkan mampu memberikan jawaban yang lebih akurat, konsisten, dan sesuai dengan aturan resmi institusi, sehingga meningkatkan efisiensi layanan akademik.
+	      \hspace*{1.25cm}Pendekatan serupa juga diterapkan pada layanan akademik, di mana \citep{husain_development_2025} mengembangkan chatbot berbasis RAG untuk membantu mahasiswa mengakses informasi terkait kebijakan dan layanan akademik. Dengan memanfaatkan dokumen institusional sebagai \textit{knowledge base}, sistem yang dihasilkan mampu memberikan jawaban yang lebih akurat, konsisten, dan sesuai dengan aturan resmi institusi, sehingga meningkatkan efisiensi layanan akademik.
 
-            \hspace*{1.25cm}Selain itu, RAG juga telah diimplementasikan dalam domain hukum yang memiliki karakteristik informasi kompleks dan sangat spesifik. Penelitian oleh \citep{pratama_retrieval-augmented_2023} menerapkan pendekatan RAG untuk penyediaan informasi hukum pidana Indonesia menggunakan model LLaMA. Hasil penelitian menunjukkan bahwa RAG efektif dalam mengelola \textit{domain-specific knowledge base}, terutama dalam konteks bahasa Indonesia, serta membantu menghasilkan jawaban yang lebih terstruktur dan berbasis referensi yang jelas.
+	      \hspace*{1.25cm}Selain itu, RAG juga telah diimplementasikan dalam domain hukum yang memiliki karakteristik informasi kompleks dan sangat spesifik. Penelitian oleh \citep{pratama_retrieval-augmented_2023} menerapkan pendekatan RAG untuk penyediaan informasi hukum pidana Indonesia menggunakan model LLaMA. Hasil penelitian menunjukkan bahwa RAG efektif dalam mengelola \textit{domain-specific knowledge base}, terutama dalam konteks bahasa Indonesia, serta membantu menghasilkan jawaban yang lebih terstruktur dan berbasis referensi yang jelas.
 
 
 
-      \item \textbf{LangChain sebagai Framework RAG}
+	\item \textbf{LangChain sebagai Framework RAG}
 
-            \hspace*{1.25cm}LangChain merupakan sebuah framework \textit{open-source} yang dirancang untuk mempermudah pengembangan aplikasi berbasis \textit{Large Language Models (LLM)}, khususnya aplikasi yang mengadopsi pendekatan \textit{Retrieval-Augmented Generation (RAG)}. Framework ini menyediakan beragam abstraksi dan komponen modular yang membantu pengembang membangun pipeline RAG secara terstruktur, rapi, dan efisien. Beberapa komponen utama yang disediakan oleh LangChain meliputi \textit{document loaders} untuk memuat data dari berbagai sumber, \textit{text splitters} untuk melakukan proses chunking dokumen, \textit{vector stores} untuk menyimpan embedding, \textit{retrievers} untuk melakukan pencarian berbasis similarity, serta \textit{chains} yang berfungsi mengorkestrasi alur kerja kompleks yang mengintegrasikan proses retrieval dan generation.
+	      \hspace*{1.25cm}LangChain merupakan sebuah framework \textit{open-source} yang dirancang untuk mempermudah pengembangan aplikasi berbasis \textit{Large Language Models (LLM)}, khususnya aplikasi yang mengadopsi pendekatan \textit{Retrieval-Augmented Generation (RAG)}. Framework ini menyediakan beragam abstraksi dan komponen modular yang membantu pengembang membangun pipeline RAG secara terstruktur, rapi, dan efisien. Beberapa komponen utama yang disediakan oleh LangChain meliputi \textit{document loaders} untuk memuat data dari berbagai sumber, \textit{text splitters} untuk melakukan proses chunking dokumen, \textit{vector stores} untuk menyimpan embedding, \textit{retrievers} untuk melakukan pencarian berbasis similarity, serta \textit{chains} yang berfungsi mengorkestrasi alur kerja kompleks yang mengintegrasikan proses retrieval dan generation.
 
-            \hspace*{1.25cm}Efektivitas penggunaan LangChain dalam pengembangan sistem berbasis RAG juga telah dibuktikan melalui berbagai penelitian. Studi yang dilakukan oleh \citep{vidivelli_efficiency-driven_2024} menunjukkan bahwa pemanfaatan LangChain dalam pengembangan chatbot kustom berbasis LLM mampu meningkatkan efisiensi proses pengembangan sekaligus mempermudah integrasi dengan berbagai model LLM dan \textit{vector database}. Selain itu, LangChain mendukung lintas bahasa pemrograman, termasuk versi JavaScript yang dikenal sebagai LangChain.js. Keberadaan LangChain.js memungkinkan implementasi RAG dalam ekosistem Node.js, sehingga memberikan fleksibilitas yang lebih besar bagi pengembang dalam membangun aplikasi chatbot berbasis web maupun sistem backend modern yang berskala.
+	      \hspace*{1.25cm}Efektivitas penggunaan LangChain dalam pengembangan sistem berbasis RAG juga telah dibuktikan melalui berbagai penelitian. Studi yang dilakukan oleh \citep{vidivelli_efficiency-driven_2024} menunjukkan bahwa pemanfaatan LangChain dalam pengembangan chatbot kustom berbasis LLM mampu meningkatkan efisiensi proses pengembangan sekaligus mempermudah integrasi dengan berbagai model LLM dan \textit{vector database}. Selain itu, LangChain mendukung lintas bahasa pemrograman, termasuk versi JavaScript yang dikenal sebagai LangChain.js. Keberadaan LangChain.js memungkinkan implementasi RAG dalam ekosistem Node.js, sehingga memberikan fleksibilitas yang lebih besar bagi pengembang dalam membangun aplikasi chatbot berbasis web maupun sistem backend modern yang berskala.
 
 \end{enumerate}
 
@@ -149,10 +149,10 @@ Dengan kemampuan tersebut, NestJS menjadi fondasi backend yang tepat untuk mendu
 Model Fountain merupakan metodologi pengembangan perangkat lunak yang bersifat iteratif dan inkremental, yang pertama kali diperkenalkan oleh \citep{henderson-sellers_object-oriented_1990} sebagai alternatif terhadap model waterfall yang bersifat sekuensial. Berbeda dengan model waterfall yang mengharuskan setiap tahap diselesaikan secara berurutan, model Fountain memberikan fleksibilitas yang lebih tinggi dengan memungkinkan terjadinya iterasi dan tumpang tindih antar tahapan pengembangan. Nama \textit{Fountain} digunakan karena alur pengembangannya menyerupai aliran air mancur, yang tidak hanya mengalir secara linear ke bawah, tetapi juga dapat mengalir kembali ke atas untuk proses penyempurnaan serta menyebar ke samping untuk memungkinkan pengembangan paralel.
 
 \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.4\textwidth]{fountain-model.jpg}
-      \caption{Model Fountain}
-      \label{fig:fountain-model}
+	\centering
+	\includegraphics[width=0.4\textwidth]{fountain-model.jpg}
+	\caption{Model Fountain}
+	\label{fig:fountain-model}
 \end{figure}
 
 Gambar \ref{fig:fountain-model} memperlihatkan representasi visual dari model Fountain, di mana setiap fase pengembangan tidak bersifat terpisah secara kaku, melainkan saling terhubung dan dapat berlangsung secara iteratif. Diagram tersebut menggambarkan bahwa hasil dari suatu tahap dapat kembali memengaruhi tahap sebelumnya, sehingga proses evaluasi dan perbaikan dapat dilakukan secara berulang sepanjang siklus pengembangan sistem. Pendekatan ini sangat sesuai untuk pengembangan perangkat lunak yang kompleks dan dinamis, di mana kebutuhan sistem dapat berubah seiring waktu.
@@ -160,37 +160,37 @@ Gambar \ref{fig:fountain-model} memperlihatkan representasi visual dari model Fo
 Meskipun bersifat fleksibel dan iteratif, model Fountain tetap memiliki tahapan-tahapan utama yang menjadi acuan dalam pengembangan sistem. Tahapan-tahapan ini tidak harus dijalankan secara linier, melainkan dapat saling tumpang tindih dan dilakukan secara paralel sesuai dengan kebutuhan proyek. Adapun tahapan utama dalam model Fountain adalah sebagai berikut: \\
 
 \begin{enumerate}
-      \item \textbf{Analysis}
+	\item \textbf{Analysis}
 
-            Tahap analisis bertujuan untuk memahami permasalahan yang akan diselesaikan oleh sistem serta konteks operasionalnya. Pada tahap ini dilakukan analisis terhadap kebutuhan pengguna, proses bisnis, serta batasan sistem yang akan dikembangkan.
+	      Tahap analisis bertujuan untuk memahami permasalahan yang akan diselesaikan oleh sistem serta konteks operasionalnya. Pada tahap ini dilakukan analisis terhadap kebutuhan pengguna, proses bisnis, serta batasan sistem yang akan dikembangkan.
 
-      \item \textbf{Requirements Specification}
+	\item \textbf{Requirements Specification}
 
-            Tahap ini berfokus pada identifikasi dan dokumentasi kebutuhan sistem, baik kebutuhan fungsional maupun non-fungsional. Dalam model Fountain, spesifikasi kebutuhan tidak bersifat final dan dapat direvisi kapan saja apabila ditemukan kebutuhan baru atau perubahan pada kebutuhan pengguna.
+	      Tahap ini berfokus pada identifikasi dan dokumentasi kebutuhan sistem, baik kebutuhan fungsional maupun non-fungsional. Dalam model Fountain, spesifikasi kebutuhan tidak bersifat final dan dapat direvisi kapan saja apabila ditemukan kebutuhan baru atau perubahan pada kebutuhan pengguna.
 
-      \item \textbf{Design}
+	\item \textbf{Design}
 
-            Tahap perancangan meliputi desain arsitektur sistem, perancangan basis data, antarmuka pengguna, serta komponen-komponen sistem lainnya. Model Fountain memungkinkan proses desain dilakukan secara paralel untuk berbagai komponen, sehingga mempercepat pengembangan sistem secara keseluruhan.
+	      Tahap perancangan meliputi desain arsitektur sistem, perancangan basis data, antarmuka pengguna, serta komponen-komponen sistem lainnya. Model Fountain memungkinkan proses desain dilakukan secara paralel untuk berbagai komponen, sehingga mempercepat pengembangan sistem secara keseluruhan.
 
-      \item \textbf{Coding}
+	\item \textbf{Coding}
 
-            Tahap coding merupakan proses implementasi sistem berdasarkan desain yang telah dibuat. Pengembangan dilakukan secara inkremental, di mana modul atau fitur dikembangkan secara bertahap dan dapat langsung diuji serta dievaluasi sebelum melanjutkan ke modul berikutnya.
+	      Tahap coding merupakan proses implementasi sistem berdasarkan desain yang telah dibuat. Pengembangan dilakukan secara inkremental, di mana modul atau fitur dikembangkan secara bertahap dan dapat langsung diuji serta dievaluasi sebelum melanjutkan ke modul berikutnya.
 
-      \item \textbf{Testing and Integration}
+	\item \textbf{Testing and Integration}
 
-            Pada tahap ini dilakukan pengujian terhadap setiap komponen sistem serta proses integrasi antar komponen untuk memastikan sistem berfungsi sesuai dengan spesifikasi. Dalam model Fountain, pengujian dilakukan secara berkelanjutan selama proses pengembangan, bukan hanya pada tahap akhir.
+	      Pada tahap ini dilakukan pengujian terhadap setiap komponen sistem serta proses integrasi antar komponen untuk memastikan sistem berfungsi sesuai dengan spesifikasi. Dalam model Fountain, pengujian dilakukan secara berkelanjutan selama proses pengembangan, bukan hanya pada tahap akhir.
 
-      \item \textbf{Operation}
+	\item \textbf{Operation}
 
-            Tahap operation mencakup penggunaan sistem dalam lingkungan operasional nyata. Pada tahap ini, sistem mulai digunakan oleh pengguna dan kinerjanya diamati untuk mengidentifikasi potensi permasalahan atau kebutuhan perbaikan.
+	      Tahap operation mencakup penggunaan sistem dalam lingkungan operasional nyata. Pada tahap ini, sistem mulai digunakan oleh pengguna dan kinerjanya diamati untuk mengidentifikasi potensi permasalahan atau kebutuhan perbaikan.
 
-      \item \textbf{Maintenance}
+	\item \textbf{Maintenance}
 
-            Tahap maintenance berfokus pada pemeliharaan sistem, perbaikan kesalahan, serta penyesuaian sistem terhadap perubahan kebutuhan pengguna atau lingkungan operasional. Feedback dari pengguna menjadi masukan penting dalam tahap ini.
+	      Tahap maintenance berfokus pada pemeliharaan sistem, perbaikan kesalahan, serta penyesuaian sistem terhadap perubahan kebutuhan pengguna atau lingkungan operasional. Feedback dari pengguna menjadi masukan penting dalam tahap ini.
 
-      \item \textbf{Evolution}
+	\item \textbf{Evolution}
 
-            Tahap evolution merupakan kelanjutan dari maintenance, di mana sistem dikembangkan lebih lanjut melalui penambahan fitur baru atau peningkatan kemampuan sistem agar tetap relevan dan adaptif terhadap kebutuhan jangka panjang.
+	      Tahap evolution merupakan kelanjutan dari maintenance, di mana sistem dikembangkan lebih lanjut melalui penambahan fitur baru atau peningkatan kemampuan sistem agar tetap relevan dan adaptif terhadap kebutuhan jangka panjang.
 \end{enumerate}
 
 \subsection{Black Box Testing}
@@ -206,29 +206,29 @@ Berikut adalah tabel perbandingan penelitian terkait yang relevan dengan pengemb
 
 
 \begin{longtable}{|c|p{2.8cm}|p{2.5cm}|p{4cm}|p{4.5cm}|}
-      \caption{Tabel perbandingan penelitian terkait} \label{tab:perbandingan_penelitian}                                                                                                                                                                                           \\
-      \hline
-      \textbf{No} & \textbf{Peneliti}                        & \textbf{Teknologi}                    & \textbf{Judul}                                                                       & \textbf{Fitur}                                                                        \\ \hline
-      \endfirsthead
+	\caption{Tabel perbandingan penelitian terkait} \label{tab:perbandingan_penelitian}                                                                                                                                                                                           \\
+	\hline
+	\textbf{No} & \textbf{Peneliti}                        & \textbf{Teknologi}                    & \textbf{Judul}                                                                       & \textbf{Fitur}                                                                        \\ \hline
+	\endfirsthead
 
-      \hline
-      \textbf{No} & \textbf{Peneliti}                        & \textbf{Teknologi}                    & \textbf{Judul}                                                                       & \textbf{Fitur}                                                                        \\ \hline
-      \endhead
+	\hline
+	\textbf{No} & \textbf{Peneliti}                        & \textbf{Teknologi}                    & \textbf{Judul}                                                                       & \textbf{Fitur}                                                                        \\ \hline
+	\endhead
 
-      \hline
-      \endfoot
+	\hline
+	\endfoot
 
-      1           & \citep{permana_sentimen_2023}            & Naive Bayes Classifier, Twitter API   & Sentimen Analisis Opini Masyarakat Terhadap UMKM pada Twitter                        & Klasifikasi sentimen (positif, netral, negatif) dengan akurasi tinggi untuk data UMKM \\ \hline
-      2           & \citep{zaenab_kurnia_analisis_2024}      & Naive Bayes Classifier, Instagram API & Analisis Sentimen Komentar TikTok Shop \& Tokopedia di Instagram                     & Analisis sentimen komentar Instagram dengan akurasi 83\%                              \\ \hline
-      3           & \citep{cahyanti_perancangan_2025}        & RAG, Llama3, MistralAi                & Perancangan Sistem Informasi Chatbot Retrieval Augmented Generation Berbasis Website & chatbot untuk meningkatkan akurasi respons, kemampuan
-      menangani pertanyaan kompleks                                                                                                                                                                                                                                                 \\ \hline
-      4           & \citep{lewis_retrieval-augmented_2021}   & RAG, BERT                             & Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks                     & Paper dasar RAG: retrieval + generation untuk Q\&A                                    \\ \hline
-      5           & \citep{pratama_pengembangan_2024}        & RAG, LangChain, Vector DB             & Sistem Helpdesk Chatbot dengan Metode RAG                                            & Retrieval dokumen + respons berbasis knowledge base                                   \\ \hline
-      6           & \citep{husain_development_2025}          & RAG, LLM, Vector Store                & Academic Services Chatbot Based on RAG                                               & Retrieval dokumen akademik + generation jawaban akurat                                \\ \hline
-      7           & \citep{pokhrel_practical_2025}           & RAG, Web Scraping, Semantic Search    & Practical Application of RAG for Website-Based Chatbots                              & RAG untuk chatbot website: scraping + semantic search                                 \\ \hline
-      8           & \citep{vidivelli_efficiency-driven_2024} & LangChain, RAG, Custom LLM            & Efficiency-Driven Chatbot: LangChain + RAG + LLM Fusion                              & Integrasi RAG efisien + optimasi performa                                             \\ \hline
-      9           & \citep{muhammad_development_2024}        & NestJS, REST API, TypeScript          & Backend Server with REST API Architecture for E-Wallet System                        & Modular backend NestJS + dependency injection + REST API                              \\ \hline
-      10          & \citep{kavaz_chatbot-based_2023}         & NLP, Chatbot, Data Visualization      & Natural Language Interface for Data Visualization (Scoping Review)                   & Review chatbot untuk interpretasi visualisasi data                                    \\ \hline
+	1           & \citep{permana_sentimen_2023}            & Naive Bayes Classifier, Twitter API   & Sentimen Analisis Opini Masyarakat Terhadap UMKM pada Twitter                        & Klasifikasi sentimen (positif, netral, negatif) dengan akurasi tinggi untuk data UMKM \\ \hline
+	2           & \citep{zaenab_kurnia_analisis_2024}      & Naive Bayes Classifier, Instagram API & Analisis Sentimen Komentar TikTok Shop \& Tokopedia di Instagram                     & Analisis sentimen komentar Instagram dengan akurasi 83\%                              \\ \hline
+	3           & \citep{cahyanti_perancangan_2025}        & RAG, Llama3, MistralAi                & Perancangan Sistem Informasi Chatbot Retrieval Augmented Generation Berbasis Website & chatbot untuk meningkatkan akurasi respons, kemampuan
+	menangani pertanyaan kompleks                                                                                                                                                                                                                                                 \\ \hline
+	4           & \citep{lewis_retrieval-augmented_2021}   & RAG, BERT                             & Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks                     & Paper dasar RAG: retrieval + generation untuk Q\&A                                    \\ \hline
+	5           & \citep{pratama_pengembangan_2024}        & RAG, LangChain, Vector DB             & Sistem Helpdesk Chatbot dengan Metode RAG                                            & Retrieval dokumen + respons berbasis knowledge base                                   \\ \hline
+	6           & \citep{husain_development_2025}          & RAG, LLM, Vector Store                & Academic Services Chatbot Based on RAG                                               & Retrieval dokumen akademik + generation jawaban akurat                                \\ \hline
+	7           & \citep{pokhrel_practical_2025}           & RAG, Web Scraping, Semantic Search    & Practical Application of RAG for Website-Based Chatbots                              & RAG untuk chatbot website: scraping + semantic search                                 \\ \hline
+	8           & \citep{vidivelli_efficiency-driven_2024} & LangChain, RAG, Custom LLM            & Efficiency-Driven Chatbot: LangChain + RAG + LLM Fusion                              & Integrasi RAG efisien + optimasi performa                                             \\ \hline
+	9           & \citep{muhammad_development_2024}        & NestJS, REST API, TypeScript          & Backend Server with REST API Architecture for E-Wallet System                        & Modular backend NestJS + dependency injection + REST API                              \\ \hline
+	10          & \citep{kavaz_chatbot-based_2023}         & NLP, Chatbot, Data Visualization      & Natural Language Interface for Data Visualization (Scoping Review)                   & Review chatbot untuk interpretasi visualisasi data                                    \\ \hline
 \end{longtable}
 
 
