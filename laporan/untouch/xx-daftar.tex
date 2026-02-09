@@ -10,9 +10,11 @@
 \renewcommand\contentsname{DAFTAR ISI}
 \singlespacing
 \tableofcontents
+\halamankosong
 
 % Daftar Singkatan
 \input{a6-daftarsingkatan}
+\halamankosong
 
 % Daftar Gambar
 \cleardoublepage  % Ganti dari \clearpage
@@ -24,15 +26,17 @@
 \renewcommand{\cftfigleader}{\dotfill}
 \renewcommand\listfigurename{DAFTAR GAMBAR}
 \listoffigures
+\halamankosong
 
 % Daftar Tabel
 \cleardoublepage  % Ganti dari \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{DAFTAR TABEL}
-\setlength{\cftbeforeloftitleskip}{-0.5cm}
-\renewcommand{\cftloftitlefont}{\hfill\large\bfseries}
-\renewcommand{\cftafterloftitle}{\hfill}
+\setlength{\cftbeforelottitleskip}{-0.5cm}
+\renewcommand{\cftlottitlefont}{\hfill\large\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
 \renewcommand{\cfttableader}{\dotfill}
 \renewcommand\listtablename{\centerline{\large\bfseries DAFTAR TABEL}}
 \listoftables
+\halamankosong
 %% DILARANG EDIT BAGIAN INI

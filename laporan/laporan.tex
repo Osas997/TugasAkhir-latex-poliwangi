@@ -9,31 +9,42 @@
 \input{untouch/xx-preambles}
 \input{a1-database.hyphenate}
 
-%\newcommand{\Jenis}{Proposal} %Pilih salah satu antara Proposal atau Laporan
+% \newcommand{\Jenis}{Proposal} %Pilih salah satu antara Proposal atau Laporan
 \newcommand{\Jenis}{Laporan} %Pilih salah satu antara Proposal atau Laporan
 
 \begin{document}
 \ifthenelse{\equal{\Jenis}{Proposal}}{
 	\include{untouch/xx-sampul-proposal}
+	\halamankosong
 	\pagenumbering{roman}
 	\include{untouch/xx-sampuldalam-proposal}
+	\halamankosong
 	\include{untouch/xx-persetujuan-proposal}
+	\halamankosong
 
 	\begin{spacing}{1.2}
+		\include{a2-abstrak}
+		\halamankosong
+		\include{a3-abstract}
+		\halamankosong
 		\include{untouch/xx-daftar}
+		\halamankosong
 	\end{spacing}
 
 	\pagenumbering{arabic}
 
 	\begin{spacing}{1.5}
 		\include{b1-bab1}
+		\halamankosong
 		\include{b2-bab2}
+		\halamankosong
 		\include{b3-bab3}
-		\include{b6-bab6} %HANYA TUTORIAL HAPUS SAAT PENULISAN
+		\halamankosong
 	\end{spacing}
 }{
 
 	\include{untouch/xx-sampul-laporan}
+	\halamankosong
 	\pagenumbering{roman}
 	\include{untouch/xx-sampuldalam-laporan}
 	\halamankosong
